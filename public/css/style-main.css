@@ -1,0 +1,70 @@
+header{
+white-space: nowrap; overflow: hidden;
+position:fixed;
+top:0px; left:0px; width:100%;
+padding-left:0.5em;
+height: 3em;
+background-color:lightCyan;
+z-index:10;
+border-bottom: 1px solid black;
+}
+
+header h1 {
+display:block;
+position:absolute;
+top:50%;
+transform: translateY(-50%);
+color:black;
+margin:0px;
+}
+
+nav {
+position:absolute;
+bottom:0px;
+left:0px;
+text-align:right;
+width:100%;
+}
+nav ul {
+list-style-type: none;
+		margin-right:1em;
+}
+nav li {
+float:right;
+}
+nav a{
+	display: block;
+  padding-right: 0.5em;
+	text-decoration: none;
+	color:black;
+	top:50%;
+transform: translateY(-50%);
+}
+nav a:hover{background-color:darkgray;}
+
+/* .headSpacer sits at the top of the page to stop element being
+behind the fixed header  */
+.headSpacer {margin-top:3em;}
+
+
+
+main {
+padding-bottom:1.5em;
+}
+
+
+footer {
+position:fixed;
+text-align:center;
+border-top: 1px solid black;
+
+box-sizing:border-box;
+bottom:0em;
+width:100%;
+left:0%;
+margin:0px;
+padding:0px;
+background-color:lightCyan;
+
+height:1.5em;
+}
