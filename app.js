@@ -11,6 +11,12 @@ var navBar = [
 
 var gallery = require('./src/js/getGalleries.js')();
 
+var watcher = fs.watch('./public/galleries',{recursive:true},
+(eventType,fileName) => {
+	console.log(`${eventType} detected in ${fileName}.`);
+	gallery = require('./src/js/getGalleries.js')()
+});
+
 app.use(express.static('public'));
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
