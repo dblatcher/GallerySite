@@ -1,0 +1,25 @@
+.galleryListItem {
+ position:relative;
+ border: 1px solid black;
+ margin-bottom: 1em;
+ min-height:6em;
+ padding: 0.1em;
+}
+
+
+.galleryListItem h2,p,a{
+	text-decoration: none;
+	color:black;
+}
+
+.galleryListItem img{
+ max-height:5em;
+ position:absolute;
+ top:0.5em;
+ right:1em;
+}
+
+.galleryListItem p{
+	margin-right:6em;
+	padding:0.2em;
+}

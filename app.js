@@ -22,7 +22,11 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(req,res){
-	res.render('normalPage', {title: 'Home Page', navBar:navBar, galleries:gallery, content:'home'});
+	res.render('homePage', {title: 'Home Page', navBar:navBar, galleries:gallery});
+});
+
+app.get('/about', function(req,res){
+	res.render('aboutPage', {title: 'About', navBar:navBar, galleries:gallery});
 });
 
 server.listen(port);
