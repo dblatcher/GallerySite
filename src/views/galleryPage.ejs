@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en-UK">
+<head>
+	<title><%=gallery.title%></title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 
+	<link rel="stylesheet" href="../css/style-main.css" />
+
+	
+</head>
+
+<body>
+	<header>
+		<% include parts/header %>
+	</header>
+	<div class="headSpacer"></div>
+		
+	<main>	
+		<h2><%=gallery.title%></h2>
+		
+		<% for(var i=0; i<gallery.picture.length;i++){%>
+			<img src = "../<%=gallery.path%><%=gallery.picture[i] %>" ></img>
+		<%}%>
+	</main>
+
+	<footer>
+		<% include parts/footer %>
+	</footer>
+</body>
+
+</html>
+	

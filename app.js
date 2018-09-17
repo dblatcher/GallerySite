@@ -21,6 +21,9 @@ app.use(express.static('public'));
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
+var galleryRouter = require('./src/routes/galleryRoutes')(gallery,navBar);
+app.use('/gallery',galleryRouter);
+
 app.get('/', function(req,res){
 	res.render('homePage', {title: 'Home Page', navBar:navBar, galleries:gallery});
 });
