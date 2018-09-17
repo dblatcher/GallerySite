@@ -9,12 +9,14 @@ var navBar = [
 	{title:"about",path:'../about'}
 ];
 
+var gallery = require('./src/js/getGalleries.js')();
+
 app.use(express.static('public'));
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(req,res){
-	res.render('normalPage', {title: 'Home Page', navBar:navBar, content:'home'});
+	res.render('normalPage', {title: 'Home Page', navBar:navBar, galleries:gallery, content:'home'});
 });
 
 server.listen(port);

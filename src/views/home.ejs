@@ -3,3 +3,18 @@
 <p>this is my homepage</p>
 
 
+
+
+<% for(var i=0; i<galleries.length;i++){%>
+
+	<div class = 'container'>
+		
+			<h3><%=galleries[i].title%></h3>
+			<p><%=galleries[i].description%></p>
+			<img src = "<%=galleries[i].path%><%=galleries[i].picture[0] %>" ></img>
+			
+	</div>
+
+	
+	<%}%>
+
