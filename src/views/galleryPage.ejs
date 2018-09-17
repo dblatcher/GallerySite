@@ -6,7 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
  
 	<link rel="stylesheet" href="../css/style-main.css" />
-
+	<link rel="stylesheet" href="../css/style-gallery.css" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	
 </head>
 
@@ -18,15 +19,30 @@
 		
 	<main>	
 		<h2><%=gallery.title%></h2>
+
+			<% for(var i=0; i<gallery.picture.length;i++){%>
+				<img class = "mainImage hidden" src = "../<%=gallery.path%><%=gallery.picture[i] %>" ></img>
+			<%}%>
+
 		
-		<% for(var i=0; i<gallery.picture.length;i++){%>
-			<img src = "../<%=gallery.path%><%=gallery.picture[i] %>" ></img>
-		<%}%>
+		<div id="backButton" class="button">
+			<i class="material-icons">arrow_back_ios</i>
+		</div>
+		
+		<div id="forwardButton" class="button">
+			<i  class="material-icons">arrow_forward_ios</i>
+		</div>
+		
+		
 	</main>
 
 	<footer>
 		<% include parts/footer %>
 	</footer>
+  
+	<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+	<script src="../js/galleryScript.js"></script>
+	
 </body>
 
 </html>
