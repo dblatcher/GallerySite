@@ -2,7 +2,6 @@
 
 .mainImage {
 display:none;
-
 box-sizing:border-box;
 position:absolute;
 top:50%;
@@ -26,14 +25,26 @@ padding-bottom:2.5em;
 display:block;
 }
 
+
+.willFade {
+-webkit-transition: opacity 1s; /* Safari */
+transition: opacity 1s;
+-webkit-transition-timing-function: linear;
+transition-timing-function: linear;
+}
+.faded {
+opacity:0;
+}
+
 .button {
+box-sizing:border-box;
 position:absolute;
 top:50%;
 transform: translate y(-50%);
 border:1px solid black;
 border-radius:100%;
-width: 4em;
-height: 4em;
+width: 3em;
+height: 3em;
 cursor:pointer;
 }
 #forwardButton{
@@ -43,11 +54,17 @@ right: 3em;
 left: 3em;
 }
 
-.button i {
+.button p{
+box-sizing:border-box;
+margin:0px;
+padding:0px;
 position:absolute;
-width: 2em;
-height: 2em;
-left:1em;
-top:1em;
+height:0px;
+line-height:0px;
+width:100%;
+top:50%;
+vertical-align:middle;
+text-align:center;
+font-size:2em;
 }
 

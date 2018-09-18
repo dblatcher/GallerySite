@@ -7,7 +7,6 @@
  
 	<link rel="stylesheet" href="../css/style-main.css" />
 	<link rel="stylesheet" href="../css/style-gallery.css" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	
 </head>
 
@@ -18,19 +17,19 @@
 	<div class="headSpacer"></div>
 		
 	<main>	
-		<h2><%=gallery.title%></h2>
 
-			<% for(var i=0; i<gallery.picture.length;i++){%>
-				<img class = "mainImage hidden" src = "../<%=gallery.path%><%=gallery.picture[i] %>" ></img>
-			<%}%>
+		<% for(var i=0; i<gallery.picture.length;i++){%>
+			<img class = "mainImage hidden" src = "../<%=gallery.path%><%=gallery.picture[i] %>" ></img>
+		<%}%>
 
+		<h2 class = "willFade"><%=gallery.title%></h2>
 		
-		<div id="backButton" class="button">
-			<i class="material-icons">arrow_back_ios</i>
+		<div id="backButton" class="button willFade">
+			<p>&#8678;</p>
 		</div>
 		
-		<div id="forwardButton" class="button">
-			<i  class="material-icons">arrow_forward_ios</i>
+		<div id="forwardButton" class="button willFade">
+			<p>&#8680;</p>
 		</div>
 		
 		
