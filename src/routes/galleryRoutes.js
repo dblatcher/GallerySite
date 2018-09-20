@@ -18,7 +18,7 @@ var router = function(navBar) {
 			if (foundGallery) {
 				res.render('galleryPage', {gallery:foundGallery, navBar:navBar});
 			} else {
-				res.send('There is no gallery called \'' + id + '\'.');
+				res.render('errorPage',{errorMessage:`There is no gallery called \'${id}\'.`, navBar:navBar});
 			}
 		});
 	
