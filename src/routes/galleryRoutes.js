@@ -1,10 +1,9 @@
 var express = require('express');
+var getGalleries = require('../js/getGalleries.js');
 var galleryRouter = express.Router();
 
-var router = function(galleries,navBar) {
-
-	var foundGallery;
-
+var router = function(navBar) {
+	
 	galleryRouter.route('/')
 		.get(function (req, res){
 			res.redirect('/');
@@ -12,8 +11,9 @@ var router = function(galleries,navBar) {
 
 	galleryRouter.route('/:id')
 		.get(function (req, res){
+			galleries = getGalleries();
 			var id = req.params.id;
-			foundGallery = findGallery(id,galleries);
+			var foundGallery = findGallery(id,galleries);
 			
 			if (foundGallery) {
 				res.render('galleryPage', {gallery:foundGallery, navBar:navBar});
@@ -23,16 +23,17 @@ var router = function(galleries,navBar) {
 		});
 	
 	return galleryRouter;
+
+	function findGallery(id,galleriesArray) {
+		for (var loop=0; loop<galleriesArray.length; loop++){
+			if (id === galleriesArray[loop].title) {
+				return galleriesArray[loop];
+			}
+		}
+		return false;
+	}
 }	
 	
-function findGallery(id,galleries) {
-	for (var loop=0; loop<galleries.length; loop++){
-		if (id === galleries[loop].title) {
-			return galleries[loop];
-		}
-	}
-	return false;
-}
 	
 	
 module.exports = router;
