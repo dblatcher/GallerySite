@@ -23,8 +23,8 @@
 		<% for(var i=0; i<galleries.length;i++){%>
 			<a href = 'gallery/<%=galleries[i].title%>'>
 			<div class = 'galleryListItem'>
-					<h2><%=galleries[i].title%></h2>
-					<img src = "<%=galleries[i].path%><%=galleries[i].picture[0] %>" ></img>
+					<img src = "<%=galleries[i].path%><%=galleries[i].picture[galleries[i].main] %>" ></img>
+					<h2><%=galleries[i].displayTitle%></h2>					
 					<p><%=galleries[i].description%></p>
 			</div>	
 			</a>

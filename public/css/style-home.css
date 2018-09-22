@@ -13,13 +13,11 @@
 }
 
 .galleryListItem img{
- max-height:5em;
- position:absolute;
- top:0.5em;
- right:1em;
+ float:right;
+ max-height:4em;
+ 
 }
 
 .galleryListItem p{
-	margin-right:6em;
-	padding:0.2em;
+
 }

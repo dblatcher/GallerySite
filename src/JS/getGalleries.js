@@ -46,17 +46,15 @@ function getGalleries(siteSettings) {
 
 	function Gallery(title,picture,info) {
 		this.title = title;
+		this.displayTitle = info.displayTitle || title;
 		this.picture = picture;
 		this.path = clientUrl + title + "/";
 		
 		this.description = info.description || null;
 		this.background = info.background || siteSettings.defaultGalleryBackgroundColor;
-			console.log(this.background);	
-		this.indexOfMainImage = info.mainImage ? picture.indexOf(info.mainImage) : 0;
-		if (this.indexOfMainImage == -1 ) {
-			console.log(`Could name find mainImage defined in info file. ${info.mainImage} is not a picture in the ${title} folder.`);
-			this.indexOfMainImage == -0;
-		};
+		this.foreground = info.foreground || siteSettings.defaultGalleryForegroundColor;
+		this.main = info.mainImage ? picture.indexOf(info.mainImage) : 0;
+		if (this.main == -1 ) {this.main == 0;};
 	};
 
 };

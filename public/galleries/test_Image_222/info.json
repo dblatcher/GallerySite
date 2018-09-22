@@ -1,0 +1,6 @@
+{
+"description":"These two images have extreme aspect ratios, which makes them good for testing responsiveness.",
+"background":"black",
+"foreground":"blue",
+"displayTitle":"Test Images Display Title!"
+}

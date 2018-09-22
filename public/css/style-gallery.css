@@ -41,7 +41,7 @@ box-sizing:border-box;
 position:absolute;
 top:50%;
 transform: translate y(-50%);
-border:1px solid black;
+border:1px solid;
 border-radius:100%;
 width: 3em;
 height: 3em;

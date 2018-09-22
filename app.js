@@ -12,6 +12,7 @@ var navBar = [
 
 var siteSettings = {
 	defaultGalleryBackgroundColor:"white",
+	defaultGalleryForegroundColor:"black",
 	imageFileTypes : ['jpg','tif','gif','png','bmp']
 };
 

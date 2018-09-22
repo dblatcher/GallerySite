@@ -10,7 +10,7 @@
 	
 </head>
 
-<body>
+<body style='background-color:<%=gallery.background%>'>
 	<header>
 		<% include parts/header %>
 	</header>
@@ -22,13 +22,18 @@
 			<img class = "mainImage hidden" src = "../<%=gallery.path%><%=gallery.picture[i] %>" ></img>
 		<%}%>
 
-		<h2 class = "willFade"><%=gallery.title%></h2>
+		<h2 
+		class = "willFade" 
+		style='color:<%=gallery.foreground%>'
+		>
+			<%=gallery.displayTitle%>
+		</h2>
 		
-		<div id="backButton" class="button willFade">
+		<div id="backButton" class="button willFade" style='color:<%=gallery.foreground%>'>
 			<p>&#8678;</p>
 		</div>
 		
-		<div id="forwardButton" class="button willFade">
+		<div id="forwardButton" class="button willFade" style='color:<%=gallery.foreground%>' >
 			<p>&#8680;</p>
 		</div>
 		
