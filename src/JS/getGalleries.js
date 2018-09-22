@@ -1,10 +1,9 @@
 fs = require("fs");
+var serverUrl = "./public/galleries";
+var clientUrl = "galleries/";
 
-function getGalleries() {
-	var serverUrl = "./public/galleries";
-	var clientUrl = "galleries/";
-	var imageFileTypes = ['jpg','tif','gif','png','bmp'];
-	
+
+function getGalleries(siteSettings) {
 	var galleriesFolder = fs.readdirSync(serverUrl);
 	var folders = [], folderContents = [], galleries = [], galleryInfo = {};
 
@@ -38,7 +37,7 @@ function getGalleries() {
 	return galleries;
 
 	function isImage(name) {
-		if (imageFileTypes.indexOf(fileExtension(name)) !== -1 ) {return true};
+		if (siteSettings.imageFileTypes.indexOf(fileExtension(name)) !== -1 ) {return true};
 		return false;
 		function fileExtension (name) {
 			return name.slice(name.lastIndexOf('.')+1,name.length);
@@ -51,8 +50,8 @@ function getGalleries() {
 		this.path = clientUrl + title + "/";
 		
 		this.description = info.description || null;
-		this.background = info.background || null;
-		
+		this.background = info.background || siteSettings.defaultGalleryBackgroundColor;
+			console.log(this.background);	
 		this.indexOfMainImage = info.mainImage ? picture.indexOf(info.mainImage) : 0;
 		if (this.indexOfMainImage == -1 ) {
 			console.log(`Could name find mainImage defined in info file. ${info.mainImage} is not a picture in the ${title} folder.`);

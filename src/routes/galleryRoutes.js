@@ -2,7 +2,7 @@ var express = require('express');
 var getGalleries = require('../js/getGalleries.js');
 var galleryRouter = express.Router();
 
-var router = function(navBar) {
+var router = function(navBar,siteSettings) {
 	
 	galleryRouter.route('/')
 		.get(function (req, res){
@@ -11,7 +11,7 @@ var router = function(navBar) {
 
 	galleryRouter.route('/:id')
 		.get(function (req, res){
-			galleries = getGalleries();
+			galleries = getGalleries(siteSettings);
 			var id = req.params.id;
 			var foundGallery = findGallery(id,galleries);
 			

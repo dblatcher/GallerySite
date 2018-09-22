@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
+var getGalleries = require('./src/js/getGalleries.js');
 
 var port = process.env.PORT || 8080;
 
@@ -9,14 +10,19 @@ var navBar = [
 	{title:"about",path:'../about'}
 ];
 
-var gallery = require('./src/js/getGalleries.js')();
-var galleryRouter = require('./src/routes/galleryRoutes')(navBar);
+var siteSettings = {
+	defaultGalleryBackgroundColor:"white",
+	imageFileTypes : ['jpg','tif','gif','png','bmp']
+};
+
+var gallery = getGalleries(siteSettings);
+var galleryRouter = require('./src/routes/galleryRoutes')(navBar,siteSettings);
 app.use('/gallery',galleryRouter);
 
 var watcher = fs.watch('./public/galleries',{recursive:true},
 (eventType,fileName) => {
 	console.log(`${eventType} detected in ${fileName}.`);
-	gallery = require('./src/js/getGalleries.js')();
+	gallery = getGalleries(siteSettings);
 });
 
 app.use(express.static('public'));
