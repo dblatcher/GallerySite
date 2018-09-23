@@ -11,6 +11,7 @@ var navBar = [
 ];
 
 var siteSettings = {
+	siteName:"My Picture Site",
 	defaultGalleryBackgroundColor:"white",
 	defaultGalleryForegroundColor:"black",
 	imageFileTypes : ['jpg','tif','gif','png','bmp']
@@ -32,11 +33,11 @@ app.set('view engine', 'ejs');
 
 
 app.get('/', function(req,res){
-	res.render('homePage', {title: 'Home Page', navBar:navBar, galleries:gallery});
+	res.render('homePage', {title: 'Home Page', navBar:navBar, galleries:gallery, siteSettings:siteSettings});
 });
 
 app.get('/about', function(req,res){
-	res.render('aboutPage', {title: 'About', navBar:navBar, galleries:gallery});
+	res.render('aboutPage', {title: 'About', navBar:navBar, galleries:gallery,siteSettings:siteSettings});
 });
 
 server.listen(port);
