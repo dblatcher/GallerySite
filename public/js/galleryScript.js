@@ -1,4 +1,9 @@
 
+addSwipeControls(document.getElementsByTagName("HTML")[0],{
+	left: function(){changeImageShowing(findIndexOfImageShowing()+1)},
+	right: function(){changeImageShowing(findIndexOfImageShowing()-1)},
+});
+
 document.getElementById("forwardButton").onclick = function() {
 	changeImageShowing(findIndexOfImageShowing()+1);
 };
