@@ -16,9 +16,9 @@ var router = function(navBar,siteSettings) {
 			var foundGallery = findGallery(id,galleries);
 			
 			if (foundGallery) {
-				res.render('galleryPage', {gallery:foundGallery, navBar:navBar});
+				res.render('galleryPage', {gallery:foundGallery, navBar:navBar, siteSettings:siteSettings});
 			} else {
-				res.render('errorPage',{errorMessage:`There is no gallery called \'${id}\'.`, navBar:navBar});
+				res.render('errorPage',{errorMessage:`There is no gallery called \'${id}\'.`, navBar:navBar,siteSettings:siteSettings});
 			}
 		});
 	
