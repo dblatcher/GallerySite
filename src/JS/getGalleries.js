@@ -18,9 +18,11 @@ function getGalleries(siteSettings) {
 		galleryInfo = {};
 
 		if (folderContents.indexOf('info.json') !== -1) {
-			galleryInfo = JSON.parse (fs.readFileSync(`${serverUrl}/${folders[i]}/info.json`, 'utf8'));
-		} else if (folderContents.indexOf('description.txt') !== -1) {
-			galleryInfo.description = fs.readFileSync(`${serverUrl}/${folders[i]}/description.txt`, 'utf8');
+			try {
+				galleryInfo = JSON.parse (fs.readFileSync(`${serverUrl}/${folders[i]}/info.json`, 'utf8'));
+			} catch(err) {
+				console.log(`Error in info.json file for the ${folders[i]} gallery.`);
+			}
 		} 
 		
 		if (folderContents.filter(isImage).length > 0) {
