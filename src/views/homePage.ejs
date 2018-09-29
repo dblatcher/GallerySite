@@ -17,17 +17,10 @@
 	<div class="headSpacer"></div>
 		
 	<main>
-		<p>This is the homepage. It displays a list of the available galleries.</p>
+		<p>This is the homepage. It has no content yet.</p>
+		<img src = '/images/titleImage.jpg'></img>
 		
-		<% for(var i=0; i<galleries.length;i++){%>
-			<a href = 'gallery/<%=galleries[i].title%>'>
-			<div class = 'galleryListItem'>
-					<img src = "<%=galleries[i].path%><%=galleries[i].picture[galleries[i].main] %>" ></img>
-					<h2><%=galleries[i].displayTitle%></h2>					
-					<p><%=galleries[i].description%></p>
-			</div>	
-			</a>
-		<%}%>
+		
 	</main>
 
 	<footer>

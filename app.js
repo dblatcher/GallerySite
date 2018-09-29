@@ -14,9 +14,9 @@ var siteSettings = {
 
 //set title to 'null' if the page should not appear in the navBar
 var pages = [
-	{path:'/', page:'homePage', title:'Home'},
-	{path:'/about', page:'aboutPage', title:'About'},
-	{path:'/gallery', page:'page_that_does_not_exist', title:'Galleries'},
+	{path:'/', viewName:'homePage', title:'Home'},
+	{path:'/about', viewName:'aboutPage', title:'About'},
+	{path:'/gallery', viewName:'galleriesPage', title:'Galleries'},
 ];
 
 var gallery = getGalleries(siteSettings);
@@ -35,7 +35,7 @@ app.set('view engine', 'ejs');
 
 pages.forEach (function (page) {
 	app.get(page.path, function(req,res){
-		res.render(page.page, {title: page.title, navBar:pages, galleries:gallery, siteSettings:siteSettings});
+		res.render(page.viewName, {title: page.title, navBar:pages, galleries:gallery, siteSettings:siteSettings});
 	});
 });
 
