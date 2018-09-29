@@ -29,11 +29,11 @@ document.getElementsByTagName("HTML")[0].onclick = function() {
 
 function changeImageShowing(chosenImage) {
 	var images = [].slice.call(document.getElementsByClassName('mainImage'));
-	images.forEach ( (image) => { 
-		image.classList.remove('showing');
-		image.classList.remove('widerThanScreen');
-		image.classList.remove('tallerThanScreen');
-	});
+	for (var i=0; i<images.length; i++) {
+		images[i].classList.remove('showing');
+		images[i].classList.remove('widerThanScreen');
+		images[i].classList.remove('tallerThanScreen');
+	};
 	while (chosenImage >= images.length) {chosenImage -= images.length;};
 	while (chosenImage < 0) {chosenImage += images.length;};
 	images[chosenImage].classList.add('showing');
