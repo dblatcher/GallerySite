@@ -3,8 +3,10 @@
 
 <nav>
 	<ul>
-		<% for(var i=0; i<navBar.length;i++){%>
-		<li><a href=<%=navBar[i].path%>><%=navBar[i].title%></a></li>
+		<% for(var i=0; i<navBar.length;i++){%>				
+			<%if (navBar[i].title) { %>
+				<li><a href=<%=navBar[i].path%>><%=navBar[i].title%></a></li>
+			<% } %>
 		<%}%>
 	</ul>
 </nav>

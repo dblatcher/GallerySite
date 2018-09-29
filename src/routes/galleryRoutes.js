@@ -4,11 +4,6 @@ var galleryRouter = express.Router();
 
 var router = function(navBar,siteSettings) {
 	
-	galleryRouter.route('/')
-		.get(function (req, res){
-			res.redirect('/');
-		});
-
 	galleryRouter.route('/:id')
 		.get(function (req, res){
 			galleries = getGalleries(siteSettings);
