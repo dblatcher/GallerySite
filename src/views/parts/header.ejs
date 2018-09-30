@@ -1,12 +1,14 @@
+<header>
+	<h1><%=siteSettings.siteName%></h1>
+	<nav>
+		<ul>
+			<% for(var i=0; i<navBar.length;i++){%>				
+				<%if (navBar[i].title) { %>
+					<li><a href=<%=navBar[i].path%>><%=navBar[i].title%></a></li>
+				<% } %>
+			<%}%>
+		</ul>
+	</nav>
+</header>
 
-<h1><%=siteSettings.siteName%></h1>
-
-<nav>
-	<ul>
-		<% for(var i=0; i<navBar.length;i++){%>				
-			<%if (navBar[i].title) { %>
-				<li><a href=<%=navBar[i].path%>><%=navBar[i].title%></a></li>
-			<% } %>
-		<%}%>
-	</ul>
-</nav>
+<div class="headSpacer"></div>
