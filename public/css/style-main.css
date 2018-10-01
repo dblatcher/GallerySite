@@ -18,6 +18,18 @@ color:black;
 margin:0px;
 }
 
+.loggedInMessage{
+white-space: nowrap; overflow: hidden;
+position:fixed;
+top:3em; right:1em;
+padding-left:0.5em;
+height: 1em;
+background-color:cyan;
+opacity:0.75;
+z-index:10;
+border: 1px solid black;
+}
+
 nav {
 position:absolute;
 bottom:0px;

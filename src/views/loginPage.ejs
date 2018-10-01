@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en-UK">
+<head>
+	<title><%=siteSettings.siteName%></title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 
+	<link rel="stylesheet" href="/css/style-main.css" />
+	
+	
+</head>
+
+<body>
+	<% include parts/header %>
+		
+	<main>
+		
+		<% if (sessionMessage) {%>
+			<p style="color:red;"><%=sessionMessage%></p>
+		<%} else {%>
+			<p>Enter your details.</p>
+		<%}%>
+		
+		
+		<form action="/login" method="post">
+				<div>
+						<label>Username:</label>
+						<input type="text" name="username"/>
+				</div>
+				<div>
+						<label>Password:</label>
+						<input type="password" name="password"/>
+				</div>
+				<div>
+						<input type="submit" value="Log In"/>
+				</div>
+		</form>
+	
+	</main>
+
+
+	<% include parts/footer %>
+</body>
+
+</html>
+	

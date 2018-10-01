@@ -11,7 +11,8 @@ var router = function(navBar,siteSettings) {
 			var foundGallery = findGallery(id,galleries);
 			
 			if (foundGallery) {
-				res.render('galleryPage', {gallery:foundGallery, navBar:navBar, siteSettings:siteSettings});
+				var username = req.user ? req.user.username : null ;
+				res.render('galleryPage', {gallery:foundGallery, navBar:navBar, siteSettings:siteSettings, username:username});
 			} else {
 				throw new Error(`There is no gallery called \'${id}\'.`);
 			}
