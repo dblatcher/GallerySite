@@ -41,6 +41,7 @@ function checkIfUserLoggedIn(req, res, next) {
 	else {
 		//throw new Error("You need to Log in before seeing that page!");	
 		req.session.message = "You need to Log in before seeing that page!";
+		console.log(req.get('referer'))
 		res.redirect('/login');
 	}
 }
@@ -62,8 +63,13 @@ function attemptLogIn(req, res, next) {
   })(req, res, next);
 };
 
+function logOutUser (res, req, next) {
+	req.logout();
+	res.redirect('back');
+};
 
 module.exports ={
 	checkIfUserLoggedIn:checkIfUserLoggedIn,
-	attemptLogIn:attemptLogIn
+	attemptLogIn:attemptLogIn,
+	logOutUser:logOutUser
 };
