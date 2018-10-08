@@ -61,14 +61,13 @@ pages.forEach (function (page) {
 			messagePassedFromSession = req.session.message;
 			req.session.message = null;
 		};
-		var username = req.user ? req.user.username : null ;
 		res.render(page.viewName, {
 			title: page.title,
 			navBar:pages,
 			galleries:gallery,
 			siteSettings:siteSettings,
 			sessionMessage:messagePassedFromSession,
-			username:username
+			username:req.user ? req.user.username : false
 		});
 	});
 });
@@ -82,12 +81,12 @@ app.get ('/logout', myPassportModule.logOutUser);
 app.use('/gallery',galleryRouter);
 
 app.use(function (req, res, next) {
-  res.status(404).render('errorPage', {errorMessage:"404 - file not found", navBar:pages,siteSettings:siteSettings });
+  res.status(404).render('errorPage', {errorMessage:"404 - file not found", navBar:pages,siteSettings:siteSettings, username:req.user ? req.user.username : false });
 })
 
 app.use(function (err, req, res, next) {
   res.status(500)
-  res.render('errorPage', {errorMessage:err, navBar:pages,siteSettings:siteSettings });
+  res.render('errorPage', {errorMessage:err, navBar:pages,siteSettings:siteSettings,username:req.user ? req.user.username : false });
 });
 
 server.listen(port);
