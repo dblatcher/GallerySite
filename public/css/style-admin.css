@@ -1,0 +1,71 @@
+.uploadControl, .thumbNail {
+width:50px;
+height:50px;
+margin:5px;
+padding:5px;
+position:relative;
+display:inline-block;
+float:left;
+cursor:pointer;
+}
+
+.uploadControl {
+border: 2px dashed palegreen;
+opacity:0.5;
+color:green;
+}
+
+.uploadControl:hover {
+opacity:1;
+}
+
+
+.current {
+border:2px solid black;
+opacity:1;
+}
+
+.deleted {
+border:2px dashed red;
+opacity:0.5;
+}
+
+.added {
+border:2px solid palegreen;
+}
+
+.deleted:hover {
+border: 2px solid black;
+}
+
+.added:hover, .current:hover {
+border:2px dashed red;
+}
+
+.thumbNail img{
+position:absolute;
+top:0px;left:0px;
+width:100%;
+max-height:100%;
+}
+
+
+form span{
+
+}
+
+form input,textarea{
+width:60%;
+}
+form [type=color]{
+width:4em;
+}
+
+section div {
+clear:both;
+margin-bottom:4px;
+}
+section {
+border-bottom: 3px solid black;
+padding-bottom: 6px;
+}
