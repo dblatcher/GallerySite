@@ -73,8 +73,11 @@ pages.forEach (function (page) {
 });
 
 app.post('/login', myPassportModule.attemptLogIn);
-app.get ('/logout', myPassportModule.logOutUser);
 
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('back');
+});
 
 
 

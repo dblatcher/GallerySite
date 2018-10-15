@@ -63,10 +63,6 @@ function attemptLogIn(req, res, next) {
   })(req, res, next);
 };
 
-function logOutUser (res, req, next) {
-	req.logout();
-	res.redirect('back');
-};
 
 module.exports ={
 	checkIfUserLoggedIn:checkIfUserLoggedIn,
