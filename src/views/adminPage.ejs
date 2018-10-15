@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
  
 	<link rel="stylesheet" href="/css/style-main.css" />
+	<link rel="stylesheet" href="/css/style-admin.css" />
 	
 	
 </head>
@@ -14,13 +15,75 @@
 	<% include parts/header %>
 		
 	<main>
-	<h1>Admin page</h1>
+	<h2>Admin Page</h2>
 	
+	<section id = 'selectorSection'>
+		<h3>Choose Gallery</h3>
+		<% for (var i =0; i<galleries.length; i++) {%>
+			<button id = 'selectButton<%=i%>' onclick='handleSelect(<%=i%>)' ><%=galleries[i].displayTitle%></button>
+		<% } %>
+		<button id = 'selectButtonNew' onclick='handleSelect("New")'>[Add new gallery]</button>
+	</section>
+	
+	<% for (var i =0; i<galleries.length; i++) {%>
+		
+		<section id = 'edit<%=i%>' class = 'editSection' style = "display:none;">
+			<h3>edit Gallery : <%=galleries[i].displayTitle%></h3>
+			
+			<div>
+				<form id = 'propertyForm<%=i%>'>
+					<span>Title:</span> <br/>
+					<input type:"text" name="Title" value = "<%=galleries[i].displayTitle%>"></input><br/>
+					<span>Description:</span><br/> 
+					<textarea rows="3"><%=galleries[i].description%></textarea><br/> 
+					<span>foreground color:</span>
+					<input type="color" name="foregroundPicker" value = "#000000" onchange = 'handleColorPick(<%=i%>, this.value,"foreground")' ><br/>
+					<input type:"text" name="foreground" value = "<%=galleries[i].foreground%>"></input><br/>
+					<span>background color:</span>
+					<input type="color" name="backgroundPicker" value = '#ffffff' onchange = 'handleColorPick(<%=i%>,this.value,"background")' ><br/>
+					<input type:"text" name="background" value = "<%=galleries[i].background%>"></input><br/>
+					<input type="reset">
+				</form>
+			</div>
+			
+			<div>
+				<span class = 'thumbs'>
+					<% for (var j =0; j<galleries[i].picture.length; j++) {%>
+					
+						<span class='thumbNail current' onclick='handleThumbClick(<%=i%>,<%=j%>)' pictureIndex = '<%=j%>'>
+							<img src = "../<%=galleries[i].path%><%=galleries[i].picture[j] %>"></img>
+						</span>
+					
+					<%}%>
+				</span>
+				<span class = 'uploadControl' onclick = 'handleUploadControl(<%=i%>)' >add picture<span>
+				<input type="file" id="chooseNewFile<%=i%>" onchange="handleFiles(this.files,<%=i%>)" style = "display:none;">
+			</div>
+			
+			<div>
+				<button>Save changes to <%=galleries[i].displayTitle%></button>
+			</div>
+			
+		</section>
+		
+	<% } %>
+	
+	
+	
+	<section id = 'editNew' class = 'editSection' style = "display:none;">
+		<h3>make new gallery</h3>
+		<input type="file" id="chooseNewFileNew">
+	</section>
+
 	
 	</main>
 
 
 	<% include parts/footer %>
+	
+	<script src = '/js/adminScript.js'></script>
+	
+	
 </body>
 
 </html>

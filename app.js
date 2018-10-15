@@ -73,13 +73,10 @@ pages.forEach (function (page) {
 });
 
 app.post('/login', myPassportModule.attemptLogIn);
-
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('back');
 });
-
-
 
 app.use('/gallery',galleryRouter);
 
