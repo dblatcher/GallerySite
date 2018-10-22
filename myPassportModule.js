@@ -66,6 +66,5 @@ function attemptLogIn(req, res, next) {
 
 module.exports ={
 	checkIfUserLoggedIn:checkIfUserLoggedIn,
-	attemptLogIn:attemptLogIn,
-	logOutUser:logOutUser
+	attemptLogIn:attemptLogIn
 };
