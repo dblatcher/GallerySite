@@ -5,12 +5,11 @@ var path = require ('path');
 var port = process.env.PORT || 8080;
 
 
+const fileUpload = require('express-fileupload');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var session = require("express-session");
-var bodyParser = require("body-parser");
-
 
 var getGalleries = require('./src/js/getGalleries.js');
 
@@ -41,9 +40,11 @@ var watcher = fs.watch('./public/galleries',{recursive:true},
 
 var myPassportModule = require ('./myPassportModule');
 
+
 app.use(express.static('public'));
+
+
 app.use(session({ secret: "fjhubdjuj", resave:true, saveUninitialized:false }));
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.set('views', './src/views');
@@ -77,6 +78,35 @@ app.get('/logout', function(req, res){
   req.logout();
   res.redirect('back');
 });
+
+
+
+app.use('/galleryUpdateUpload',fileUpload());
+app.post('/galleryUpdateUpload', function(request, response){	
+	console.log('---files and data incoming---');
+	console.log("We got data about " + request.body.displayTitle);
+	
+	var fileKeys = [];
+	if (request.files) {fileKeys = Object.keys(request.files)};
+	
+	fileKeys.forEach(function(key){
+		var file = request.files[key];
+		console.log('name: ' + file.name + ' ');
+		file.mv('uploaded/'+file.name, function(err) {
+			if (err) {
+				console.log(err);
+				return response.status(500).send(err);
+			} else {
+				console.log(file.name + ' uploaded');
+			}
+		});	
+	});
+	
+	response.send('All '+ fileKeys.length +' files uploaded!');	
+	console.log('--done--');
+
+});
+
 
 app.use('/gallery',galleryRouter);
 

@@ -25,43 +25,46 @@
 		<button id = 'selectButtonNew' onclick='handleSelect("New")'>[Add new gallery]</button>
 	</section>
 	
+	
 	<% for (var i =0; i<galleries.length; i++) {%>
 		
 		<section id = 'edit<%=i%>' class = 'editSection' style = "display:none;">
 			<h3>edit Gallery : <%=galleries[i].displayTitle%></h3>
 			
-			<div>
 				<form id = 'propertyForm<%=i%>'>
+			<div>
 					<span>Title:</span> <br/>
-					<input type:"text" name="Title" value = "<%=galleries[i].displayTitle%>"></input><br/>
+					<input type:"text" name="displayTitle" value = "<%=galleries[i].displayTitle%>"></input><br/>
 					<span>Description:</span><br/> 
-					<textarea rows="3"><%=galleries[i].description%></textarea><br/> 
+					<textarea name="description" rows="3"><%=galleries[i].description%></textarea><br/> 
 					<span>foreground color:</span>
-					<input type="color" name="foregroundPicker" value = "#000000" onchange = 'handleColorPick(<%=i%>, this.value,"foreground")' ><br/>
+					<input type="color" name="foregroundPicker" value = "#000000" onchange = 'handleColorPick(this, "foreground")' ><br/>
 					<input type:"text" name="foreground" value = "<%=galleries[i].foreground%>"></input><br/>
 					<span>background color:</span>
-					<input type="color" name="backgroundPicker" value = '#ffffff' onchange = 'handleColorPick(<%=i%>,this.value,"background")' ><br/>
+					<input type="color" name="backgroundPicker" value = '#ffffff' onchange = 'handleColorPick(this, "background")' ><br/>
 					<input type:"text" name="background" value = "<%=galleries[i].background%>"></input><br/>
 					<input type="reset">
 				</form>
 			</div>
 			
 			<div>
-				<span class = 'thumbs'>
-					<% for (var j =0; j<galleries[i].picture.length; j++) {%>
-					
-						<span class='thumbNail current' onclick='handleThumbClick(<%=i%>,<%=j%>)' pictureIndex = '<%=j%>'>
-							<img src = "../<%=galleries[i].path%><%=galleries[i].picture[j] %>"></img>
-						</span>
-					
-					<%}%>
+				<% for (var j =0; j<galleries[i].picture.length; j++) {%>
+					<span class='thumbNail current' onclick='handleThumbClick(this)'>
+						<img src = "../<%=galleries[i].path%><%=galleries[i].picture[j] %>"></img>
+					</span>				
+				<%}%>
+			
+				<span class = 'thumbNail uploadControl' onclick = 'handleUploadControlClick(this)' >
+					add picture
+					<input type="file" class = 'hiddenFileInput' onchange="handleFiles(this)" >
 				</span>
-				<span class = 'uploadControl' onclick = 'handleUploadControl(<%=i%>)' >add picture<span>
-				<input type="file" id="chooseNewFile<%=i%>" onchange="handleFiles(this.files,<%=i%>)" style = "display:none;">
+
 			</div>
 			
 			<div>
-				<button>Save changes to <%=galleries[i].displayTitle%></button>
+				<button onclick ='sendGalleryUpdateToServer(<%=i%>)'>
+					Save changes to <%=galleries[i].displayTitle%>
+				</button>
 			</div>
 			
 		</section>
@@ -78,6 +81,10 @@
 	
 	</main>
 
+	<div style = "display:block" id = "dataHolder"
+	originalData = "<%=JSON.stringify(galleries)%>";
+	>
+	</div>
 
 	<% include parts/footer %>
 	
