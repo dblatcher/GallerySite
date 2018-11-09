@@ -58,6 +58,7 @@ function handleFiles(element) {
 }
 
 function handleColorPick(element, colorType) {	
+	console.log(element.parentElement)
 	var form = element.parentElement;
 	var rightInput = form.elements[colorType];
 	rightInput.value = element.value;

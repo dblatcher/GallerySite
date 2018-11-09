@@ -1,18 +1,3 @@
-var express = require('express');
-var app = express();
-var server = require('http').Server(app);
-var path = require ('path');
-var port = process.env.PORT || 8080;
-
-
-const fileUpload = require('express-fileupload');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-
-var session = require("express-session");
-
-var getGalleries = require('./src/js/getGalleries.js');
-
 var siteSettings = {
 	siteName:"My Picture Site",
 	defaultGalleryBackgroundColor:"white",
@@ -29,8 +14,22 @@ var pages = [
 	{path:'/admin', viewName:'adminPage', title:'admin', requiresLogin:true},
 ];
 
-var gallery = getGalleries(siteSettings);
+var express = require('express');
+var app = express();
+var server = require('http').Server(app);
+var path = require ('path');
+var port = process.env.PORT || 8080;
+
+const formidableMiddleware = require('express-formidable');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var session = require("express-session");
+var getGalleries = require('./src/js/getGalleries.js');
+var myPassportModule = require ('./src/js/myPassportModule');
+var handleGalleryUpdateModule = require ('./src/js/handleGalleryUpdateModule');
 var galleryRouter = require('./src/routes/galleryRoutes')(pages,siteSettings);
+
+var gallery = getGalleries(siteSettings);
 
 var watcher = fs.watch('./public/galleries',{recursive:true},
 (eventType,fileName) => {
@@ -38,15 +37,14 @@ var watcher = fs.watch('./public/galleries',{recursive:true},
 	gallery = getGalleries(siteSettings);
 });
 
-var myPassportModule = require ('./myPassportModule');
 
 
 app.use(express.static('public'));
-
-
+app.use(formidableMiddleware());
 app.use(session({ secret: "fjhubdjuj", resave:true, saveUninitialized:false }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
@@ -73,7 +71,10 @@ pages.forEach (function (page) {
 	});
 });
 
+app.use('/gallery',galleryRouter);
+
 app.post('/login', myPassportModule.attemptLogIn);
+
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('back');
@@ -81,34 +82,11 @@ app.get('/logout', function(req, res){
 
 
 
-app.use('/galleryUpdateUpload',fileUpload());
-app.post('/galleryUpdateUpload', function(request, response){	
-	console.log('---files and data incoming---');
-	console.log("We got data about " + request.body.displayTitle);
-	
-	var fileKeys = [];
-	if (request.files) {fileKeys = Object.keys(request.files)};
-	
-	fileKeys.forEach(function(key){
-		var file = request.files[key];
-		console.log('name: ' + file.name + ' ');
-		file.mv('uploaded/'+file.name, function(err) {
-			if (err) {
-				console.log(err);
-				return response.status(500).send(err);
-			} else {
-				console.log(file.name + ' uploaded');
-			}
-		});	
-	});
-	
-	response.send('All '+ fileKeys.length +' files uploaded!');	
-	console.log('--done--');
 
-});
+app.post('/galleryUpdateUpload', handleGalleryUpdateModule);
 
 
-app.use('/gallery',galleryRouter);
+
 
 app.use(function (req, res, next) {
   res.status(404).render('errorPage', {errorMessage:"404 - file not found", navBar:pages,siteSettings:siteSettings, username:req.user ? req.user.username : false });

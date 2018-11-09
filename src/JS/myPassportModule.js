@@ -47,6 +47,10 @@ function checkIfUserLoggedIn(req, res, next) {
 }
 
 function attemptLogIn(req, res, next) {
+  // app uses formidable to parse forms, which puts the data on req.fields
+	//passport looks for it on req.body, so:
+	req.body = req.fields;
+	
   passport.authenticate('local', function(err, user, info) {		
 		if (info) {req.session.message = info.message};
  		
