@@ -18,23 +18,21 @@ passport.deserializeUser(function(id, done) {
   done(null, rightUser);
 });
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-		var user = null;
-		users.forEach( (userInList)=> {
-			if (userInList.username === username) {user = userInList};
-		})
-		
-		if (!user) {
-			return done(null, false, { message: 'Login failed.' });
-		}
-		if (user.password !== password) {
-			return done(null, false, { message: 'Login failed.' });
-		}
-		return done(null, user);
+passport.use(new LocalStrategy(function(username, password, done) {
+	var user = null;
+	users.forEach( (userInList)=> {
+		if (userInList.username === username) {user = userInList};
+	})
+	
+	if (!user) {
+		return done(null, false, { message: 'Login failed.' });
+	}
+	if (user.password !== password) {
+		return done(null, false, { message: 'Login failed.' });
+	}
+	return done(null, user);
 
-  }
-));
+}));
 
 function checkIfUserLoggedIn(req, res, next) {
 	if (req.user) { next();	}
@@ -67,8 +65,14 @@ function attemptLogIn(req, res, next) {
   })(req, res, next);
 };
 
+function logUserOut (req, res) {
+	req.logout();
+  res.redirect('back');
+}
+
 
 module.exports ={
 	checkIfUserLoggedIn:checkIfUserLoggedIn,
-	attemptLogIn:attemptLogIn
+	attemptLogIn:attemptLogIn,
+	logUserOut:logUserOut
 };

@@ -24,6 +24,7 @@ const formidableMiddleware = require('express-formidable');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var session = require("express-session");
+
 var getGalleries = require('./src/js/getGalleries.js');
 var myPassportModule = require ('./src/js/myPassportModule');
 var handleGalleryUpdateModule = require ('./src/js/handleGalleryUpdateModule');
@@ -74,20 +75,18 @@ pages.forEach (function (page) {
 app.use('/gallery',galleryRouter);
 
 app.post('/login', myPassportModule.attemptLogIn);
+app.use('/logout',myPassportModule.logUserOut);
 
+/*
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('back');
 });
-
-
-
+*/
 
 app.post('/galleryUpdateUpload', handleGalleryUpdateModule);
 
-
-
-
+// errors and defaults
 app.use(function (req, res, next) {
   res.status(404).render('errorPage', {errorMessage:"404 - file not found", navBar:pages,siteSettings:siteSettings, username:req.user ? req.user.username : false });
 })
