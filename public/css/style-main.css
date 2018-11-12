@@ -54,13 +54,10 @@ transform: translateY(-50%);
 }
 nav a:hover{background-color:darkgray;}
 
-/* .headSpacer sits at the top of the page to stop element being
-behind the fixed header  */
-.headSpacer {margin-top:3em;}
-
 
 
 main {
+padding-top:3em;
 padding-bottom:1.5em;
 }
 
