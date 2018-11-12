@@ -7,7 +7,7 @@ It is written in NodeJS using the [Express](https://expressjs.com/) framework.
  - Gallery view pages have responsive design and swipe controls.
  - General site pages (eg 'about', 'contact etc') easy to add by editing pages list at top level.
  - customisable footers and headers (with dynamic nav bar derived from pages list) for consistent page design across site.
- - user authentication: can log in with username and password to access 'admin' pages or other none-public areas of the site.
+ - user authentication: can log in with username and password to access 'admin' pages or other non-public areas of the site.
  - site level and page level CSS (easy to make it all prettier) 
 ## Planned features 
  - Admin Page with content management front-end for editing galleries (in progress).
