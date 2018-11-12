@@ -63,7 +63,7 @@ function sendGalleryUpdateToServer(gallery,element) {
 	xhr.open("POST", uri, true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState !== 4) {return false};
-		alert(xhr.response.message ? xhr.response.message : "Undefined Error");
+		alert(xhr.response ? xhr.response.message : "Undefined Error");
 		if (xhr.status == 200) {
 			refreshSection(gallery,xhr.response.data);
 		}
