@@ -35,19 +35,23 @@
 				<form id = 'propertyForm<%=i%>'>
 					<span>Title:</span> <br/>
 					<input type:"text" name="displayTitle" value = "<%=galleries[i].displayTitle%>"></input><br/>
+					
 					<span>Description:</span><br/> 
-					<textarea name="description" rows="3"><%=galleries[i].description%></textarea><br/> 
+					<textarea name="description" rows="3"><%=galleries[i].description%></textarea><br/>
+					
 					<span>foreground color:</span>
 					<input type="color" name="foregroundPicker" value = "#000000" onchange = 'handleColorPick(this, "foreground")' ><br/>
 					<input type:"text" name="foreground" value = "<%=galleries[i].foreground%>"></input><br/>
+					
 					<span>background color:</span>
 					<input type="color" name="backgroundPicker" value = '#ffffff' onchange = 'handleColorPick(this, "background")' ><br/>
 					<input type:"text" name="background" value = "<%=galleries[i].background%>"></input><br/>
+					
 					<input type="reset">
 				</form>
 			</div>
 			
-			<div>
+			<div class = 'thumbNailArea'>
 				<% for (var j =0; j<galleries[i].picture.length; j++) {%>
 					<span class='thumbNail current' onclick='handleThumbClick(this)'>
 						<img src = "../<%=galleries[i].path%><%=galleries[i].picture[j] %>"></img>
@@ -62,7 +66,7 @@
 			</div>
 			
 			<div>
-				<button onclick ='sendGalleryUpdateToServer(<%=i%>)'>
+				<button onclick ='sendGalleryUpdateToServer(<%=i%>,this)'>
 					Save changes to <%=galleries[i].displayTitle%>
 				</button>
 			</div>
