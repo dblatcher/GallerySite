@@ -73,20 +73,12 @@ pages.forEach (function (page) {
 });
 
 app.use('/gallery',galleryRouter);
-
 app.post('/login', myPassportModule.attemptLogIn);
 app.use('/logout',myPassportModule.logUserOut);
+app.post('/galleryUpdateUpload', myPassportModule.checkUserBeforeAcceptingPost);
+app.post('/galleryUpdateUpload', handleGalleryUpdateModule(gallery));
 
-/*
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('back');
-});
-*/
 
-app.post('/galleryUpdateUpload', handleGalleryUpdateModule);
-
-// errors and defaults
 app.use(function (req, res, next) {
   res.status(404).render('errorPage', {errorMessage:"404 - file not found", navBar:pages,siteSettings:siteSettings, username:req.user ? req.user.username : false });
 })
@@ -95,6 +87,7 @@ app.use(function (err, req, res, next) {
   res.status(500)
   res.render('errorPage', {errorMessage:err, navBar:pages,siteSettings:siteSettings,username:req.user ? req.user.username : false });
 });
+
 
 server.listen(port);
 console.log('running server on port '+ port);

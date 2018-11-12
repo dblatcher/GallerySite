@@ -44,6 +44,16 @@ function checkIfUserLoggedIn(req, res, next) {
 	}
 }
 
+function checkUserBeforeAcceptingPost(req, res, next) {
+	if (req.user) { next();	}
+	else {
+		console.log( '#blocked a POST request - no credentials#' );
+		res.status(401);
+		res.send({success:false, message:"You don't have permission!"});
+		return false;
+	}
+}
+
 function attemptLogIn(req, res, next) {
   // app uses formidable to parse forms, which puts the data on req.fields
 	//passport looks for it on req.body, so:
@@ -73,6 +83,7 @@ function logUserOut (req, res) {
 
 module.exports ={
 	checkIfUserLoggedIn:checkIfUserLoggedIn,
+	checkUserBeforeAcceptingPost:checkUserBeforeAcceptingPost,
 	attemptLogIn:attemptLogIn,
 	logUserOut:logUserOut
 };
