@@ -1,3 +1,7 @@
+* {
+font-family: Arial, Helvetica, sans-serif;
+}
+
 header{
 white-space: nowrap; overflow: hidden;
 position:fixed;
