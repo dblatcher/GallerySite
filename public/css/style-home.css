@@ -54,6 +54,7 @@ main{
 	float : right;
 	max-width:25%;
 	margin:0.5em;
+	position:relative;
 }
 
 .galleryPanel p{
@@ -64,6 +65,7 @@ main{
 
 .galleryPanel img {
 	max-height: 7em;
+	max-width: 100%;
 	margin-right:2px;
 	float:left;
 }
