@@ -37,14 +37,6 @@ var gallery = getGalleries(siteSettings);
 var galleryRouter = require('./src/routes/galleryRoutes')(pages,siteSettings,gallery);
 
 
-//var watcher = fs.watch('./public/galleries',{recursive:true},
-//(eventType,fileName) => {
-	//console.log(`${eventType} detected in ${fileName}.`);
-	//gallery = getGalleries(siteSettings);
-//});
-
-
-
 app.use(express.static('public'));
 app.use(formidableMiddleware());
 app.use(session({ secret: "fjhubdjuj", resave:true, saveUninitialized:false }));

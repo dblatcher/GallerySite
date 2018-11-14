@@ -55,14 +55,14 @@ function handleColorPick(element, colorType) {
 function sendGalleryUpdateToServer(gallery,element) {
 	if (element.classList.contains("disabled")) {return false};
 	element.classList.add("disabled");
-	
 	var formData = makeFormDataFromDom(gallery);
-	var uri = "galleryupdateupload";
+	
 	var xhr = new XMLHttpRequest();
 	xhr.responseType = 'json';
-	xhr.open("POST", uri, true);
+	xhr.open("POST", "galleryupdateupload", true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState !== 4) {return false};
+		
 		alert(xhr.response ? xhr.response.message : "Undefined Error");
 		if (xhr.status == 200) {
 			refreshSection(gallery,xhr.response.data);
@@ -81,7 +81,7 @@ function sendGalleryUpdateToServer(gallery,element) {
 		}
 		
 		for (var i = 0; i < newData.picture.length; i++){
-			thumbNailArea.appendChild(makeNewThumbNail(newData.picture[i]));
+			thumbNailArea.appendChild(makeNewThumbNail(newData.path,newData.picture[i]));
 		}
 		thumbNailArea.appendChild(makeNewUploadControl());
 		
@@ -107,6 +107,7 @@ function sendGalleryUpdateToServer(gallery,element) {
 				deletedThumbCollection[i].children[0].src.substring(deletedThumbCollection[i].children[0].src.lastIndexOf('/')+1)
 			) ;
 		};
+		
 		fd.append('picturesToRemove', picturesToRemove);
 		
 		var newThumbCollection = document.getElementById('edit'+gallery).getElementsByClassName('added');
@@ -132,12 +133,12 @@ function makeNewUploadControl() {
 	return newUploadControl;
 };
 
-function makeNewThumbNail(source) {
+function makeNewThumbNail(galleryPath, pictureFileName) {
 	var newThumbNail = document.createElement('span');
 	newThumbNail.setAttribute('class','thumbNail current');
 	newThumbNail.setAttribute('onclick','handleThumbClick(this)');
 	var newImg = document.createElement('img');
-	newImg.setAttribute('src',source);
+	newImg.setAttribute('src','../' + galleryPath + pictureFileName );
 	newThumbNail.appendChild(newImg);
 	return newThumbNail;	
 }
