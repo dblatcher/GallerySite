@@ -42,7 +42,7 @@ function getGalleries(siteSettings) {
 		if (siteSettings.imageFileTypes.indexOf(fileExtension(name)) !== -1 ) {return true};
 		return false;
 		function fileExtension (name) {
-			return name.slice(name.lastIndexOf('.')+1,name.length);
+			return name.slice(name.lastIndexOf('.')+1,name.length).toLowerCase();
 		};
 	}
 
