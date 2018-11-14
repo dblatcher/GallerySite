@@ -1,18 +1,16 @@
 var express = require('express');
-var getGalleries = require('../js/getGalleries.js');
 var galleryRouter = express.Router();
 
-var router = function(navBar,siteSettings) {
+var router = function(pages,siteSettings,galleries) {
 	
 	galleryRouter.route('/:id')
 		.get(function (req, res){
-			galleries = getGalleries(siteSettings);
 			var id = req.params.id;
 			var foundGallery = findGallery(id,galleries);
 			
 			if (foundGallery) {
 				var username = req.user ? req.user.username : null ;
-				res.render('galleryPage', {gallery:foundGallery, navBar:navBar, siteSettings:siteSettings, username:username});
+				res.render('galleryPage', {gallery:foundGallery, navBar:pages, siteSettings:siteSettings, username:username});
 			} else {
 				throw new Error(`There is no gallery called \'${id}\'.`);
 			}

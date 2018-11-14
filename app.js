@@ -32,15 +32,16 @@ var session = require("express-session");
 var getGalleries = require('./src/js/getGalleries.js');
 var myPassportModule = require ('./src/js/myPassportModule');
 var handleGalleryUpdateModule = require ('./src/js/handleGalleryUpdateModule');
-var galleryRouter = require('./src/routes/galleryRoutes')(pages,siteSettings);
 
 var gallery = getGalleries(siteSettings);
+var galleryRouter = require('./src/routes/galleryRoutes')(pages,siteSettings,gallery);
 
-var watcher = fs.watch('./public/galleries',{recursive:true},
-(eventType,fileName) => {
+
+//var watcher = fs.watch('./public/galleries',{recursive:true},
+//(eventType,fileName) => {
 	//console.log(`${eventType} detected in ${fileName}.`);
 	//gallery = getGalleries(siteSettings);
-});
+//});
 
 
 
