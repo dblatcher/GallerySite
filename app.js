@@ -14,6 +14,10 @@ var pages = [
 	{path:'/admin', viewName:'adminPage', title:'admin', requiresLogin:true},
 ];
 
+// THIS SHOULD ONLY BE SET TO FALSE FOR DEVELOPMENT
+// IT DISABLES THE AUTHENTICATION MIDDLEWARE
+const authenticationEnabled = false;
+
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
@@ -34,8 +38,8 @@ var gallery = getGalleries(siteSettings);
 
 var watcher = fs.watch('./public/galleries',{recursive:true},
 (eventType,fileName) => {
-	console.log(`${eventType} detected in ${fileName}.`);
-	gallery = getGalleries(siteSettings);
+	//console.log(`${eventType} detected in ${fileName}.`);
+	//gallery = getGalleries(siteSettings);
 });
 
 
@@ -51,7 +55,7 @@ app.set('view engine', 'ejs');
 
 
 pages.forEach (function (page) {
-	if (page.requiresLogin) {
+	if (page.requiresLogin && authenticationEnabled) {
 		app.use(page.path,myPassportModule.checkIfUserLoggedIn)		
 	};
 	
@@ -75,7 +79,7 @@ pages.forEach (function (page) {
 app.use('/gallery',galleryRouter);
 app.post('/login', myPassportModule.attemptLogIn);
 app.use('/logout',myPassportModule.logUserOut);
-app.post('/galleryUpdateUpload', myPassportModule.checkUserBeforeAcceptingPost);
+if (authenticationEnabled) {app.post('/galleryUpdateUpload', myPassportModule.checkUserBeforeAcceptingPost)};
 app.post('/galleryUpdateUpload', handleGalleryUpdateModule(gallery));
 
 
