@@ -53,16 +53,21 @@
 			
 			<div class = 'thumbNailArea'>
 				<% for (var j =0; j<galleries[i].picture.length; j++) {%>
-					<span class='thumbNail current' onclick='handleThumbClick(this)'>
-						<img src = "../<%=galleries[i].path%><%=galleries[i].picture[j] %>"></img>
-					</span>				
+					<span class = 'thumbNailHolder'>
+						<span class='thumbNail current' onclick='handleThumbClick(this)'>
+							<img src = "../<%=galleries[i].path%><%=galleries[i].picture[j] %>"></img>
+						</span>	
+						<p class = "mainImageToggle  <%=(galleries[i].main === j) ? "toggled" : "untoggled" %>" onclick = "handleMainToggleClick(this)">main</p>
+					</span>
 				<%}%>
 			
-				<span class = 'thumbNail uploadControl' onclick = 'handleUploadControlClick(this)' >
-					add picture
-					<input type="file" class = 'hiddenFileInput' onchange="handleFiles(this)" >
+				<span class = 'thumbNailHolder'>
+					<span class = 'thumbNail uploadControl' onclick = 'handleUploadControlClick(this)' >
+						add picture
+						<input type="file" class = 'hiddenFileInput' onchange="handleFiles(this)" >
+					</span>
+					<p class = "mainImageToggle untoggled" onclick = "handleMainToggleClick(this)">main</p>
 				</span>
-
 			</div>
 			
 			<div>

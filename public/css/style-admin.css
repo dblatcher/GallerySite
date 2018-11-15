@@ -1,38 +1,18 @@
+
+.thumbNailHolder{
+position:relative;
+display:inline-block;
+float:left;
+}
+
 .thumbNail {
+position:relative;
+display:inline-block;
 width:50px;
 height:50px;
 margin:5px;
 padding:5px;
-position:relative;
-display:inline-block;
-float:left;
 cursor:pointer;
-}
-
-.uploadControl {
-border: 2px dashed palegreen;
-}
-
-.added {
-border: 2px solid palegreen;
-}
-
-.hiddenFileInput {
-display:none;
-}
-
-.current {
-border:2px solid black;
-opacity:1;
-}
-
-.deleted {
-border:2px dashed red;
-opacity:0.5;
-}
-
-.current:hover, added:hover {
-border:2px dashed red;
 }
 
 .thumbNail img{
@@ -41,6 +21,41 @@ top:0px;left:0px;
 width:100%;
 max-height:100%;
 }
+
+.mainImageToggle {
+margin:1px;
+text-align:center;
+cursor:pointer;
+line-height:0.9;
+}
+
+.untoggled{color:grey;}
+.toggled{color:black; font-weight:bold;}
+
+
+
+.uploadControl, .added {
+border: 2px dashed palegreen;
+}
+
+.hiddenFileInput {
+display:none;
+}
+
+.current {
+border:2px solid black;
+}
+
+.deleted {
+border:2px dashed red;
+opacity:0.5;
+}
+
+.current:hover, .added:hover {
+border:2px dashed red;
+}
+
+
 
 .disabled {
 	opacity: 0.6;
