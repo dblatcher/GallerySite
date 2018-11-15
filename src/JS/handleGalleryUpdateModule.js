@@ -59,8 +59,15 @@ var wrapper = function (currentGalleryData){
 			background : request.fields.background,
 			foreground : request.fields.foreground,
 			main : 0,
-		}
+		};
 
+		var updatedInfoFileContents = {
+			displayTitle : request.fields.displayTitle,
+			description : request.fields.description,
+			background : request.fields.background,
+			foreground : request.fields.foreground,
+			main:0
+		};
 		
 		createArchiveSubfolder(currentGalleryData[gIndex].title)
 			.then(function(result){	
@@ -72,6 +79,7 @@ var wrapper = function (currentGalleryData){
 				for (var i = 0; i<fileKeys.length; i++) {
 					subPromises.push( saveFileToServer(request.files[fileKeys[i]],currentGalleryData[gIndex].title) ); 
 				}
+				subPromises.push(writeNewInfoFile(updatedInfoFileContents,currentGalleryData[gIndex].title))
 				return Promise.all(subPromises);
 			})
 			.then(function(results) {
@@ -84,6 +92,16 @@ var wrapper = function (currentGalleryData){
 				sendResponseToClient ("an error occurred!",false,error);
 			});
 
+		function writeNewInfoFile(data,folder) {
+			return new Promise ( function (resolve,reject){
+				var path = serverUrl + '/' + folder +'/info.json' ;
+				var content = JSON.stringify(data);
+				fs.writeFile(path, content, 'utf8', function(err){
+					if (err) {reject(err)};
+					resolve('created info file for ' + folder);
+				});
+			});
+		};
 		
 		function saveFileToServer(file,folder) {
 			return new Promise ( function(resolve, reject) {
