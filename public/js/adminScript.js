@@ -136,10 +136,12 @@ function sendGalleryUpdateToServer(gallery,element) {
 			fd.append('file_'+i, newThumbCollection[i].children[1].file);			
 		};
 		
-		var mainImage = editSection.getElementsByClassName('toggled')[0].parentElement.firstElementChild.firstElementChild;
-		mainImageFileName = mainImage.src.substring(mainImage.src.lastIndexOf('/')+1) 
+		var mainImageThumb = editSection.getElementsByClassName('toggled')[0].parentElement.firstElementChild;
+		var mainImageFileName =
+			(mainImageThumb.classList.contains('uploadControl')) ?
+				mainImageThumb.firstElementChild.files[0].name:
+				mainImageThumb.firstElementChild.src.substring(mainImageThumb.firstElementChild.src.lastIndexOf('/')+1);
 		fd.append('nameOfMainImage',mainImageFileName);
-		console.log(mainImageFileName);
 		
 		return fd;
 	};

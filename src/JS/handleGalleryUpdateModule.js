@@ -2,7 +2,6 @@ var wrapper = function (currentGalleryData){
 	var fs = require("fs");
 	const serverUrl = "./public/galleries";
 
-		// TO DO write updated info.JSON file and save in folder - in promise chain
 		// TO DO : set (UpdatedGallery.main) to copyOfPictureArray.indexOf(request.fields.nameOfMainImage) when client side implements
 	
 	var handler = function(request, response){	
@@ -43,12 +42,12 @@ var wrapper = function (currentGalleryData){
 		});
 		copyOfPictureArray.push(...picturesToAdd);
 
-		
-		//console.log('picturesToRemove');
-		//console.log(picturesToRemove);
-		//console.log('picturesToAdd');
-		//console.log(picturesToAdd);
-		
+		var mainImageNumber = 0;
+		for (var i = 0; i < copyOfPictureArray.length; i++ ) {
+			if (copyOfPictureArray[i] === request.fields.nameOfMainImage) {
+				mainImageNumber = i;break;
+			};
+		};
 		
 		var updatedGallery = {
 			title: currentGalleryData[gIndex].title,
@@ -58,7 +57,7 @@ var wrapper = function (currentGalleryData){
 			description : request.fields.description,
 			background : request.fields.background,
 			foreground : request.fields.foreground,
-			main : 0,
+			main : mainImageNumber
 		};
 
 		var updatedInfoFileContents = {
@@ -66,7 +65,7 @@ var wrapper = function (currentGalleryData){
 			description : request.fields.description,
 			background : request.fields.background,
 			foreground : request.fields.foreground,
-			main:0
+			main:mainImageNumber
 		};
 		
 		createArchiveSubfolder(currentGalleryData[gIndex].title)
