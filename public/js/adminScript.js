@@ -1,6 +1,9 @@
 document.getElementById('dataHolder').data = JSON.parse(document.getElementById('dataHolder').getAttribute('originalData'));
 
-function handleSelect(gallery) {
+fillThumbnailSectionsUsingInitialData();
+handleGallerySelectClick(0);
+
+function handleGallerySelectClick(gallery) {
 	var editSections = document.getElementsByClassName('editSection');
 	for (i=0; i<editSections.length; i++) {
 		editSections[i].style.display = 'none';
@@ -8,30 +11,31 @@ function handleSelect(gallery) {
 	document.getElementById('edit'+gallery).style.display = 'block';
 }
 
-function handleThumbClick(element){
-	element.classList.toggle('current');
-	element.classList.toggle('deleted');	
+function handleExistingThumbClick(element){
+	element.parentElement.classList.toggle('current');
+	element.parentElement.classList.toggle('deleted');	
 }
 
 function handleMainToggleClick(element) {
 	
-	var thumbClasses = element.parentElement.firstElementChild.classList;
-	if (!( thumbClasses.contains('current') || thumbClasses.contains('added')  || thumbClasses.contains('deleted') )) 	
-	{return false}; // if the thumbNail next to the toggle isn't current, added or deleted, it is the 'upload new file' control.
-	
+	var thumbHolderClasses = element.parentElement.classList;
+	if (!( thumbHolderClasses.contains('current') || thumbHolderClasses.contains('added') )) 	
+	{return false}; 
+	// only current or added images should be set to main
+
 	
 	var thumbNailArea = element.parentElement.parentElement;
-	var mainToggleCollection = thumbNailArea.getElementsByClassName('mainImageToggle');
-	for (i=0; i<mainToggleCollection.length; i++) {
-		mainToggleCollection[i].classList.remove('toggled');
-		mainToggleCollection[i].classList.add('untoggled');
+	var holderCollection = thumbNailArea.getElementsByClassName('thumbNailHolder');
+	for (i=0; i<holderCollection.length; i++) {
+		holderCollection[i].classList.remove('toggled');
+		holderCollection[i].classList.add('untoggled');
 	}
-	element.classList.remove('untoggled');
-	element.classList.add ('toggled');
+	element.parentElement.classList.remove('untoggled');
+	element.parentElement.classList.add ('toggled');
 }
 
-function handleUploadControlClick(element){
-	var input = element.getElementsByClassName('hiddenFileInput')[0];
+function handleNewThumbClick(element){
+	var input = element.parentElement.getElementsByClassName('hiddenFileInput')[0];
 	if (input.files.length === 0) {	
 		input.click() // leads to handleFiles call if user selects a file.
 	} else {
@@ -46,14 +50,17 @@ function handleFiles(element) {
 	if (file.type.startsWith('image/')){	
 		var img = document.createElement("img");
     img.file = file;
-		element.parentElement.appendChild(img);
+		
+		var thumbNailSibling = element.parentElement.getElementsByClassName('thumbNail')[0]
+		thumbNailSibling.appendChild(img);
 		element.parentElement.classList.add('added');
+		element.parentElement.classList.remove('uploadControl');
 	
     var reader = new FileReader();
     reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
     reader.readAsDataURL(file);
 		
-		element.parentElement.parentElement.parentElement.appendChild(makeNewUploadControl());
+		element.parentElement.parentElement.appendChild(makeNewUploadControl());
 		return true;
 	} 
 	
@@ -87,31 +94,12 @@ function sendGalleryUpdateToServer(gallery,element) {
 		element.classList.remove("disabled");
 	};
 	xhr.send(formData);
-	
-	function refreshSection (gallery, newData) {
-		var section = document.getElementById('edit'+gallery);
-		section.children[0].innerHTML = 'edit Gallery: ' + newData.displayTitle;
 		
-		var thumbNailArea = section.getElementsByClassName('thumbNailArea')[0];
-		while (thumbNailArea.children.length > 0 ) {
-			thumbNailArea.removeChild(thumbNailArea.firstElementChild);
-		}
-		
-		for (var i = 0; i < newData.picture.length; i++){
-			thumbNailArea.appendChild(makeNewThumbNail(newData.path,newData.picture[i]));
-		}
-		thumbNailArea.appendChild(makeNewUploadControl());
-		
-		var mainImage = thumbNailArea.getElementsByClassName('mainImageToggle')[newData.main];
-		mainImage.classList.remove('untoggled');
-		mainImage.classList.add ('toggled');
-		
-	}
-	
 	function makeFormDataFromDom (gallery) {
 		var fd = new FormData();
+		var mainImageFileName, srcString,fileInputSibling;
 		
-		var oldData = JSON.parse(document.getElementById('dataHolder').getAttribute('originalData'))[gallery];
+		var oldData = document.getElementById('dataHolder').data[gallery];
 		fd.append('title', oldData.title);
 		
 		var editSection = document.getElementById('edit'+gallery);
@@ -123,24 +111,32 @@ function sendGalleryUpdateToServer(gallery,element) {
 		fd.append('background', form.elements.background.value);
 				
 		var picturesToRemove = [];
-		var deletedThumbCollection = editSection.getElementsByClassName('deleted');
-		for (var i=0; i<deletedThumbCollection.length; i++) {
+		var deletedCollection = editSection.getElementsByClassName('deleted');
+		for (var i=0; i<deletedCollection.length; i++) {
+			srcString = deletedCollection[i].getElementsByTagName('img')[0].src;
 			picturesToRemove.push(
-				deletedThumbCollection[i].children[0].src.substring(deletedThumbCollection[i].children[0].src.lastIndexOf('/')+1)
+				srcString.substring(srcString.lastIndexOf('/')+1)
 			) ;
 		};
 		fd.append('picturesToRemove', picturesToRemove);
 		
-		var newThumbCollection = editSection.getElementsByClassName('added');
-		for (var i=0; i<newThumbCollection.length; i++) {
-			fd.append('file_'+i, newThumbCollection[i].children[1].file);			
+		var addedCollection = editSection.getElementsByClassName('added');
+		for (var i=0; i<addedCollection.length; i++) {
+			fileInputSibling = addedCollection[i].getElementsByClassName('hiddenFileInput')[0]
+			fd.append('file_'+i, fileInputSibling.files[0]);	
 		};
 		
-		var mainImageThumb = editSection.getElementsByClassName('toggled')[0].parentElement.firstElementChild;
-		var mainImageFileName =
-			(mainImageThumb.classList.contains('uploadControl')) ?
-				mainImageThumb.firstElementChild.files[0].name:
-				mainImageThumb.firstElementChild.src.substring(mainImageThumb.firstElementChild.src.lastIndexOf('/')+1);
+		var mainHolder = editSection.getElementsByClassName('toggled')[0];
+		
+		if (mainHolder) {
+			if (mainHolder.firstElementChild.classList.contains('added')) {
+				mainImageFileName = mainHolder.getElementsByClassName('hiddenFileInput')[0].files[0].name
+			};
+			if (mainHolder.firstElementChild.classList.contains('current')) {
+				srcString = mainHolder.getElementsByTagName('img')[0].src;
+				mainImageFileName = srcString.substring(srcString.lastIndexOf('/')+1);
+			}
+		}
 		fd.append('nameOfMainImage',mainImageFileName);
 		
 		return fd;
@@ -148,48 +144,78 @@ function sendGalleryUpdateToServer(gallery,element) {
 	
 }
 
-function makeNewUploadControl() {
-	var newHolder = newThumbNailHolder();
+
+function fillThumbnailSectionsUsingInitialData(){
+	var data = document.getElementById('dataHolder').data;
+	for (var i = 0; i < data.length; i++ ) {
+		refreshSection(i, data[i]);
+	};
+};
+
+function refreshSection (gallery, newData) {
+	newData.main = newData.main || 0;
+	var section = document.getElementById('edit'+gallery);
 	
-	var newUploadControl = document.createElement('span');
-	newUploadControl.setAttribute('class','thumbNail uploadControl');
-	newUploadControl.setAttribute('onclick','handleUploadControlClick(this)');
-	newUploadControl.innerHTML = "add picture";
+	section.getElementsByClassName('sectionHeading')[0].innerHTML = 'edit Gallery: ' + newData.displayTitle;
+	section.getElementsByClassName('updateButton')[0].innerHTML = 'Save changes to ' + newData.displayTitle;
+	
+	var thumbNailArea = section.getElementsByClassName('thumbNailArea')[0];
+	while (thumbNailArea.children.length > 0 ) {
+		thumbNailArea.removeChild(thumbNailArea.firstElementChild);
+	}
+	for (var i = 0; i < newData.picture.length; i++){
+		thumbNailArea.appendChild(makeNewThumbNail(newData.path,newData.picture[i], newData.main===i));
+	}
+	thumbNailArea.appendChild(makeNewUploadControl());
+	
+}
+
+
+function makeNewUploadControl() {
+	var newHolder = newThumbNailHolder(false,true);
+	
+	var newThumbNail = document.createElement('span');
+	newThumbNail.setAttribute('class','thumbNail');
+	newThumbNail.setAttribute('onclick','handleNewThumbClick(this)');
+	newThumbNail.innerHTML = "add picture";
 	
 	var newFileInput = document.createElement('input');
 	newFileInput.setAttribute('class','hiddenFileInput');
 	newFileInput.setAttribute('type','file');
 	newFileInput.setAttribute('onchange','handleFiles(this)');
 	
-	newUploadControl.appendChild(newFileInput);
-	newHolder.insertBefore(newUploadControl,newHolder.children[0]);
+	newHolder.insertBefore(newThumbNail,newHolder.children[0]);
+	newHolder.appendChild(newFileInput);
 	return newHolder;
 };
 
-function makeNewThumbNail(galleryPath, pictureFileName) {
-	var newHolder = newThumbNailHolder();
+function makeNewThumbNail(galleryPath, pictureFileName,isMain) {
+	var newHolder = newThumbNailHolder(isMain,false);
 	
 	var newThumbNail = document.createElement('span');
-	newThumbNail.setAttribute('class','thumbNail current');
-	newThumbNail.setAttribute('onclick','handleThumbClick(this)');
+	newThumbNail.setAttribute('class','thumbNail');
+	newThumbNail.setAttribute('onclick','handleExistingThumbClick(this)');
 	
 	var newImg = document.createElement('img');
 	newImg.setAttribute('src','../' + galleryPath + pictureFileName );
-
 	newThumbNail.appendChild(newImg);
+	
 	newHolder.insertBefore(newThumbNail,newHolder.children[0]);
 	return newHolder;	
 }
 
-function newThumbNailHolder() {
+function newThumbNailHolder(isMain, isUploader) {
+	var holderClasses = "thumbNailHolder";
+	if (isUploader) {holderClasses += " uploadControl"} else {holderClasses += " current"}
+	if (isMain) {holderClasses += " toggled"} else {holderClasses += " untoggled"}
+	
 	var newHolder = document.createElement('span');
-	newHolder.setAttribute('class','thumbNailHolder');
+	newHolder.setAttribute('class',holderClasses);
 	var newMainToggle = document.createElement('p');
 	newMainToggle.innerHTML = 'main';
-	newMainToggle.setAttribute('class','mainImageToggle untoggled');
+	newMainToggle.setAttribute('class','mainImageToggle');
 	newMainToggle.setAttribute('onclick','handleMainToggleClick(this)');
 	newHolder.appendChild(newMainToggle);
 	return newHolder;	
 }
 
-handleSelect(0);

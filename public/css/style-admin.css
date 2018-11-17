@@ -5,6 +5,10 @@ display:inline-block;
 float:left;
 }
 
+.thumbNailHolder:last-of-type .mainImageToggle{
+ display:none;
+}
+
 .thumbNail {
 position:relative;
 display:inline-block;
@@ -34,27 +38,26 @@ line-height:0.9;
 
 
 
-.uploadControl, .added {
+.uploadControl .thumbNail, .added  .thumbNail{
 border: 2px dashed palegreen;
+}
+
+.current .thumbNail{
+border:2px solid black;
+}
+
+.deleted  .thumbNail{
+border:2px dashed red;
+opacity:0.5;
+}
+
+.current .thumbNail:hover, .added .thumbNail:hover {
+border:2px dashed red;
 }
 
 .hiddenFileInput {
 display:none;
 }
-
-.current {
-border:2px solid black;
-}
-
-.deleted {
-border:2px dashed red;
-opacity:0.5;
-}
-
-.current:hover, .added:hover {
-border:2px dashed red;
-}
-
 
 
 .disabled {

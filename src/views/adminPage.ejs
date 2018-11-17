@@ -20,16 +20,16 @@
 	<section id = 'selectorSection'>
 		<h3>Choose Gallery</h3>
 		<% for (var i =0; i<galleries.length; i++) {%>
-			<button id = 'selectButton<%=i%>' onclick='handleSelect(<%=i%>)' ><%=galleries[i].displayTitle%></button>
+			<button id = 'selectButton<%=i%>' onclick='handleGallerySelectClick(<%=i%>)' ><%=galleries[i].displayTitle%></button>
 		<% } %>
-		<button id = 'selectButtonNew' onclick='handleSelect("New")'>[Add new gallery]</button>
+		<button id = 'selectButtonNew' onclick='handleGallerySelectClick("New")'>[Add new gallery]</button>
 	</section>
 	
 	
 	<% for (var i =0; i<galleries.length; i++) {%>
 		
 		<section id = 'edit<%=i%>' class = 'editSection' style = "display:none;">
-			<h3>edit Gallery : <%=galleries[i].displayTitle%></h3>
+			<h3 class = 'sectionHeading'>edit Gallery : <%=galleries[i].displayTitle%></h3>
 			
 			<div>
 				<form id = 'propertyForm<%=i%>'>
@@ -52,26 +52,11 @@
 			</div>
 			
 			<div class = 'thumbNailArea'>
-				<% for (var j =0; j<galleries[i].picture.length; j++) {%>
-					<span class = 'thumbNailHolder'>
-						<span class='thumbNail current' onclick='handleThumbClick(this)'>
-							<img src = "../<%=galleries[i].path%><%=galleries[i].picture[j] %>"></img>
-						</span>	
-						<p class = "mainImageToggle  <%=(galleries[i].main === j) ? "toggled" : "untoggled" %>" onclick = "handleMainToggleClick(this)">main</p>
-					</span>
-				<%}%>
-			
-				<span class = 'thumbNailHolder'>
-					<span class = 'thumbNail uploadControl' onclick = 'handleUploadControlClick(this)' >
-						add picture
-						<input type="file" class = 'hiddenFileInput' onchange="handleFiles(this)" >
-					</span>
-					<p class = "mainImageToggle untoggled" onclick = "handleMainToggleClick(this)">main</p>
-				</span>
+				<!-- picture thumbnails generated dynamically in adminScript.  -->
 			</div>
 			
 			<div>
-				<button onclick ='sendGalleryUpdateToServer(<%=i%>,this)'>
+				<button class = 'updateButton' onclick ='sendGalleryUpdateToServer(<%=i%>,this)'>
 					Save changes to <%=galleries[i].displayTitle%>
 				</button>
 			</div>
@@ -90,7 +75,7 @@
 	
 	</main>
 
-	<div style = "display:block" id = "dataHolder"
+	<div style = "display:none" id = "dataHolder"
 	originalData = "<%=JSON.stringify(galleries)%>";
 	>
 	</div>
