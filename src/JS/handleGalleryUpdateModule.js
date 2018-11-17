@@ -1,8 +1,8 @@
+//TO DO 
+
 var wrapper = function (currentGalleryData){
 	var fs = require("fs");
 	const serverUrl = "./public/galleries";
-
-		// TO DO : set (UpdatedGallery.main) to copyOfPictureArray.indexOf(request.fields.nameOfMainImage) when client side implements
 	
 	var handler = function(request, response){	
 		console.log('---incoming gallery update:'+ request.fields.title +' ---');
