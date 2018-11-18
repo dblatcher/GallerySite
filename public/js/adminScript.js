@@ -47,7 +47,7 @@ function handleFiles(element) {
 	if (element.files.length === 0) {return false};
 	file=element.files[0];
 	
-	if (file.type.startsWith('image/')){	
+	if (file.type.indexOf('image/')==0){	
 		var img = document.createElement("img");
     img.file = file;
 		
@@ -82,14 +82,15 @@ function sendGalleryUpdateToServer(gallery,element) {
 	var formData = makeFormDataFromDom(gallery);
 	
 	var xhr = new XMLHttpRequest();
-	xhr.responseType = 'json';
+	//xhr.responseType = 'json';
 	xhr.open("POST", "galleryupdateupload", true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState !== 4) {return false};
+		console.log(xhr.response);
 		
-		alert(xhr.response ? xhr.response.message : "Undefined Error");
+		alert(xhr.response ? JSON.parse(xhr.response).message : "Undefined Error");
 		if (xhr.status == 200) {
-			refreshSection(gallery,xhr.response.data);
+			refreshSection(gallery,JSON.parse(xhr.response).data);
 		}
 		element.classList.remove("disabled");
 	};
