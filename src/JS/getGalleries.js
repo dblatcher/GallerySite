@@ -50,6 +50,20 @@ function getGalleries(siteSettings) {
 		this.title = title;
 		this.displayTitle = info.displayTitle || title;
 		this.picture = picture;
+		
+		if (info.orderList){
+			if (info.orderList.length) {	
+				this.picture.sort(function(a,b){
+					var aIndex = info.orderList.indexOf(a);
+					var bIndex = info.orderList.indexOf(b);
+					if (aIndex == -1 && bIndex == -1) {return 0};
+					if (aIndex == -1) {return 1};
+					if (bIndex == -1) {return -1};
+					return aIndex-bIndex;
+				});
+			};
+		};
+		
 		this.path = clientUrl + title + "/";
 		
 		this.description = info.description || null;
