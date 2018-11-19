@@ -27,11 +27,11 @@ function handleMainToggleClick(element) {
 	var thumbNailArea = element.parentElement.parentElement;
 	var holderCollection = thumbNailArea.getElementsByClassName('thumbNailHolder');
 	for (i=0; i<holderCollection.length; i++) {
-		holderCollection[i].classList.remove('toggled');
-		holderCollection[i].classList.add('untoggled');
+		holderCollection[i].classList.remove('mainPic');
+		holderCollection[i].classList.add('notMainPic');
 	}
-	element.parentElement.classList.remove('untoggled');
-	element.parentElement.classList.add ('toggled');
+	element.parentElement.classList.remove('notMainPic');
+	element.parentElement.classList.add ('mainPic');
 }
 
 function handleNewThumbClick(element){
@@ -42,6 +42,63 @@ function handleNewThumbClick(element){
 		element.parentElement.parentElement.removeChild(element.parentElement);
 	};
 };
+
+function handleShiftButtonClick (element,direction) {
+	var holder = element.parentElement.parentElement;
+	var holderCollection = holder.parentElement.getElementsByClassName('thumbNailHolder');
+	
+	var index;
+	for (var i = 0; i < holderCollection.length; i++) {
+		if (holderCollection[i] === holder ) {index = i; break}
+	}
+	
+	if (direction == 'left') {
+		if (index > 0) {
+			holder.parentElement.insertBefore(holder,holder.parentElement.children[index-1]);
+		};
+	};
+	
+	if (direction == 'right') {
+		if (index < holderCollection.length-2) {
+			holder.parentElement.insertBefore(holder,holder.parentElement.children[index+2]);
+		};
+	};
+	
+}
+
+function handleSwapButtonClick(element) {
+	var holder = element.parentElement.parentElement;
+	var parent = holder.parentElement;
+	var holderCollection = parent.getElementsByClassName('thumbNailHolder');
+	var indexClicked, indexSwapping = -1,swappingHolder;
+	
+	
+	if (holder.classList.contains('swapping')) {
+		console.log('already swapping this one remove class');
+		holder.classList.remove('swapping');
+		return
+	}
+	
+	for (var i = 0; i < holderCollection.length; i++) {
+		if (holderCollection[i] === holder ) {indexClicked = i;}
+		if (holderCollection[i].classList.contains('swapping') ) {indexSwapping = i; swappingHolder = holderCollection[i]}
+	}
+	
+	if (indexSwapping == -1) {
+		holder.classList.add('swapping');
+		return
+	}
+	
+
+	swappingHolder.classList.remove('swapping');
+
+	swappingHolder = parent.replaceChild(holder,swappingHolder)
+	parent.insertBefore(swappingHolder,holderCollection[indexClicked]);
+	
+	
+
+}
+
 
 function handleFiles(element) {
 	if (element.files.length === 0) {return false};
@@ -133,7 +190,7 @@ function sendGalleryUpdateToServer(gallery,element) {
 				picturesInOrder.push(srcString);
 			};
 			
-			if (holderCollection[i].classList.contains('toggled')) {
+			if (holderCollection[i].classList.contains('mainPic')) {
 				fd.append('nameOfMainImage',srcString);
 			};
 			
@@ -210,15 +267,34 @@ function makeNewThumbNail(galleryPath, pictureFileName,isMain) {
 function newThumbNailHolder(isMain, isUploader) {
 	var holderClasses = "thumbNailHolder";
 	if (isUploader) {holderClasses += " uploadControl"} else {holderClasses += " current"}
-	if (isMain) {holderClasses += " toggled"} else {holderClasses += " untoggled"}
+	if (isMain) {holderClasses += " mainPic"} else {holderClasses += " notMainPic"}
 	
-	var newHolder = document.createElement('span');
+	var newHolder = document.createElement('div');
 	newHolder.setAttribute('class',holderClasses);
-	var newMainToggle = document.createElement('p');
+	var newMainToggle = document.createElement('div');
 	newMainToggle.innerHTML = 'main';
 	newMainToggle.setAttribute('class','mainImageToggle');
 	newMainToggle.setAttribute('onclick','handleMainToggleClick(this)');
 	newHolder.appendChild(newMainToggle);
+	
+	var moveControl = document.createElement('div');
+	moveControl.setAttribute('class','moveControl');
+	var moveleft = document.createElement('span');
+	moveleft.innerHTML = '<';
+	moveleft.setAttribute('onclick','handleShiftButtonClick(this,"left")');
+	var moveright = document.createElement('span');
+	moveright.innerHTML = '>';
+	moveright.setAttribute('onclick','handleShiftButtonClick(this,"right")');
+	var moveswap = document.createElement('span');
+	moveswap.innerHTML = ' swap ';
+	moveswap.setAttribute('onclick','handleSwapButtonClick(this)');
+	moveswap.setAttribute('class','swapButton');
+	moveControl.appendChild(moveleft);
+	moveControl.appendChild(moveswap);
+	moveControl.appendChild(moveright);
+	
+	newHolder.appendChild(moveControl);
+	
 	return newHolder;	
 }
 
