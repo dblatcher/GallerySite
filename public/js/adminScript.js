@@ -86,7 +86,6 @@ function sendGalleryUpdateToServer(gallery,element) {
 	xhr.open("POST", "galleryupdateupload", true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState !== 4) {return false};
-		console.log(xhr.response);
 		
 		alert(xhr.response ? JSON.parse(xhr.response).message : "Undefined Error");
 		if (xhr.status == 200) {
@@ -97,48 +96,51 @@ function sendGalleryUpdateToServer(gallery,element) {
 	xhr.send(formData);
 		
 	function makeFormDataFromDom (gallery) {
-		var fd = new FormData();
-		var mainImageFileName, srcString,fileInputSibling;
-		
+		var srcString, fileInputSibling,picturesToRemove = [], picturesInOrder = [];
+		var editSection = document.getElementById('edit'+gallery);
 		var oldData = document.getElementById('dataHolder').data[gallery];
+		
+		var fd = new FormData();
 		fd.append('title', oldData.title);
 		
-		var editSection = document.getElementById('edit'+gallery);
 		
 		var form = document.getElementById("propertyForm"+gallery);
 		fd.append('displayTitle', form.elements.displayTitle.value);
 		fd.append('description', form.elements.description.value);
 		fd.append('foreground', form.elements.foreground.value);
 		fd.append('background', form.elements.background.value);
-				
-		var picturesToRemove = [];
-		var deletedCollection = editSection.getElementsByClassName('deleted');
-		for (var i=0; i<deletedCollection.length; i++) {
-			srcString = deletedCollection[i].getElementsByTagName('img')[0].src;
-			picturesToRemove.push(
-				srcString.substring(srcString.lastIndexOf('/')+1)
-			) ;
-		};
-		fd.append('picturesToRemove', picturesToRemove);
 		
-		var addedCollection = editSection.getElementsByClassName('added');
-		for (var i=0; i<addedCollection.length; i++) {
-			fileInputSibling = addedCollection[i].getElementsByClassName('hiddenFileInput')[0]
-			fd.append('file_'+i, fileInputSibling.files[0]);	
-		};
-		
-		var mainHolder = editSection.getElementsByClassName('toggled')[0];
-		
-		if (mainHolder) {
-			if (mainHolder.firstElementChild.classList.contains('added')) {
-				mainImageFileName = mainHolder.getElementsByClassName('hiddenFileInput')[0].files[0].name
+		var holderCollection = editSection.getElementsByClassName('thumbNailHolder');
+		for (var i=0; i<holderCollection.length; i++) {
+			srcString = "";
+					
+			if (holderCollection[i].classList.contains('current')) {
+				srcString = holderCollection[i].getElementsByTagName('img')[0].src;
+				srcString = srcString.substring(srcString.lastIndexOf('/')+1);
+				picturesInOrder.push(srcString);
 			};
-			if (mainHolder.firstElementChild.classList.contains('current')) {
-				srcString = mainHolder.getElementsByTagName('img')[0].src;
-				mainImageFileName = srcString.substring(srcString.lastIndexOf('/')+1);
-			}
-		}
-		fd.append('nameOfMainImage',mainImageFileName);
+			
+			if (holderCollection[i].classList.contains('deleted')) {
+				srcString = holderCollection[i].getElementsByTagName('img')[0].src;
+				srcString = srcString.substring(srcString.lastIndexOf('/')+1);
+				picturesToRemove.push(srcString);	
+			};
+			
+			if (holderCollection[i].classList.contains('added')) {
+				fileInputSibling = holderCollection[i].getElementsByClassName('hiddenFileInput')[0]
+				srcString = fileInputSibling.files[0].name;
+				fd.append('file_'+i, fileInputSibling.files[0]);
+				picturesInOrder.push(srcString);
+			};
+			
+			if (holderCollection[i].classList.contains('toggled')) {
+				fd.append('nameOfMainImage',srcString);
+			};
+			
+		};
+		
+		fd.append('picturesToRemove', picturesToRemove);
+		fd.append('picturesInOrder', picturesInOrder);
 		
 		return fd;
 	};

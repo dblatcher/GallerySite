@@ -16,43 +16,38 @@ var wrapper = function (currentGalleryData){
 			return;
 		};
 		
-		var copyOfPictureArray = [...currentGalleryData[gIndex].picture];
 		
-		var picturesToRemove;
-		if (typeof(request.fields.picturesToRemove) === 'string') {
-			picturesToRemove = (request.fields.picturesToRemove.length > 0) ? request.fields.picturesToRemove.split(',') : [];
-		} else {
-			picturesToRemove = request.fields.picturesToRemove;
-		};
-		for (var i=0; i<picturesToRemove.length; i++) {
-			picturesToRemove[i] = decodeURI(picturesToRemove[i]);
-		}
-		
-		for (var i = 0; i < copyOfPictureArray.length; i++ ) {
-			if (picturesToRemove.includes(copyOfPictureArray[i])) {
-				copyOfPictureArray[i] = false;
+		function makeArrayFromFileNameList(list){
+			var formattedArray;
+			if (typeof(list) === 'string') {
+				formattedArray = (list.length > 0) ? list.split(',') : [];
+			} else {
+				formattedArray = list;
 			};
+			for (var i=0; i<formattedArray.length; i++) {
+				formattedArray[i] = decodeURI(formattedArray[i]);
+			};
+			return formattedArray;
 		};
-		copyOfPictureArray = copyOfPictureArray.filter( item => item);
 		
-		var fileKeys = [], picturesToAdd = [];
+		var picturesToRemove = makeArrayFromFileNameList(request.fields.picturesToRemove);
+		var picturesInOrder = makeArrayFromFileNameList(request.fields.picturesInOrder);
+
+		var fileKeys = [];
 		if (request.files) {fileKeys = Object.keys(request.files)};
-		fileKeys.forEach(function(key){
-			picturesToAdd.push(request.files[key].name);
-		});
-		copyOfPictureArray.push(...picturesToAdd);
 
 		var mainImageNumber = 0;
-		for (var i = 0; i < copyOfPictureArray.length; i++ ) {
-			if (copyOfPictureArray[i] === request.fields.nameOfMainImage) {
+		for (var i = 0; i < picturesInOrder.length; i++ ) {
+			if (picturesInOrder[i] === decodeURI(request.fields.nameOfMainImage)) {
 				mainImageNumber = i;break;
 			};
 		};
 		
+		
 		var updatedGallery = {
 			title: currentGalleryData[gIndex].title,
 			displayTitle : request.fields.displayTitle,
-			picture: copyOfPictureArray,
+			picture: picturesInOrder,
 			path: currentGalleryData[gIndex].path,
 			description : request.fields.description,
 			background : request.fields.background,
@@ -65,7 +60,8 @@ var wrapper = function (currentGalleryData){
 			description : request.fields.description,
 			background : request.fields.background,
 			foreground : request.fields.foreground,
-			main:mainImageNumber
+			main:mainImageNumber,
+			orderList : picturesInOrder
 		};
 		
 		createArchiveSubfolder(currentGalleryData[gIndex].title)
@@ -82,6 +78,7 @@ var wrapper = function (currentGalleryData){
 				return Promise.all(subPromises);
 			})
 			.then(function(results) {
+				console.log('Actions taken on Server:');
 				console.log(results);
 				currentGalleryData[gIndex] = updatedGallery;
 				sendResponseToClient ("successful update.",updatedGallery,'successful update');
@@ -133,7 +130,7 @@ var wrapper = function (currentGalleryData){
 					} else {
 						fs.mkdir(path+'/archive', { recursive: true }, (err) => {
 							if (err) {reject(err)};
-							resolve('archive folder created');
+							resolve('archive folder created or updated');
 						});
 					}					
 				})
