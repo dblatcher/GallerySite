@@ -74,7 +74,6 @@ function handleSwapButtonClick(element) {
 	
 	
 	if (holder.classList.contains('swapping')) {
-		console.log('already swapping this one remove class');
 		holder.classList.remove('swapping');
 		return
 	}
