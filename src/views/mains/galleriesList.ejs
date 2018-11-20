@@ -1,0 +1,13 @@
+	<main>
+		<p>This page displays a list of all the available galleries.</p>
+		
+		<% for(var i=0; i<galleries.length;i++){%>
+			<a href = 'gallery/<%=galleries[i].title%>'>
+			<div class = 'galleryListItem'>
+					<img src = "<%=galleries[i].path%><%=galleries[i].picture[galleries[i].main] %>" ></img>
+					<h2><%=galleries[i].displayTitle%></h2>					
+					<p><%=galleries[i].description%></p>
+			</div>	
+			</a>
+		<%}%>
+	</main>

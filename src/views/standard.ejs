@@ -1,23 +1,18 @@
 <!doctype html>
 <html lang="en-UK">
+
 <head>
 	<title><%=siteSettings.siteName%></title>
 	<% include parts/metatags %>
- 
 	<link rel="stylesheet" href="/css/style-main.css" />
-
-	
+	<%for(var i = 0; i < styleSheets.length; i++ ){ %>
+	<link rel="stylesheet" href="/css/<%=styleSheets[i]%>" />
+	<%}%>
 </head>
 
 <body>
 	<% include parts/header %>
-		
-	<main>
-		<h2>ERROR!</h2>
-		<p><%=errorMessage%></p>
-	</main>
-
-
+	<%- include("mains/"+content) %>
 	<% include parts/footer %>
 </body>
 

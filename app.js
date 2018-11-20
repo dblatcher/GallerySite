@@ -8,8 +8,8 @@ var siteSettings = {
 //set title to 'null' if the page should not appear in the navBar
 var pages = [
 	{path:'/', viewName:'homePage', title:'Home'},
-	{path:'/about', viewName:'aboutPage', title:'About'},
-	{path:'/gallery', viewName:'galleriesPage', title:'Galleries'},
+	{path:'/about', viewName:'standard', title:'About', content:'about', styleSheets:[]},
+	{path:'/gallery', viewName:'standard', title:'Galleries',content:'galleriesList', styleSheets:["style-galleries.css"]},
 	{path:'/login', viewName:'loginPage', title:'log in'},
 	{path:'/admin', viewName:'adminPage', title:'admin', requiresLogin:true},
 ];
@@ -62,6 +62,8 @@ pages.forEach (function (page) {
 			title: page.title,
 			navBar:pages,
 			galleries:gallery,
+			content:page.content,
+			styleSheets:page.styleSheets,
 			siteSettings:siteSettings,
 			sessionMessage:messagePassedFromSession,
 			username:req.user ? req.user.username : false
