@@ -1,0 +1,13 @@
+<div class = "newsPost">
+	<img class = "postIcon" src = "<%=post.icon%>"></img>
+	<h2><%=post.title%></h2>
+	<span class = "postDate"><%=post.date%></span>
+	<%for(var i = 0; i < post.body.length; i++) { %>
+		<%if (post.body[i].type == "p") {%>
+			<p><%=post.body[i].content%></p>
+		<% } %>
+		<%if (post.body[i].type == "img") {%>
+			<img class = "postImage" src = "<%=post.body[i].content%>"></img>
+		<% } %>
+	<% } %>
+</div>

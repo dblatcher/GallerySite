@@ -30,11 +30,14 @@ var LocalStrategy = require('passport-local').Strategy;
 var session = require("express-session");
 
 var getGalleries = require('./src/js/getGalleries.js');
+var getPosts = require('./src/js/getPosts.js');
 var myPassportModule = require ('./src/js/myPassportModule');
 var handleGalleryUpdateModule = require ('./src/js/handleGalleryUpdateModule');
 
 var gallery = getGalleries(siteSettings);
 var galleryRouter = require('./src/routes/galleryRoutes')(pages,siteSettings,gallery);
+
+var posts = getPosts(siteSettings);
 
 
 app.use(express.static('public'));
@@ -62,6 +65,7 @@ pages.forEach (function (page) {
 			title: page.title,
 			navBar:pages,
 			galleries:gallery,
+			posts:posts,
 			content:page.content,
 			styleSheets:page.styleSheets,
 			siteSettings:siteSettings,
