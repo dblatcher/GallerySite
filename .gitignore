@@ -61,5 +61,5 @@ typings/
 .next
 
 # sample content files
-public\galleries
-public\posts
+public/galleries
+public/posts
