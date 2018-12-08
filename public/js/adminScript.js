@@ -126,7 +126,6 @@ function handleFiles(element) {
 }
 
 function handleColorPick(element, colorType) {	
-	console.log(element.parentElement)
 	var form = element.parentElement;
 	var rightInput = form.elements[colorType];
 	rightInput.value = element.value;
@@ -135,7 +134,7 @@ function handleColorPick(element, colorType) {
 function sendGalleryUpdateToServer(gallery,element) {
 	if (element.classList.contains("disabled")) {return false};
 	element.classList.add("disabled");
-	var formData = makeFormDataFromDom(gallery);
+	var formData = makeFormDataFromDom(gallery);	
 	
 	var xhr = new XMLHttpRequest();
 	//xhr.responseType = 'json';
@@ -143,9 +142,13 @@ function sendGalleryUpdateToServer(gallery,element) {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState !== 4) {return false};
 		
+		console.log(xhr.response);
 		alert(xhr.response ? JSON.parse(xhr.response).message : "Undefined Error");
 		if (xhr.status == 200) {
-			refreshSection(gallery,JSON.parse(xhr.response).data);
+			
+			if (gallery !== "New") {
+				refreshSection(gallery,JSON.parse(xhr.response).data);
+			}
 		}
 		element.classList.remove("disabled");
 	};
@@ -154,13 +157,18 @@ function sendGalleryUpdateToServer(gallery,element) {
 	function makeFormDataFromDom (gallery) {
 		var srcString, fileInputSibling,picturesToRemove = [], picturesInOrder = [];
 		var editSection = document.getElementById('edit'+gallery);
-		var oldData = document.getElementById('dataHolder').data[gallery];
-		
 		var fd = new FormData();
-		fd.append('title', oldData.title);
-		
-		
 		var form = document.getElementById("propertyForm"+gallery);
+		
+		
+		if (gallery === "New") {
+			fd.append('title', form.elements.title.value);
+			fd.append('isNewGallery', 'true');			
+		} else {
+			fd.append('title', document.getElementById('dataHolder').data[gallery].title);
+			fd.append('isNewGallery', 'false');
+		}
+		
 		fd.append('displayTitle', form.elements.displayTitle.value);
 		fd.append('description', form.elements.description.value);
 		fd.append('foreground', form.elements.foreground.value);
@@ -209,13 +217,16 @@ function fillThumbnailSectionsUsingInitialData(){
 	for (var i = 0; i < data.length; i++ ) {
 		refreshSection(i, data[i]);
 	};
+	
+	var thumbNailArea = document.getElementById('editNew').getElementsByClassName('thumbNailArea')[0];
+	thumbNailArea.appendChild(makeNewUploadControl());
 };
 
 function refreshSection (gallery, newData) {
 	newData.main = newData.main || 0;
 	var section = document.getElementById('edit'+gallery);
 	
-	section.getElementsByClassName('sectionHeading')[0].innerHTML = 'edit Gallery: ' + newData.displayTitle;
+	section.getElementsByClassName('sectionHeading')[0].innerHTML = 'edit Gallery: ' + newData.title;
 	section.getElementsByClassName('updateButton')[0].innerHTML = 'Save changes to ' + newData.displayTitle;
 	
 	var thumbNailArea = section.getElementsByClassName('thumbNailArea')[0];

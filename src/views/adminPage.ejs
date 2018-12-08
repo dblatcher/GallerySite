@@ -28,11 +28,11 @@
 	<% for (var i =0; i<galleries.length; i++) {%>
 		
 		<section id = 'edit<%=i%>' class = 'editSection' style = "display:none;">
-			<h3 class = 'sectionHeading'>edit Gallery : <%=galleries[i].displayTitle%></h3>
+			<h3 class = 'sectionHeading'>edit Gallery : <%=galleries[i].title%></h3>
 			
 			<div>
 				<form id = 'propertyForm<%=i%>'>
-					<span>Title:</span> <br/>
+					<span>Display title:</span> <br/>
 					<input type:"text" name="displayTitle" value = "<%=galleries[i].displayTitle%>"></input><br/>
 					
 					<span>Description:</span><br/> 
@@ -58,6 +58,8 @@
 				<button class = 'updateButton' onclick ='sendGalleryUpdateToServer(<%=i%>,this)'>
 					Save changes to <%=galleries[i].displayTitle%>
 				</button>
+			
+			
 			</div>
 			
 		</section>
@@ -68,7 +70,40 @@
 	
 	<section id = 'editNew' class = 'editSection' style = "display:none;">
 		<h3>make new gallery</h3>
-		<input type="file" id="chooseNewFileNew">
+				
+			<div>
+				<form id = 'propertyFormNew'>
+					<span>folder name:</span> <br/>
+					<input type:"text" name="title" value = ""></input><br/>
+				
+					<span>Display title:</span> <br/>
+					<input type:"text" name="displayTitle" value = ""></input><br/>
+					
+					<span>Description:</span><br/> 
+					<textarea name="description" rows="3"></textarea><br/>
+					
+					<span>foreground color:</span>
+					<input type="color" name="foregroundPicker" value = "#000000" onchange = 'handleColorPick(this, "foreground")' ><br/>
+					<input type:"text" name="foreground" value = "black"></input><br/>
+					
+					<span>background color:</span>
+					<input type="color" name="backgroundPicker" value = '#ffffff' onchange = 'handleColorPick(this, "background")' ><br/>
+					<input type:"text" name="background" value = "white"></input><br/>
+					
+					<input type="reset">
+				</form>
+			</div>
+			
+			<div class = 'thumbNailArea'>
+				<!-- picture thumbnails generated dynamically in adminScript.  -->
+			</div>
+			
+			<div>
+				<button class = 'updateButton' onclick ='sendGalleryUpdateToServer("New",this)'>
+					Create new gallery
+				</button>
+			</div>
+		
 	</section>
 
 	
