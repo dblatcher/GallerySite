@@ -288,19 +288,25 @@ function newThumbNailHolder(isMain, isUploader) {
 	newHolder.appendChild(newMainToggle);
 	
 	var moveControl = document.createElement('div');
-	moveControl.setAttribute('class','moveControl');
-	var moveleft = document.createElement('span');
-	moveleft.innerHTML = '<';
-	moveleft.setAttribute('onclick','handleShiftButtonClick(this,"left")');
-	var moveright = document.createElement('span');
-	moveright.innerHTML = '>';
-	moveright.setAttribute('onclick','handleShiftButtonClick(this,"right")');
+		moveControl.setAttribute('class','moveControl');
+	
+	var moveleft = document.createElement('div');
+		moveleft.setAttribute('class','moveButton moveButtonBack');
+		moveleft.innerHTML = '<';
+		moveleft.setAttribute('onclick','handleShiftButtonClick(this,"left")');
+		
+	var moveright = document.createElement('div');
+		moveright.setAttribute('class','moveButton moveButtonForward');
+		moveright.innerHTML = '>';
+		moveright.setAttribute('onclick','handleShiftButtonClick(this,"right")');
+		
 	var moveswap = document.createElement('span');
-	moveswap.innerHTML = ' swap ';
-	moveswap.setAttribute('onclick','handleSwapButtonClick(this)');
-	moveswap.setAttribute('class','swapButton');
-	moveControl.appendChild(moveleft);
+		moveswap.innerHTML = ' swap ';
+		moveswap.setAttribute('onclick','handleSwapButtonClick(this)');
+		moveswap.setAttribute('class','swapButton');
+		
 	moveControl.appendChild(moveswap);
+	moveControl.appendChild(moveleft);
 	moveControl.appendChild(moveright);
 	
 	newHolder.appendChild(moveControl);

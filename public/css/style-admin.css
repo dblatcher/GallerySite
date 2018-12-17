@@ -10,11 +10,7 @@ background-color:lightgrey;
 box-sizing:border-box;
 }
 
-.swapping .swapButton {
-background-color:yellow;
-}
-
-.mainImageToggle,.moveControl,.thumbNail {
+.mainImageToggle,.moveControl,.thumbNail,.moveButton {
 text-align:center;
 cursor:pointer;
 box-sizing:border-box;
@@ -50,10 +46,24 @@ top: 7em;
 width:100%;
 }
 
+.moveButton {
+border-radius: 50%;
+color:white;
+background-color: grey;
+width:1em;
+}
+.moveButton:hover {background-color: black}
+.moveButtonBack {left:0.1em;}
+.moveButtonForward {right:0.1em;}
+
 .thumbNailHolder:last-of-type .mainImageToggle{display:none;}
 .thumbNailHolder:last-of-type .moveControl{display:none;}
-.notMainPic .mainImageToggle{color:grey;}
-.mainPic .mainImageToggle{color:black; font-weight:bold;}
+
+.thumbNailHolder:first-of-type .moveButtonBack {display:none;}
+.thumbNailHolder:nth-last-of-type(2) .moveButtonForward {display:none;}
+
+.notMainPic .mainImageToggle, .swapButton{color:grey;}
+.mainPic .mainImageToggle, .swapping .swapButton {color:black; font-weight:bold;}
 
 
 
