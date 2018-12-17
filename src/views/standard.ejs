@@ -5,15 +5,24 @@
 	<title><%=siteSettings.siteName%></title>
 	<% include parts/metatags %>
 	<link rel="stylesheet" href="/css/style-main.css" />
-	<%for(var i = 0; i < styleSheets.length; i++ ){ %>
-	<link rel="stylesheet" href="/css/<%=styleSheets[i]%>" />
-	<%}%>
-</head>
+	<% if (styleSheets) {%>
+		<%for(var i = 0; i < styleSheets.length; i++ ){ %>
+			<link rel="stylesheet" href="/css/<%=styleSheets[i]%>" />
+		<%}%>
+	<% } %>
+	</head>
 
 <body>
 	<% include parts/header %>
 	<%- include("mains/"+content) %>
 	<% include parts/footer %>
+	
+	<% if (scripts) {%>
+		<%for(var i = 0; i < scripts.length; i++ ){ %>
+			<script src="/js/<%=scripts[i]%>"></script>
+		<%}%>
+	<% } %>
+	
 </body>
 
 </html>

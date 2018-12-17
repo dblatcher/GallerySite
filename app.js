@@ -9,7 +9,7 @@ var siteSettings = {
 var pages = [
 	{path:'/', viewName:'homePage', title:'Home',styleSheets:["style-news.css","style-home.css"]},
 	{path:'/gallery', viewName:'standard', title:'Galleries',content:'galleriesList', styleSheets:["style-galleries.css"]},
-	{path:'/about', viewName:'standard', title:'About', content:'about', styleSheets:[]},
+	{path:'/about', viewName:'standard', title:'About', content:'about',scripts:[]},
 	{path:'/news', viewName:'standard', title:'News',content:'newsList', styleSheets:["style-news.css"]},
 	{path:'/login', viewName:'loginPage', title:'log in'},
 	{path:'/admin', viewName:'adminPage', title:'admin', requiresLogin:true},
@@ -69,6 +69,7 @@ pages.forEach (function (page) {
 			posts:posts,
 			content:page.content,
 			styleSheets:page.styleSheets,
+			scripts:page.scripts,
 			siteSettings:siteSettings,
 			sessionMessage:messagePassedFromSession,
 			username:req.user ? req.user.username : false
