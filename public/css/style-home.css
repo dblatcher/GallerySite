@@ -35,39 +35,6 @@ main{
 	font-size:x-large;
 }
 
-
-.newsPost {
-	clear : right;
-	padding-top:2px;
-	padding-bottom:2px;
-	margin-top:0.5em;
-	border-top: 1px dotted black;
-	border-bottom: 1px dotted black;
-}
-.newsPost::after {
-	content: "";
-	clear: both;
-	display: table;
-}
-
-.newsPost .postDate{
-	font-weight:bold;
-}
-
-
-
-.postIcon {
-	float:right;
-	max-height:5em;
-	border: 4px outset gray;
-}
-
-.postImage {
-	max-height:10em;
-	float:left;
-	margin-right:2px;
-}
-
 .galleryPanel {
 	border : 2px solid black;
 	padding: 2px;

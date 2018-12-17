@@ -1,0 +1,10 @@
+	<main>
+		<p>This page displays all news.</p>
+		
+		<% for(var j = posts.length-1; j > -1; j--) { %>
+			<% if (posts[j].active) { %>
+				<%- include('../parts/post', {post: posts[j]}); %>
+			<% } %>
+		<% } %>
+		
+	</main>
