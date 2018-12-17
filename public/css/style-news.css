@@ -12,20 +12,31 @@
 	display: table;
 }
 
-.newsPost .postDate{
+
+.postBanner{
+	height:4em;
+}
+
+.postBanner h2 {
+	margin-top:0px;
+	margin-Bottom:0px;
+}
+
+.postDate{
 	font-weight:bold;
 }
 
-
-
 .postIcon {
 	float:right;
-	max-height:5em;
+	max-height:4em;
 	border: 4px outset gray;
+	box-sizing:border-box;
 }
 
 .postImage {
-	max-height:10em;
-	float:left;
-	margin-right:2px;
+	max-height:6em;
+	position:relative;
+	display:block;
+	left:50%;
+	transform:translateX(-50%);
 }

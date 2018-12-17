@@ -1,7 +1,9 @@
 <div class = "newsPost">
-	<img class = "postIcon" src = "<%=post.icon%>"></img>
-	<h2><%=post.title%></h2>
-	<span class = "postDate"><%=post.date%></span>
+	<div class= "postBanner">
+		<img class = "postIcon" src = "<%=post.icon%>"></img>
+		<h2><%=post.title%></h2>
+		<span class = "postDate"><%=post.date%></span>
+	</div>
 	<%for(var i = 0; i < post.body.length; i++) { %>
 		<%if (post.body[i].type == "p") {%>
 			<p><%=post.body[i].content%></p>
