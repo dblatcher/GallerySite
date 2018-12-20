@@ -8,9 +8,9 @@ function getPosts(siteSettings) {
 	var posts = [];
 
 	for (var i = 0; i<files.length; i++) {
-		if (fileExtension(files[i]) === "json") {
+		if (files[i] === "posts.json") {
 			try {
-				posts.push(
+				posts = (
 					JSON.parse(fs.readFileSync(serverUrl + '/' + files[i], 'utf8'))
 				);
 			} catch(err) {
@@ -23,12 +23,8 @@ function getPosts(siteSettings) {
 		return a.index-b.index;
 	});
 	
-	
 	return posts;
 
-	function fileExtension (name) {
-		return name.slice(name.lastIndexOf('.')+1,name.length).toLowerCase();
-	};
 };
 
 module.exports = getPosts;

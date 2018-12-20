@@ -13,6 +13,7 @@ var pages = [
 	{path:'/news', viewName:'standard', title:'News',content:'newsList', styleSheets:["style-news.css"]},
 	{path:'/login', viewName:'loginPage', title:'log in'},
 	{path:'/admin', viewName:'adminPage', title:'admin', requiresLogin:true},
+	{path:'/postAdmin', viewName:'standard', content:'postAdmin', title:'posts', scripts:["postAdmin.js"],styleSheets:["postAdmin.css"], requiresLogin:true},
 ];
 
 // THIS SHOULD ONLY BE SET TO FALSE FOR DEVELOPMENT

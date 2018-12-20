@@ -1,0 +1,54 @@
+<main>
+	<h2>News Room</h2>
+	
+	<div id = "controlHolder">
+	</div>
+	
+	<button onclick = "addNewPostControl()" >add new post</button>
+	
+</main>
+
+<div class = "iconMenu hidden">
+	<p>choose your pic<p>
+	<img src="images/king-profile.png"  onclick = "handleIconSelect(this)"/>
+	<img src="images/blank-profile.png" onclick = "handleIconSelect(this)"/>
+</div>
+
+<div style = "display:none" id = "dataHolder" originalData = "<%=JSON.stringify(posts)%>"; >
+</div>
+
+<div style = "display:none" id = 'templateStore'>
+
+	<section class = 'templatePostControl'>
+		<div class="subsection main">
+			<button onclick="handleClassToggleClick(this,'collapsed')">>></button>
+			<span>Post Title:</span><input type="text"></input>
+			<button onclick="handleDeletePost(this,'collapsed')">DELETE POST</button>
+			<button onclick="handleMoveControl(this,'up')">UP</button>
+			<button onclick="handleMoveControl(this,'down')">DOWN</button>
+		</div>		
+		<div class="subsection detail">
+			<img class="iconPart" onclick="handleIconClick(this)" />
+			<div class="activePart" onclick="handleClassToggleClick(this,'active')">appear on site:</div>
+			<div class="homepagePart" onclick="handleClassToggleClick(this,'notForHomePage')">can show on homepage:</div>
+			<div class="datePart"><span>Post Date:</span><input type="date" /></div>
+		</div>
+		<div class="subsection content">
+		</div>
+	</section>
+
+	<div class = "templateInsertPanel">
+		<button onclick="handleNewBodyClick(this,'p')">add new paragraph</button>
+		<button onclick="handleNewBodyClick(this,'img')">add new image</button>
+	</div>
+
+	<div class = "templateBodyItem">
+		<div class="bodyType">type
+			<button onclick="handleDeleteBodyClick(this)">X</button>
+		</div>
+		<div class="bodyContent">
+		</div>
+	</div>
+	
+</div>
+

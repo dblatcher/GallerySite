@@ -1,0 +1,94 @@
+.postControl{
+margin-bottom:1em;
+border:1px solid green;
+}
+
+.main{
+margin-bottom:0.5em;
+}
+
+.detail {
+padding-left:5.5em;
+min-height:5em;
+position:relative;
+margin-bottom:0.5em;
+}
+
+.iconPart {
+	box-sizing:border-box;
+	position:absolute;
+	left: 0em; top:0px;
+	width: 5em; height: 5em;
+	margin: 3px;
+	border: 5px outset grey;
+	cursor:pointer;
+	display:inline-block;
+}
+
+.collapsed .content,.collapsed .detail, .hidden{
+display:none;
+}
+.homepagePart,.activePart,.datePart {
+	border:2px outset grey;
+	margin:4px;
+	cursor:pointer;
+	display: inline-block;
+	height:1.5em;
+	font-size:100%;
+}
+
+.datePart input{
+	border: 0px;
+}
+
+
+.activePart::after{content:"no";}
+.active .activePart::after {content:"yes";}
+
+.homepagePart::after{content:"yes";}
+.notForHomePage .homepagePart::after{content:"no";}
+
+
+.content{
+padding-left:1em;
+margin-bottom:1.5em;
+}
+
+
+.bodyItem {
+position:relative;
+margin-bottom:0.5em;
+margin-top:0.5em;
+}
+.bodyItem  img {
+max-height:5em;
+position:relative;
+left:50%;
+transform:translateX(-50%);
+}
+ 
+
+.content textArea {
+	box-sizing:border-box;
+	resize: vertical;
+	width:100%;
+}
+
+
+
+.iconMenu {
+	position:fixed;
+	top:50%; left:50%; transform: translateX(-50%) translateY(-50%);
+	width:60%; height:60%;
+	background-color: rgba(80, 80, 80, 0.4);
+	border : 1px solid black;
+}
+
+.iconMenu img {
+	box-sizing:border-box;
+	width: 5em; height: 5em;
+	margin: 3px;
+	border: 5px outset grey;
+	cursor:pointer;
+	display:inline-block;
+}
