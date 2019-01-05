@@ -16,6 +16,24 @@ var pages = [
 	{path:'/postAdmin', viewName:'standard', content:'postAdmin', title:'posts', scripts:["postAdmin.js"],styleSheets:["postAdmin.css"], requiresLogin:true},
 ];
 
+var errorPageViewName = 'standard';
+var getErrorPageData = function (errorMessage, request) {
+	return {
+		title: 'error',
+		content:'errorMessage',
+		styleSheets:[],
+		scripts:[],
+		
+		navBar:pages,
+		posts:posts,
+		galleries:gallery,
+		siteSettings:siteSettings,
+		errorMessage:errorMessage,
+		sessionMessage:null,
+		username:request.user ? request.user.username : false 
+	};
+}
+
 // THIS SHOULD ONLY BE SET TO FALSE FOR DEVELOPMENT
 // IT DISABLES THE AUTHENTICATION MIDDLEWARE
 const authenticationEnabled = false;
@@ -86,12 +104,13 @@ app.post('/galleryUpdateUpload', handleGalleryUpdateModule(gallery));
 
 
 app.use(function (req, res, next) {
-  res.status(404).render('errorPage', {errorMessage:"404 - file not found", navBar:pages,siteSettings:siteSettings, username:req.user ? req.user.username : false });
+	var errorMessage = "404. '" + req.path + "' not found! Oh my...";
+  res.status(404).render(errorPageViewName, getErrorPageData(errorMessage, req) );
 })
 
 app.use(function (err, req, res, next) {
   res.status(500)
-  res.render('errorPage', {errorMessage:err, navBar:pages,siteSettings:siteSettings,username:req.user ? req.user.username : false });
+  res.render(errorPageViewName, getErrorPageData(err, req));
 });
 
 
