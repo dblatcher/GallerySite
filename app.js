@@ -17,6 +17,9 @@ var pages = [
 ];
 
 var errorPageViewName = 'standard';
+var get404ErrorMessage = function(request) {
+	return "404. '" + request.path + "' not found!";
+}
 var getErrorPageData = function (errorMessage, request) {
 	return {
 		title: 'error',
@@ -104,7 +107,7 @@ app.post('/galleryUpdateUpload', handleGalleryUpdateModule(gallery));
 
 
 app.use(function (req, res, next) {
-	var errorMessage = "404. '" + req.path + "' not found! Oh my...";
+	var errorMessage = get404ErrorMessage(req);
   res.status(404).render(errorPageViewName, getErrorPageData(errorMessage, req) );
 })
 
