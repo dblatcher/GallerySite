@@ -2,7 +2,14 @@ document.getElementById('dataHolder').data = JSON.parse(document.getElementById(
 resetControls();
 
 function handleClassToggleClick(element,className) {
-	element.parentElement.parentElement.classList.toggle(className);
+	var nextParent = element.parentElement;
+	var failsafe=0;
+	while (nextParent.classList.contains('postControl') == false){
+		nextParent = nextParent.parentElement;
+		if (failsafe++ > 100) {return false};
+	}
+	
+	nextParent.classList.toggle(className);
 }
 
 function handleNewBodyClick(element,type) {
@@ -11,16 +18,27 @@ function handleNewBodyClick(element,type) {
 }
 
 function handleDeleteBodyClick (element) {
-	var bodyItem = element.parentElement.parentElement;
-	var panel = bodyItem.nextSibling;
-	var container = bodyItem.parentElement;
+	
+	var nextParent = element.parentElement;
+	var failsafe=0;
+	while (nextParent.classList.contains('bodyItem') == false){
+		nextParent = nextParent.parentElement;
+		if (failsafe++ > 100) {return false};
+	}
+	var container = nextParent.parentElement;
+	var panel = nextParent.nextSibling;
 	container.removeChild(panel);
-	container.removeChild(bodyItem);
+	container.removeChild(nextParent);
 }
 
 function handleDeletePost (element) {
-	var control = element.parentElement.parentElement;
-	control.parentElement.removeChild(control);
+	var nextParent = element.parentElement;
+	var failsafe=0;
+	while (nextParent.classList.contains('postControl') == false){
+		nextParent = nextParent.parentElement;
+		if (failsafe++ > 100) {return false};
+	}
+	nextParent.parentElement.removeChild(nextParent);
 }
 
 function handleIconClick (element) {
@@ -117,18 +135,14 @@ function makeBodyItem(body) {
 	var bodyItem = document.getElementsByClassName('templateBodyItem')[0].cloneNode(true);
 	bodyItem.setAttribute('class','bodyItem');
 	
-	var nameMap = {p:'paragraph',img:'image'};
 	var tagMap = {p:'textArea',img:'img'};
-	
-	var bodyType = bodyItem.getElementsByClassName('bodyType')[0].childNodes[0];
-	bodyType.textContent = nameMap[body.type];
 	
 	var bodyContent = bodyItem.getElementsByClassName('bodyContent')[0];
 	bodyContent.appendChild(document.createElement(tagMap[body.type]));
 	
 	switch (body.type) {
 	case "p": 
-		bodyContent.firstElementChild.innerText = body.content;
+		bodyContent.firstElementChild.innerText = body.content || "type here";
 	case "img" :
 		if (body.content) {bodyContent.firstElementChild.setAttribute('src',body.content)};
 	}

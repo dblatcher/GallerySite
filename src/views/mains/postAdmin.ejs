@@ -4,14 +4,19 @@
 	<div id = "controlHolder">
 	</div>
 	
+	<div class="newPostButtonHolder">
 	<button onclick = "addNewPostControl()" >add new post</button>
+	</div>
 	
 </main>
 
 <div class = "iconMenu hidden">
-	<p>choose your pic<p>
+	<p>choose post's icon<p>
 	<img src="images/king-profile.png"  onclick = "handleIconSelect(this)"/>
 	<img src="images/blank-profile.png" onclick = "handleIconSelect(this)"/>
+	<p>upload new<p>
+	<input type='file'></input>
+	<button>upload</button>
 </div>
 
 <div style = "display:none" id = "dataHolder" originalData = "<%=JSON.stringify(posts)%>"; >
@@ -22,17 +27,24 @@
 	<section class = 'templatePostControl'>
 		<div class="subsection main">
 			<button onclick="handleClassToggleClick(this,'collapsed')">>></button>
-			<span>Post Title:</span><input type="text"></input>
-			<button onclick="handleDeletePost(this,'collapsed')">DELETE POST</button>
 			<button onclick="handleMoveControl(this,'up')">UP</button>
 			<button onclick="handleMoveControl(this,'down')">DOWN</button>
-		</div>		
+			<button onclick="handleDeletePost(this,'collapsed')">DELETE POST</button>
+			<span>Post Title:</span>
+			<div >
+				<input type="text"></input>
+			</div>
+		</div>
+		
 		<div class="subsection detail">
 			<img class="iconPart" onclick="handleIconClick(this)" />
-			<div class="activePart" onclick="handleClassToggleClick(this,'active')">appear on site:</div>
-			<div class="homepagePart" onclick="handleClassToggleClick(this,'notForHomePage')">can show on homepage:</div>
-			<div class="datePart"><span>Post Date:</span><input type="date" /></div>
+			<div class = "detailGroup">
+				<div class="activePart" onclick="handleClassToggleClick(this,'active')">appear on site:</div>
+				<div class="homepagePart" onclick="handleClassToggleClick(this,'notForHomePage')">can show on homepage:</div>
+				<div class="datePart"><span>Post Date:</span><input type="date" /></div>
+			</div>
 		</div>
+		
 		<div class="subsection content">
 		</div>
 	</section>
@@ -43,11 +55,8 @@
 	</div>
 
 	<div class = "templateBodyItem">
-		<div class="bodyType">type
-			<button onclick="handleDeleteBodyClick(this)">X</button>
-		</div>
-		<div class="bodyContent">
-		</div>
+		<div class="bodyContent"></div>
+		<button onclick="handleDeleteBodyClick(this)">X</button>
 	</div>
 	
 </div>
