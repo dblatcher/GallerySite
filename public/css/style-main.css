@@ -40,7 +40,7 @@ border: 1px solid black;
 	.onBar { display:none;}
 }
 @media screen and (min-width: 480px) {
-	.fromSide {display:none;}
+	.dropDown {display:none;}
 	.menuButton {display:none;}
 }
 
@@ -62,7 +62,7 @@ font-weight:bold;
 cursor:pointer;
 }
 
-.fromSide  {
+.dropDown  {
 	position:fixed;
 	z-index:9;
 	right:0px;
@@ -73,14 +73,14 @@ cursor:pointer;
 	transform : translateY(3em);
 }
 
-.fromSide ul {
+.dropDown ul {
 display: flex;
 flex-flow: column nowrap;
 margin:0px;
 right:0px;
 }
 
-.fromSide a {
+.dropDown a {
 	display:block;
 	line-height:150%;
 	font-size:large;
@@ -89,7 +89,7 @@ right:0px;
 	border:1px solid black;
 }
 
-.fromSide .currentPageLink {background-color:lightgray;}
+.dropDown .currentPageLink {background-color:lightgray;}
 
 .onBar {
 height:2.75em;
@@ -111,21 +111,18 @@ align-self:flex-end;
 	margin-right:0.5em;
 	line-height:150%;
 }
-
 .onBar .currentPageLink {font-weight:bold;}
 
 
 main {
 padding-top: 3em;
-padding-bottom:2.0em;
+padding-bottom:2em;
 }
-
 
 footer {
 position:fixed;
 text-align:center;
 border-top: 1px solid black;
-
 box-sizing:border-box;
 bottom:0em;
 width:100%;
@@ -133,6 +130,5 @@ left:0%;
 margin:0px;
 padding:0px;
 background-color:lightCyan;
-
 height:1.5em;
 }
