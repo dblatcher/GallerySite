@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="/css/style-main.css" />
 	<% if (styleSheets) {%>
 		<%for(var i = 0; i < styleSheets.length; i++ ){ %>
-			<link rel="stylesheet" href="/css/<%=styleSheets[i]%>" />
+	<link rel="stylesheet" href="/css/<%=styleSheets[i]%>" />
 		<%}%>
 	<% } %>
 	</head>
@@ -16,12 +16,14 @@
 	<% include parts/header %>
 	<%- include("mains/"+content) %>
 	<% include parts/footer %>
-	
+
+	<script src="/js/mainScript.js"></script>
 	<% if (scripts) {%>
 		<%for(var i = 0; i < scripts.length; i++ ){ %>
-			<script src="/js/<%=scripts[i]%>"></script>
+	<script src="/js/<%=scripts[i]%>"></script>
 		<%}%>
 	<% } %>
+	
 	
 </body>
 

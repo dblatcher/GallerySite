@@ -3,10 +3,15 @@ font-family: Arial, Helvetica, sans-serif;
 }
 
 header{
-white-space: nowrap; overflow: hidden;
+display: flex;
+flex-flow: row nowrap;
+justify-content: space-between;
+align-items: center;
+
+white-space: nowrap; 
 position:fixed;
 top:0px; left:0px; width:100%;
-padding-left:0.5em;
+
 height: 3em;
 background-color:lightCyan;
 z-index:10;
@@ -14,18 +19,14 @@ border-bottom: 1px solid black;
 }
 
 header h1 {
-display:block;
-position:absolute;
-top:50%;
-transform: translateY(-50%);
 color:black;
-margin:0px;
+margin-left:0.25em;
 }
 
 .loggedInMessage{
 white-space: nowrap; overflow: hidden;
 position:fixed;
-top:3em; right:1em;
+top:3em; left:0em;
 padding-left:0.5em;
 height: 1em;
 background-color:cyan;
@@ -34,30 +35,84 @@ z-index:10;
 border: 1px solid black;
 }
 
-nav {
-position:absolute;
-bottom:0px;
-left:0px;
-text-align:right;
-width:100%;
+
+@media screen and (max-width: 479px) {
+	.onBar { display:none;}
 }
+@media screen and (min-width: 480px) {
+	.fromSide {display:none;}
+	.menuButton {display:none;}
+}
+
 nav ul {
-list-style-type: none;
-		margin-right:1em;
+	list-style-type: none;
 }
-nav li {
-float:right;
-}
-nav a{
-	display: block;
-  padding-right: 0.5em;
+nav a {
 	text-decoration: none;
 	color:black;
-	top:50%;
-transform: translateY(-50%);
 }
 nav a:hover{background-color:darkgray;}
 
+
+.menuButton {
+margin-right:0.5em;
+padding:4px;
+font-size:x-large;
+font-weight:bold;
+cursor:pointer;
+}
+
+.fromSide  {
+	position:fixed;
+	z-index:9;
+	right:0px;
+	width:10em;
+	transition: top 1s;
+	transition-timing-function: ease-out;
+	top:-100%;
+	transform : translateY(3em);
+}
+
+.fromSide ul {
+display: flex;
+flex-flow: column nowrap;
+margin:0px;
+right:0px;
+}
+
+.fromSide a {
+	display:block;
+	line-height:150%;
+	font-size:large;
+	text-align:center;
+	background-color:lightcyan;
+	border:1px solid black;
+}
+
+.fromSide .currentPageLink {background-color:lightgray;}
+
+.onBar {
+height:2.75em;
+align-self:flex-end;
+}
+
+.onBar ul {
+	margin:0px;
+	height:inherit;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+
+	
+.onBar a{
+	margin-right:0.5em;
+	line-height:150%;
+}
+
+.onBar .currentPageLink {font-weight:bold;}
 
 
 main {

@@ -1,15 +1,43 @@
 <header>
 	<h1><%=siteSettings.siteName%></h1>
-	<nav>
+	
+	<nav class = 'onBar'>
 		<ul>
 			<% for(var i=0; i<navBar.length;i++){%>				
 				<%if (navBar[i].title) { %>
-					<li><a href=<%=navBar[i].path%>><%=navBar[i].title%></a></li>
+				<li><a 
+				href=<%=navBar[i].path%>
+				<%if (title === navBar[i].title) {%> class = 'currentPageLink'<% } %>
+				>
+					<%=navBar[i].title%>	
+				</a></li>
 				<% } %>
 			<%}%>
 		</ul>
 	</nav>
+	
+	<div class = 'menuButton' onclick = "toggleMenu()">
+		&#9776;
+	</div>
+	
+	
 	<%if(username) {%>
 		<div class = 'loggedInMessage'>logged in as: <%=username%><a href="/logout"> log out</a></div>
 	<%}%>
+	
 </header>
+
+<nav class = 'fromSide'>
+	<ul>
+		<% for(var i=0; i<navBar.length;i++){%>				
+			<%if (navBar[i].title) { %>			
+				<li><a 
+				href=<%=navBar[i].path%>
+				<%if (title === navBar[i].title) {%> class = 'currentPageLink'<% } %>
+				>
+					<%=navBar[i].title%>	
+				</a></li>
+			<% } %>
+		<%}%>
+	</ul>
+</nav>
