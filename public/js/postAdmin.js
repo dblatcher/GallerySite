@@ -79,6 +79,55 @@ function handleMoveControl(element, direction) {
 	
 }
 
+function getDataFromInput() {
+	var postControls = document.getElementsByClassName('postControl');
+	var data = [];
+	for (var i=0; i < postControls.length; i++) {
+		data.push(readPostControl(postControls[i],i));
+	};
+	
+	return data;
+	
+	function readPostControl(postControl, index){
+		var inputs = postControl.getElementsByTagName('input');
+		var post = {
+			index:index,
+			title: inputs[0].value,
+			date: inputs[1].value,
+			icon:truncatePath(postControl.getElementsByClassName('iconPart')[0].src),
+			notForHomepage: postControl.classList.contains('notForHomePage'),
+			active: postControl.classList.contains('active'),
+			body:[]
+		}
+		
+		var bodyItems = postControl.getElementsByClassName('bodyItem');
+				for (var i=0; i < bodyItems.length; i++) {
+					post.body.push(readBodyItem(bodyItems[i]));
+				};
+		return post;
+		
+		function readBodyItem(bodyItem){
+			var element =  bodyItem.getElementsByClassName('bodyContent')[0].children[0];
+			var type = element.tagName.toLowerCase();
+			if (type === 'textarea'){type = 'p'};
+			var content;
+			if (type === 'p') {
+				content = element.value;
+			};
+			if (type === 'img') {
+				content = truncatePath(element.src);
+			};
+			return {type:type,content:content};
+		}
+		function truncatePath(fullUrl){
+			var base = window.location.origin; 
+			return fullUrl.substring(base.length+1);
+		}
+		
+	}
+	
+}
+
 function resetControls () {
 	var data = document.getElementById('dataHolder').data;
 	var controlHolder = document.getElementById('controlHolder');
