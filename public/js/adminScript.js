@@ -295,17 +295,17 @@ function newThumbNailHolder(isMain, isUploader) {
 	
 	var moveleft = document.createElement('div');
 		moveleft.setAttribute('class','moveButton moveButtonBack');
-		moveleft.innerHTML = '<';
+		moveleft.innerHTML = '&#8592;';
 		moveleft.setAttribute('onclick','handleShiftButtonClick(this,"left")');
 
 	var moveswap = document.createElement('span');
-		moveswap.innerHTML = ' swap ';
+		moveswap.innerHTML = ' &#8645; ';
 		moveswap.setAttribute('onclick','handleSwapButtonClick(this)');
 		moveswap.setAttribute('class','swapButton');
 		
 	var moveright = document.createElement('div');
 		moveright.setAttribute('class','moveButton moveButtonForward');
-		moveright.innerHTML = '>';
+		moveright.innerHTML = '&#8594;';
 		moveright.setAttribute('onclick','handleShiftButtonClick(this,"right")');
 		
 		

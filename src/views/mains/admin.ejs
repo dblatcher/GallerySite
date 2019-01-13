@@ -67,22 +67,32 @@
 				
 			<div>
 				<form id = 'propertyFormNew'>
-					<span>folder name:</span> <br/>
-					<input type:"text" name="title" value = ""></input><br/>
-				
-					<span>Display title:</span> <br/>
-					<input type:"text" name="displayTitle" value = ""></input><br/>
+					<div>
+					<span>folder name:</span> 
+					<input type="text" name="title" value = ""></input>
+					</div>
 					
-					<span>Description:</span><br/> 
-					<textarea name="description" rows="3"></textarea><br/>
+					<div>
+					<span>Display title:</span>
+					<input type="text" name="displayTitle" value = ""></input>
+					</div>
 					
-					<span>foreground color:</span>
-					<input type="color" name="foregroundPicker" value = "#000000" onchange = 'handleColorPick(this, "foreground")' ><br/>
-					<input type:"text" name="foreground" value = "black"></input><br/>
+					<div>
+					<span>Description:</span>
+					<textarea name="description" rows="3"></textarea>
+					</div>
 					
-					<span>background color:</span>
-					<input type="color" name="backgroundPicker" value = '#ffffff' onchange = 'handleColorPick(this, "background")' ><br/>
-					<input type:"text" name="background" value = "white"></input><br/>
+					<div>
+					<span>foreground:</span>
+					<input type="color" name="foregroundPicker" value = "#000000" onchange = 'handleColorPick(this, "foreground")' >
+					<input type="text" name="foreground" value = "black"></input>
+					</div>
+					
+					<div>
+					<span>background:</span>
+					<input type="color" name="backgroundPicker" value = '#ffffff' onchange = 'handleColorPick(this, "background")' >
+					<input type="text" name="background" value = "white"></input>
+					</div>
 					
 					<input type="reset">
 				</form>
