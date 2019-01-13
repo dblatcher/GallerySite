@@ -117,25 +117,6 @@ flex-basis:100%;
 	width:100%;
 }
 
-#waitMessage {
-	position:fixed;	
-	background-color: rgba(80, 80, 80, 0.8);
-	color:white;
-	top:50%; left:50%; transform: translateX(-50%) translateY(-50%);
-	width:100%; height:100%;
-  justify-content: center;
-  align-items: center;
-}
-.modalHidden {
-	display:none;
-}
-.modalShow {
-	display:flex;
-}
-#waitMessage>p { 
-font-size:XX-large;
-}
-
 .iconMenu {
 	position:fixed;
 	top:50%; left:50%; transform: translateX(-50%) translateY(-50%);

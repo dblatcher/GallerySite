@@ -135,8 +135,12 @@ function handleColorPick(element, colorType) {
 };
 
 function sendGalleryUpdateToServer(gallery,element) {
-	if (element.classList.contains("disabled")) {return false};
-	element.classList.add("disabled");
+	var waitMessage = document.getElementById('waitMessage');
+	if (waitMessage.classList.contains("modalShow")) {return false};
+	waitMessage.classList.add("modalShow");
+	waitMessage.classList.remove("modalHidden");
+	
+	
 	var formData = makeFormDataFromDom(gallery);	
 	
 	var xhr = new XMLHttpRequest();
@@ -153,7 +157,8 @@ function sendGalleryUpdateToServer(gallery,element) {
 				refreshSection(gallery,JSON.parse(xhr.response).data);
 			}
 		}
-		element.classList.remove("disabled");
+		waitMessage.classList.add("modalHidden");
+		waitMessage.classList.remove("modalShow");
 	};
 	xhr.send(formData);
 		

@@ -12,8 +12,8 @@ var pages = [
 	{path:'/about', viewName:'standard', title:'About', content:'about',scripts:[]},
 	{path:'/news', viewName:'standard', title:'News',content:'newsList', styleSheets:["style-news.css"]},
 	{path:'/login', viewName:'standard', content:'login', title:'log in'},
-	{path:'/admin', viewName:'standard', content:'admin',title:'admin', scripts:["adminScript.js"],styleSheets:["style-admin.css"], requiresLogin:true},
-	{path:'/postAdmin', viewName:'standard', content:'postAdmin', title:'posts', scripts:["postAdmin.js"],styleSheets:["postAdmin.css"], requiresLogin:true},
+	{path:'/admin', viewName:'standard', content:'admin',title:'admin', scripts:["adminScript.js"],styleSheets:["style-admin.css", "Modals.css"], requiresLogin:true},
+	{path:'/postAdmin', viewName:'standard', content:'postAdmin', title:'posts', scripts:["postAdmin.js"],styleSheets:["postAdmin.css","Modals.css"], requiresLogin:true},
 ];
 
 var errorPageViewName = 'standard';
