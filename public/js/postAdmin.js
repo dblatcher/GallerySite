@@ -3,12 +3,10 @@ resetControls();
 
 function handleClassToggleClick(element,className) {
 	var nextParent = element.parentElement;
-	var failsafe=0;
 	while (nextParent.classList.contains('postControl') == false){
 		nextParent = nextParent.parentElement;
-		if (failsafe++ > 100) {return false};
-	}
-	
+		if (!nextParent) {return false};
+	}	
 	nextParent.classList.toggle(className);
 }
 
@@ -75,6 +73,39 @@ function handleMoveControl(element, direction) {
 			control.parentElement.insertBefore(control,control.parentElement.children[index+2]);
 		};
 	};
+	
+	
+}
+
+function publishChangesToServer() {
+	var waitMessage = document.getElementById('waitMessage');
+	if (waitMessage.classList.contains("modalShow")) {return false};
+	waitMessage.classList.add("modalShow");
+	waitMessage.classList.remove("modalHidden");
+	
+	var data = getDataFromInput();
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "newspostsupload", true);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState !== 4) {return false};
+		console.log(xhr.response);
+		
+		try {
+			var parsedData = JSON.parse(xhr.response);
+			alert (parsedData.message ? JSON.parse(xhr.response).message : "Undefined Error")
+		} catch {
+			alert('non json response');
+		};
+		
+		if (xhr.status == 200) {	
+		}
+		
+		waitMessage.classList.remove("modalShow");
+		waitMessage.classList.add("modalHidden");
+		
+	};
+	xhr.send(data);
 	
 	
 }

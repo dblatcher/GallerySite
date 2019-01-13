@@ -1,20 +1,41 @@
-.collapsed .content,.collapsed .detail, .hidden{
-display:none;
+.primeControl {
+	display:flex;
+	flex-flow: column nowrap;
+	margin-bottom:1em;
+	padding:3px;
+	border:1px solid black;
+}
+.primeControl>div {
+	margin-top:0.2em;
+	margin-bottom:0.2em;
+	display:flex;
+	flex-flow:  row nowrap;
+	align-items: center;
+}
+.primeControl>div>button {
+	flex-basis:8em;
+	flex-shrink:0;
+	margin-right: 0.5em;
 }
 
-.postControl, .newPostButtonHolder{
+.postControl {
 margin-bottom:1em;
-padding:2px;
+padding:3px;
 display:flex;
 flex-flow: column nowrap;
 background-color:lightPink;
 border:1px dashed red;
 }
-
-.active, .newPostButtonHolder{
+.active {
 background-color:palegreen;
 border:1px solid black;
 }
+.postControl input, .postControl textArea {
+border:none;
+border-bottom:1px dotted black;
+background-color:rgba(0, 0, 0, 0.15);
+}
+
 
 .subsection {
 margin-bottom:0.5em;
@@ -22,17 +43,14 @@ margin-bottom:0.5em;
 
 .main{
 display:flex;
-justify-content: space-between;
 flex-flow: row nowrap;
 }
-
-.postControl input, .postControl textArea {
-border:none;
-background-color:rgba(0, 0, 0, 0.15);
-}
-
-.main input {
-width:100%;
+.main>div {
+	flex-basis:100%;
+	display:flex;
+	flex-flow: row nowrap;
+	justify-content:flex-end;
+	align-items: center;
 }
 
 .detail {
@@ -40,13 +58,11 @@ display:flex;
 flex-flow: row nowrap;
 align-items:center;
 }
-
 .detailGroup {
 display:flex;
 flex-flow : column nowrap;
 align-content: space-between;
 }
-
 .iconPart {
 	box-sizing:border-box;
 	width: 5em; height: 5em;
@@ -54,36 +70,28 @@ align-content: space-between;
 	border: 5px outset grey;
 	cursor:pointer;
 }
-
 .homepagePart,.activePart,.datePart {
 	border:2px outset grey;
 	margin:2px;
 	cursor:pointer;
 }
-
 .datePart input{
 	border: none;
 }
-
-
 .activePart::after{content:"no";}
 .active .activePart::after {content:"yes";}
-
 .homepagePart::after{content:"yes";}
 .notForHomePage .homepagePart::after{content:"no";}
-
 
 .content{
 padding-left:1em;
 }
-
 .insertPanel {
 	display:flex;
 	flex-flow : row nowrap;
 	width:100%;
 	justify-content: space-between;
 }
-
 .bodyItem {
 display:flex;
 flex-flow: row nowrap;
@@ -96,14 +104,12 @@ position:relative;
 border-top:1px solid black;
 border-bottom:1px solid black;
 }
-
 .bodyItem  img {
 max-height:5em;
 }
 .bodyContent {
 flex-basis:100%;
 } 
-
 .content textArea {
 	box-sizing:border-box;
 	border:none;
@@ -111,7 +117,24 @@ flex-basis:100%;
 	width:100%;
 }
 
-
+#waitMessage {
+	position:fixed;	
+	background-color: rgba(80, 80, 80, 0.8);
+	color:white;
+	top:50%; left:50%; transform: translateX(-50%) translateY(-50%);
+	width:100%; height:100%;
+  justify-content: center;
+  align-items: center;
+}
+.modalHidden {
+	display:none;
+}
+.modalShow {
+	display:flex;
+}
+#waitMessage>p { 
+font-size:XX-large;
+}
 
 .iconMenu {
 	position:fixed;
@@ -119,9 +142,8 @@ flex-basis:100%;
 	width:60%; height:60%;
 	background-color: rgba(80, 80, 80, 0.8);
 	color:white;
-	border : 1px solid black;
+	padding : 3px;
 }
-
 .iconMenu img {
 	box-sizing:border-box;
 	width: 5em; height: 5em;
@@ -129,4 +151,8 @@ flex-basis:100%;
 	border: 5px outset grey;
 	cursor:pointer;
 	display:inline-block;
+}
+
+.collapsed .content,.collapsed .detail, .hidden{
+display:none;
 }

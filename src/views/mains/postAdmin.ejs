@@ -1,22 +1,40 @@
 <main>
 	<h2>News Room</h2>
 	
+	<div class = 'primeControl'>
+		<p>Use this page to control the news posts that appear on your site.</p>
+		<div>
+			<button onclick = "resetControls()">RESET</button>
+			<span>undo all changes made since this page was opened</span>
+		</div>
+		<div>
+			<button onclick = "publishChangesToServer()">PUBLISH</button>
+			<span>Publish all post data to the site</span>
+		</div>
+		<div>
+			<button onclick = "addNewPostControl()" >NEW POST</button>
+			<span>New posts don't appear on site by default</span>
+		</div>
+		<p>No updates will be save unless you publish them. You can save an unfinished post by marking it to not appear on the site, then publishing your changes. </p>
+		
+	</div>
+	
 	<div id = "controlHolder">
 	</div>
-	
-	<div class="newPostButtonHolder">
-	<button onclick = "addNewPostControl()" >add new post</button>
-	</div>
-	
+		
 </main>
 
-<div class = "iconMenu hidden">
-	<p>choose post's icon<p>
-	<img src="images/king-profile.png"  onclick = "handleIconSelect(this)"/>
-	<img src="images/blank-profile.png" onclick = "handleIconSelect(this)"/>
-	<p>upload new<p>
-	<input type='file'></input>
-	<button>upload</button>
+	<div class = "iconMenu hidden">
+		<p>choose post's icon</p>
+		<img src="images/king-profile.png"  onclick = "handleIconSelect(this)"/>
+		<img src="images/blank-profile.png" onclick = "handleIconSelect(this)"/>
+		<p>upload new</p>
+		<input type='file'></input>
+		<button>upload</button>
+	</div>
+
+<div class = 'modalHidden' id = 'waitMessage'>
+	<p>Saving to server...</p>
 </div>
 
 <div style = "display:none" id = "dataHolder" originalData = "<%=JSON.stringify(posts)%>"; >
@@ -30,8 +48,8 @@
 			<button onclick="handleMoveControl(this,'up')">UP</button>
 			<button onclick="handleMoveControl(this,'down')">DOWN</button>
 			<button onclick="handleDeletePost(this,'collapsed')">DELETE POST</button>
-			<span>Post Title:</span>
-			<div >
+			<div>
+				<span>Title:</span>
 				<input type="text"></input>
 			</div>
 		</div>
