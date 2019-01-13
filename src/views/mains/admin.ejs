@@ -17,19 +17,28 @@
 			
 			<div>
 				<form id = 'propertyForm<%=i%>'>
-					<span>Display title:</span> <br/>
-					<input type:"text" name="displayTitle" value = "<%=galleries[i].displayTitle%>"></input><br/>
 					
-					<span>Description:</span><br/> 
-					<textarea name="description" rows="3"><%=galleries[i].description%></textarea><br/>
+					<div>
+						<span>Display title:</span>
+						<input type="text" name="displayTitle" value = "<%=galleries[i].displayTitle%>"></input>
+					</div>
 					
-					<span>foreground color:</span>
-					<input type="color" name="foregroundPicker" value = "#000000" onchange = 'handleColorPick(this, "foreground")' ><br/>
-					<input type:"text" name="foreground" value = "<%=galleries[i].foreground%>"></input><br/>
+					<div>
+					<span>Description:</span>
+					<textarea name="description" rows="3"><%=galleries[i].description%></textarea>
+					</div>
 					
-					<span>background color:</span>
-					<input type="color" name="backgroundPicker" value = '#ffffff' onchange = 'handleColorPick(this, "background")' ><br/>
-					<input type:"text" name="background" value = "<%=galleries[i].background%>"></input><br/>
+					<div>
+					<span>foreground:</span>
+					<input type="color" name="foregroundPicker" value = "#000000" onchange = 'handleColorPick(this, "foreground")' >
+					<input type="text" name="foreground" value = "<%=galleries[i].foreground%>"></input><br/>
+					</div>
+					
+					<div>
+					<span>background:</span>
+					<input type="color" name="backgroundPicker" value = '#ffffff' onchange = 'handleColorPick(this, "background")' >
+					<input type="text" name="background" value = "<%=galleries[i].background%>"></input>
+					</div>
 					
 					<input type="reset">
 				</form>

@@ -121,12 +121,15 @@ function handleFiles(element) {
 	} 
 	
 	alert('File is not image file!!');
+	element.parentElement.parentElement.appendChild(makeNewUploadControl());
+	element.parentElement.parentElement.removeChild(element.parentElement);
+	
 	return false
 
 }
 
 function handleColorPick(element, colorType) {	
-	var form = element.parentElement;
+	var form = element.parentElement.parentElement;
 	var rightInput = form.elements[colorType];
 	rightInput.value = element.value;
 };
@@ -294,19 +297,20 @@ function newThumbNailHolder(isMain, isUploader) {
 		moveleft.setAttribute('class','moveButton moveButtonBack');
 		moveleft.innerHTML = '<';
 		moveleft.setAttribute('onclick','handleShiftButtonClick(this,"left")');
+
+	var moveswap = document.createElement('span');
+		moveswap.innerHTML = ' swap ';
+		moveswap.setAttribute('onclick','handleSwapButtonClick(this)');
+		moveswap.setAttribute('class','swapButton');
 		
 	var moveright = document.createElement('div');
 		moveright.setAttribute('class','moveButton moveButtonForward');
 		moveright.innerHTML = '>';
 		moveright.setAttribute('onclick','handleShiftButtonClick(this,"right")');
 		
-	var moveswap = document.createElement('span');
-		moveswap.innerHTML = ' swap ';
-		moveswap.setAttribute('onclick','handleSwapButtonClick(this)');
-		moveswap.setAttribute('class','swapButton');
 		
-	moveControl.appendChild(moveswap);
 	moveControl.appendChild(moveleft);
+	moveControl.appendChild(moveswap);
 	moveControl.appendChild(moveright);
 	
 	newHolder.appendChild(moveControl);
