@@ -9,7 +9,7 @@ var siteSettings = {
 var pages = [
 	{path:'/', viewName:'standard',content:'home', title:'Home',styleSheets:["style-news.css","style-home.css"]},
 	{path:'/gallery', viewName:'standard', title:'Galleries',content:'galleriesList', styleSheets:["style-galleries.css"]},
-	{path:'/about', viewName:'standard', title:'About', content:'about',scripts:[]},
+	{path:'/about', viewName:'standard', title:'About', content:'about',styleSheets:["style-about.css"]},
 	{path:'/news', viewName:'standard', title:'News',content:'newsList', styleSheets:["style-news.css"]},
 	{path:'/login', viewName:'standard', content:'login', title:'log in'},
 	{path:'/admin', viewName:'standard', content:'admin',title:'admin', scripts:["adminScript.js"],styleSheets:["style-admin.css", "Modals.css"], requiresLogin:true},
