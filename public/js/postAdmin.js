@@ -84,12 +84,14 @@ function publishChangesToServer() {
 	waitMessage.classList.remove("modalHidden");
 	
 	var data = getDataFromInput();
+	var formData = new FormData();
+	formData.append('posts',JSON.stringify(data));
+	
 	
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", "newspostsupload", true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState !== 4) {return false};
-		console.log(xhr.response);
 		
 		try {
 			var parsedData = JSON.parse(xhr.response);
@@ -105,7 +107,7 @@ function publishChangesToServer() {
 		waitMessage.classList.add("modalHidden");
 		
 	};
-	xhr.send(data);
+	xhr.send(formData);
 	
 	
 }

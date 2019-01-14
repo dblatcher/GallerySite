@@ -56,6 +56,7 @@ var getGalleries = require('./src/js/getGalleries.js');
 var getPosts = require('./src/js/getPosts.js');
 var myPassportModule = require ('./src/js/myPassportModule');
 var handleGalleryUpdateModule = require ('./src/js/handleGalleryUpdateModule');
+var handleNewsPostUpdateModule = require ('./src/js/handleNewsPostUpdateModule');
 
 var gallery = getGalleries(siteSettings);
 var galleryRouter = require('./src/routes/galleryRoutes')(pages,siteSettings,gallery);
@@ -104,6 +105,11 @@ app.post('/login', myPassportModule.attemptLogIn);
 app.use('/logout',myPassportModule.logUserOut);
 if (authenticationEnabled) {app.post('/galleryUpdateUpload', myPassportModule.checkUserBeforeAcceptingPost)};
 app.post('/galleryUpdateUpload', handleGalleryUpdateModule(gallery));
+
+if (authenticationEnabled) {app.post('/newspostsupload', myPassportModule.checkUserBeforeAcceptingPost)};
+app.post('/newspostsupload', handleNewsPostUpdateModule(posts));
+
+
 
 
 app.use(function (req, res, next) {
