@@ -4,6 +4,7 @@
 	margin-bottom:1em;
 	padding:3px;
 	border:1px solid black;
+	font-size:small;
 }
 .primeControl>div {
 	margin-top:0.2em;
@@ -16,6 +17,11 @@
 	flex-basis:8em;
 	flex-shrink:0;
 	margin-right: 0.5em;
+}
+
+#controlHolder {
+display:flex;
+flex-flow: column-reverse nowrap;
 }
 
 .postControl {
@@ -47,10 +53,14 @@ flex-flow: row nowrap;
 }
 .main>div {
 	flex-basis:100%;
+	flex-shrink:1;
 	display:flex;
 	flex-flow: row nowrap;
 	justify-content:flex-end;
 	align-items: center;
+}
+.main>div>input {
+	flex-basis:100%;
 }
 
 .detail {

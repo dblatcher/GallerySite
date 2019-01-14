@@ -52,9 +52,11 @@ function handleIconSelect (element) {
 }
 
 function handleMoveControl(element, direction) {
-	
-	
-	var control = element.parentElement.parentElement;
+	var control = element.parentElement;
+	while (control.classList.contains('postControl') == false){
+		control = control.parentElement;
+		if (!control) {return false};
+	}	
 	var controlCollection = document.getElementsByClassName('postControl');
 	
 	var index;
@@ -62,19 +64,17 @@ function handleMoveControl(element, direction) {
 		if (controlCollection[i] === control ) {index = i; break}
 	}
 	
-	if (direction == 'up') {
+	if (direction == 'down') {
 		if (index > 0) {
 			control.parentElement.insertBefore(control,control.parentElement.children[index-1]);
 		};
 	};
 	
-	if (direction == 'down') {
+	if (direction == 'up') {
 		if (index < controlCollection.length-1) {
 			control.parentElement.insertBefore(control,control.parentElement.children[index+2]);
 		};
 	};
-	
-	
 }
 
 function publishChangesToServer() {
