@@ -1,11 +1,12 @@
 document.getElementById('dataHolder').data = JSON.parse(document.getElementById('dataHolder').getAttribute('originalData'));
+document.getElementById('dataHolder').avatarPicMaxSize = Number(document.getElementById('dataHolder').getAttribute('avatarPicMaxSize'));
 resetControls();
 
 function handleClassToggleClick(element,className) {
 	var nextParent = element.parentElement;
 	while (nextParent.classList.contains('postControl') == false){
 		nextParent = nextParent.parentElement;
-		if (!nextParent) {return false};
+		if (!nextParent) {return false;}
 	}	
 	nextParent.classList.toggle(className);
 }
@@ -21,7 +22,7 @@ function handleDeleteBodyClick (element) {
 	var failsafe=0;
 	while (nextParent.classList.contains('bodyItem') == false){
 		nextParent = nextParent.parentElement;
-		if (failsafe++ > 100) {return false};
+		if (failsafe++ > 100) {return false;}
 	}
 	var container = nextParent.parentElement;
 	var panel = nextParent.nextSibling;
@@ -76,6 +77,75 @@ function handleMoveControl(element, direction) {
 		};
 	};
 }
+
+function handleChangedAvatarInput() {
+	var messageElement = document.getElementById('avatarUploadErrorMessage');
+	messageElement.innerText = "";
+};
+
+function handleUploadAvatar () {
+	var control = document.getElementById('newAvatarInput');
+	var messageElement = document.getElementById('avatarUploadErrorMessage');
+	var file = control.files[0];
+	var maxSize = document.getElementById('dataHolder').avatarPicMaxSize;
+
+	var waitMessage = document.getElementById('waitMessage');
+	if (waitMessage.classList.contains("modalShow")) {return false};	
+	messageElement.innerText = "";
+	
+	if (!file){
+		messageElement.innerText = "select an image file first"
+		return false;
+	}
+	if (file.type.indexOf('image/')==-1){	
+		messageElement.innerText = file.name + " is not an image file."
+		return false;
+	}
+	if (file.size > maxSize){	
+		messageElement.innerText = file.name + " is too large a file("+ showWithUnit(file.size)+ "). The max size for an avatar pic is set to " + showWithUnit(maxSize) + "."
+		return false;
+	}
+	
+	waitMessage.classList.add("modalShow");
+	waitMessage.classList.remove("modalHidden");
+	
+	var formData = new FormData();
+	formData.append('newImage',file);
+	var parsedResponse;
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "newavatarupload", true);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState !== 4) {return false};
+		
+		try {
+			parsedResponse = JSON.parse(xhr.response);
+			alert (parsedResponse.message ? JSON.parse(xhr.response).message : "Undefined Error")
+		} catch {
+			alert('non json response');
+			console.error(xhr.response);
+		};
+		
+		if (xhr.status == 200) {
+			var avatarChoices = document.getElementById('avatarChoices');		
+			var newChoice = document.createElement("img");
+			newChoice.setAttribute('src', parsedResponse.data[parsedResponse.data.length-1]);
+			newChoice.setAttribute('onclick', "handleIconSelect(this)");
+			avatarChoices.appendChild(newChoice);
+		};
+		
+		waitMessage.classList.remove("modalShow");
+		waitMessage.classList.add("modalHidden");
+		
+	};
+	xhr.send(formData);
+	
+	function showWithUnit(bytes) {
+		if (bytes > 1000000) {return ((bytes - (bytes%100000)) / 1000000)+"MB";}
+		return ((bytes - (bytes%100)) / 1000)+"KB"; 
+	};
+	
+};
 
 function publishChangesToServer() {
 	var waitMessage = document.getElementById('waitMessage');

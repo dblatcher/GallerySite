@@ -25,22 +25,25 @@
 </main>
 
 	<div class = "iconMenu hidden">
-		<p>choose post's icon</p>
+		<p>choose an avatar for your post</p>
 	
+		<div id = "avatarChoices">
 		<% for (var av=0; av<siteSettings.avatarPics.length; av ++ ){ %>	
-		<img src="<%=siteSettings.avatarPics[av]%>" onclick = "handleIconSelect(this)"/>
+			<img src="<%=siteSettings.avatarPics[av]%>" onclick = "handleIconSelect(this)"/>
 		<% } %>
+		</div>
 		
 		<p>upload new</p>
-		<input type='file'></input>
-		<button>upload</button>
+		<input type='file' id="newAvatarInput" onchange = "handleChangedAvatarInput()"></input>
+		<button onclick = "handleUploadAvatar()" >upload</button>
+		<p id = "avatarUploadErrorMessage"></p>
 	</div>
 
 <div class = 'modal modalHidden' id = 'waitMessage'>
 	<p>Saving to server...</p>
 </div>
 
-<div style = "display:none" id = "dataHolder" originalData = "<%=JSON.stringify(posts)%>"; >
+<div style = "display:none" id = "dataHolder" originalData = "<%=JSON.stringify(posts)%>"; avatarPicMaxSize = <%=siteSettings.avatarPicMaxSize %> >
 </div>
 
 <div style = "display:none" id = 'templateStore'>

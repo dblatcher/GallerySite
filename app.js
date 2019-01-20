@@ -4,6 +4,7 @@ var siteSettings = {
 	defaultGalleryForegroundColor:"black",
 	imageFileTypes : ['jpg','tif','gif','png','bmp'],
 	avatarPicPath : 'images/postAvatars',
+	avatarPicMaxSize : 500000,
 	avatarPics:[]
 };
 
@@ -58,16 +59,12 @@ var getGalleries = require('./src/js/getGalleries.js');
 var getPosts = require('./src/js/getPosts.js');
 var getAvatarPics = require('./src/js/getAvatarPics.js');
 var myPassportModule = require ('./src/js/myPassportModule');
-var handleGalleryUpdateModule = require ('./src/js/handleGalleryUpdateModule');
-var handleNewsPostUpdateModule = require ('./src/js/handleNewsPostUpdateModule');
 
 var gallery = getGalleries(siteSettings);
 var galleryRouter = require('./src/routes/galleryRoutes')(pages,siteSettings,gallery);
 
 var posts = getPosts(siteSettings);
 siteSettings.avatarPics = getAvatarPics(siteSettings);
-
-console.log(siteSettings.avatarPics);
 
 app.use(express.static('public'));
 app.use(formidableMiddleware());
@@ -108,20 +105,26 @@ pages.forEach (function (page) {
 app.use('/gallery',galleryRouter);
 app.post('/login', myPassportModule.attemptLogIn);
 app.use('/logout',myPassportModule.logUserOut);
+
+
+var handleGalleryUpdateModule = require ('./src/js/handleGalleryUpdateModule');
+var handleNewsPostUpdateModule = require ('./src/js/handleNewsPostUpdateModule');
+var handleAvatarUploadModule = require ('./src/js/handleAvatarUploadModule');
+
 if (authenticationEnabled) {app.post('/galleryUpdateUpload', myPassportModule.checkUserBeforeAcceptingPost)};
 app.post('/galleryUpdateUpload', handleGalleryUpdateModule(gallery));
 
 if (authenticationEnabled) {app.post('/newspostsupload', myPassportModule.checkUserBeforeAcceptingPost)};
 app.post('/newspostsupload', handleNewsPostUpdateModule(posts));
 
-
+if (authenticationEnabled) {app.post('/newavatarupload', myPassportModule.checkUserBeforeAcceptingPost)};
+app.post('/newavatarupload', handleAvatarUploadModule(siteSettings));
 
 
 app.use(function (req, res, next) {
 	var errorMessage = get404ErrorMessage(req);
   res.status(404).render(errorPageViewName, getErrorPageData(errorMessage, req) );
 })
-
 app.use(function (err, req, res, next) {
   res.status(500)
   res.render(errorPageViewName, getErrorPageData(err, req));

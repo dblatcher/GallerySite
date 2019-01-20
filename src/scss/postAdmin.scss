@@ -141,7 +141,7 @@ padding-left:1em;
 .iconMenu {
 	position:fixed;
 	top:50%; left:50%; transform: translateX(-50%) translateY(-50%);
-	width:60%; height:60%;
+	width:80%; height:80%;
 	background-color: rgba(80, 80, 80, 0.8);
 	color:white;
 	padding : 3px;
@@ -154,6 +154,9 @@ padding-left:1em;
 		display:inline-block;
 	}	
 }
+#avatarUploadErrorMessage {
+	color:red;
+};
 
 .collapsed .content,.collapsed .detail, .hidden{
 display:none;
