@@ -2,14 +2,16 @@ var siteSettings = {
 	siteName:"My Picture Site",
 	defaultGalleryBackgroundColor:"white",
 	defaultGalleryForegroundColor:"black",
-	imageFileTypes : ['jpg','tif','gif','png','bmp']
+	imageFileTypes : ['jpg','tif','gif','png','bmp'],
+	avatarPicPath : 'images/postAvatars',
+	avatarPics:[]
 };
 
 //set title to 'null' if the page should not appear in the navBar
 var pages = [
 	{path:'/', viewName:'standard',content:'home', title:'Home',styleSheets:["style-news.css","style-home.css"]},
 	{path:'/gallery', viewName:'standard', title:'Galleries',content:'galleriesList', styleSheets:["style-galleries.css"]},
-	{path:'/about', viewName:'standard', title:'About', content:'about',styleSheets:["style-about.css"]},
+	{path:'/about', viewName:'standard', title:'About', content:'about',styleSheets:["backgroundImage.css"]},
 	{path:'/news', viewName:'standard', title:'News',content:'newsList', styleSheets:["style-news.css"]},
 	{path:'/login', viewName:'standard', content:'login', title:'log in'},
 	{path:'/admin', viewName:'standard', content:'admin',title:'admin', scripts:["adminScript.js"],styleSheets:["style-admin.css", "Modals.css"], requiresLogin:true},
@@ -54,6 +56,7 @@ var session = require("express-session");
 
 var getGalleries = require('./src/js/getGalleries.js');
 var getPosts = require('./src/js/getPosts.js');
+var getAvatarPics = require('./src/js/getAvatarPics.js');
 var myPassportModule = require ('./src/js/myPassportModule');
 var handleGalleryUpdateModule = require ('./src/js/handleGalleryUpdateModule');
 var handleNewsPostUpdateModule = require ('./src/js/handleNewsPostUpdateModule');
@@ -62,7 +65,9 @@ var gallery = getGalleries(siteSettings);
 var galleryRouter = require('./src/routes/galleryRoutes')(pages,siteSettings,gallery);
 
 var posts = getPosts(siteSettings);
+siteSettings.avatarPics = getAvatarPics(siteSettings);
 
+console.log(siteSettings.avatarPics);
 
 app.use(express.static('public'));
 app.use(formidableMiddleware());

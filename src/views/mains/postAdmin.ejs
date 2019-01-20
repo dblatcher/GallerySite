@@ -26,8 +26,11 @@
 
 	<div class = "iconMenu hidden">
 		<p>choose post's icon</p>
-		<img src="images/king-profile.png"  onclick = "handleIconSelect(this)"/>
-		<img src="images/blank-profile.png" onclick = "handleIconSelect(this)"/>
+	
+		<% for (var av=0; av<siteSettings.avatarPics.length; av ++ ){ %>	
+		<img src="<%=siteSettings.avatarPics[av]%>" onclick = "handleIconSelect(this)"/>
+		<% } %>
+		
 		<p>upload new</p>
 		<input type='file'></input>
 		<button>upload</button>
