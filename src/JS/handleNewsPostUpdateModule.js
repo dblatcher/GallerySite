@@ -2,6 +2,7 @@ var wrapper = function (sitePostData){
 	var fs = require("fs");
 	const serverUrl = "./public/posts";
 	const clientPathUrl = "posts/";
+	const acceptableTypes = ['p','img','a'];
 	
 	var handler = function(request, response) {	
 		console.log('---incoming news update:');
@@ -83,11 +84,11 @@ var wrapper = function (sitePostData){
 						errorList.push ('body#'+ r + ' not an object');
 						continue;
 					};
+					if (acceptableTypes.indexOf(post.body[r].type) === -1) {
+						errorList.push ('body#'+ r + '.type(' + post.body[r].type + ') not valid');
+					};
 					if (typeof(post.body[r].content) !== 'string') {						
 						errorList.push ( 'body#'+ r + '.content not a string, ');
-					};
-					if (post.body[r].type !== 'p' && post.body[r].type !== 'img') {
-						errorList.push ('body#'+ r + '.type not valid');
 					};
 				};
 			};
