@@ -42,11 +42,11 @@ function handleDeletePost (element) {
 
 function handleIconClick (element) {
 	element.classList.add('iconBeingChanged');
-	document.getElementsByClassName('iconMenu')[0].classList.remove('hidden');
+	document.getElementById('avatarForm').classList.add('modalShow');
 };
 
 function handleIconSelect (element) {
-	document.getElementsByClassName('iconMenu')[0].classList.add('hidden');
+	document.getElementById('avatarForm').classList.remove('modalShow');
 	var target = document.getElementsByClassName('iconBeingChanged')[0];
 	target.src=element.src;
 	target.classList.remove('iconBeingChanged');
@@ -107,7 +107,6 @@ function handleUploadAvatar () {
 	}
 	
 	waitMessage.classList.add("modalShow");
-	waitMessage.classList.remove("modalHidden");
 	
 	var formData = new FormData();
 	formData.append('newImage',file);
@@ -135,7 +134,6 @@ function handleUploadAvatar () {
 		};
 		
 		waitMessage.classList.remove("modalShow");
-		waitMessage.classList.add("modalHidden");
 		
 	};
 	xhr.send(formData);
@@ -151,7 +149,6 @@ function publishChangesToServer() {
 	var waitMessage = document.getElementById('waitMessage');
 	if (waitMessage.classList.contains("modalShow")) {return false};
 	waitMessage.classList.add("modalShow");
-	waitMessage.classList.remove("modalHidden");
 	
 	var data = getDataFromInput();
 	var formData = new FormData();
@@ -174,7 +171,6 @@ function publishChangesToServer() {
 		}
 		
 		waitMessage.classList.remove("modalShow");
-		waitMessage.classList.add("modalHidden");
 		
 	};
 	xhr.send(formData);
@@ -189,6 +185,7 @@ function getDataFromInput() {
 		data.push(readPostControl(postControls[i],i));
 	};
 	
+	console.log(data);
 	return data;
 	
 	function readPostControl(postControl, index){
@@ -211,10 +208,13 @@ function getDataFromInput() {
 		
 		function readBodyItem(bodyItem){
 			var element =  bodyItem.getElementsByClassName('bodyContent')[0].children[0];
-			var type = element.tagName.toLowerCase();
-			if (type === 'textarea'){type = 'p'};
+			var type = bodyItem.type.toLowerCase();
+			
 			var content;
 			if (type === 'p') {
+				content = element.value;
+			};
+			if (type === 'a') {
 				content = element.value;
 			};
 			if (type === 'img') {
@@ -286,8 +286,9 @@ function makePostControl(post, isNewPost) {
 function makeBodyItem(body) {
 	var bodyItem = document.getElementsByClassName('templateBodyItem')[0].cloneNode(true);
 	bodyItem.setAttribute('class','bodyItem');
+	bodyItem.type = body.type;
 	
-	var tagMap = {p:'textArea',img:'img'};
+	var tagMap = {p:'textArea',img:'img', a:'textArea'};
 	
 	var bodyContent = bodyItem.getElementsByClassName('bodyContent')[0];
 	bodyContent.appendChild(document.createElement(tagMap[body.type]));
@@ -295,8 +296,14 @@ function makeBodyItem(body) {
 	switch (body.type) {
 	case "p": 
 		bodyContent.firstElementChild.innerText = body.content || "type here";
+		break;
 	case "img" :
 		if (body.content) {bodyContent.firstElementChild.setAttribute('src',body.content)};
+		break;
+	case "a" :
+		bodyContent.firstElementChild.classList.add('urlInput');
+		bodyContent.firstElementChild.innerText = body.content || "copy link here";
+		break;
 	}
 	
 	return bodyItem;

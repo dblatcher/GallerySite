@@ -24,7 +24,9 @@
 		
 </main>
 
-	<div class = "iconMenu hidden">
+
+<div class = 'modal' id = 'avatarForm'>
+	<div class = "iconMenu">
 		<p>choose an avatar for your post</p>
 	
 		<div id = "avatarChoices">
@@ -33,13 +35,14 @@
 		<% } %>
 		</div>
 		
-		<p>upload new</p>
+		<span>upload new:</span>
 		<input type='file' id="newAvatarInput" onchange = "handleChangedAvatarInput()"></input>
 		<button onclick = "handleUploadAvatar()" >upload</button>
-		<p id = "avatarUploadErrorMessage"></p>
+		<p id = "avatarUploadErrorMessage"> </p>
 	</div>
-
-<div class = 'modal modalHidden' id = 'waitMessage'>
+</div>
+	
+<div class = 'modal' id = 'waitMessage'>
 	<p>Saving to server...</p>
 </div>
 
@@ -50,9 +53,9 @@
 
 	<section class = 'templatePostControl'>
 		<div class="subsection main">
-			<button onclick="handleClassToggleClick(this,'collapsed')">>></button>
-			<button onclick="handleMoveControl(this,'up')">&#8593</button>
-			<button onclick="handleMoveControl(this,'down')">&#8595</button>
+			<button onclick="handleClassToggleClick(this,'collapsed')">&#8661 </button>
+			<button onclick="handleMoveControl(this,'up')">&#8593 </button>
+			<button onclick="handleMoveControl(this,'down')">&#8595 </button>
 			<button onclick="handleDeletePost(this,'collapsed')">DELETE POST</button>
 			<div>
 				<span>Title:</span>
@@ -60,21 +63,27 @@
 			</div>
 		</div>
 		
-		<div class="subsection detail">
+		
+		<div class="subsection detail collapsing">
 			<img class="iconPart" onclick="handleIconClick(this)" />
 			<div class = "detailGroup">
 				<div class="activePart" onclick="handleClassToggleClick(this,'active')">appear on site:</div>
 				<div class="homepagePart" onclick="handleClassToggleClick(this,'notForHomePage')">can show on homepage:</div>
 				<div class="datePart"><span>Post Date:</span><input type="date" /></div>
+				<div><span>author:</span><input></input></div>
 			</div>
 		</div>
 		
-		<div class="subsection content">
+		<div class="subsection content collapsing">
 		</div>
+		
+
+		
 	</section>
 
 	<div class = "templateInsertPanel">
 		<button onclick="handleNewBodyClick(this,'p')">add new paragraph</button>
+		<button onclick="handleNewBodyClick(this,'a')">add new link</button>
 		<button onclick="handleNewBodyClick(this,'img')">add new image</button>
 	</div>
 

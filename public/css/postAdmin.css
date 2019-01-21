@@ -63,6 +63,16 @@
   flex-basis: 100%;
 }
 
+.collapsing {
+  transition: max-height 0.5s;
+  overflow: hidden;
+  max-height: 200vh;
+}
+
+.collapsed .collapsing {
+  max-height: 0vh;
+}
+
 .detail {
   display: flex;
   flex-flow: row nowrap;
@@ -71,10 +81,11 @@
 
 .detailGroup {
   display: flex;
-  flex-flow: column nowrap;
+  height: 5em;
+  flex-flow: column wrap;
   align-content: space-between;
 }
-.detailGroup .homepagePart, .detailGroup .activePart, .detailGroup .datePart {
+.detailGroup div {
   border: 2px outset grey;
   margin: 2px;
   cursor: pointer;
@@ -137,6 +148,9 @@
 .bodyItem img {
   max-height: 5em;
 }
+.bodyItem .urlInput {
+  text-decoration: underline;
+}
 .bodyItem textArea {
   box-sizing: border-box;
   border: none;
@@ -145,15 +159,10 @@
 }
 
 .iconMenu {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  width: 80%;
-  height: 80%;
-  background-color: rgba(80, 80, 80, 0.8);
-  color: white;
+  background-color: white;
   padding: 3px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 .iconMenu img {
   box-sizing: border-box;
@@ -167,9 +176,10 @@
 
 #avatarUploadErrorMessage {
   color: red;
+  min-height: 2em;
 }
 
-.collapsed .content, .collapsed .detail, .hidden {
+.hidden {
   display: none;
 }
 
