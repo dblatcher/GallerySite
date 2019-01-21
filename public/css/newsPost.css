@@ -1,11 +1,15 @@
 .newsPost + .newsPost {
-  border-top: 5px outset #005050;
+  border-top: 5px outset cyan;
   padding-top: 1em;
+}
+
+.newsPost > p {
+  text-align: justify;
 }
 
 .postBanner {
   display: flex;
-  background-color: rgba(0, 80, 80, 0.2);
+  background-color: cyan;
 }
 .postBanner img {
   max-height: 3em;
@@ -47,4 +51,4 @@
   transform: translateX(-50%);
 }
 
-/*# sourceMappingURL=newspost.css.map */
+/*# sourceMappingURL=newsPost.css.map */

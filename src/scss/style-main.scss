@@ -15,7 +15,7 @@ position:fixed;
 top:0px; left:0px; width:100%;
 
 height: $header-height;
-background-color:lightCyan;
+background-color:$main-color;
 z-index:10;
 border-bottom: 1px solid black;
 }
@@ -31,7 +31,7 @@ position:fixed;
 top:$header-height; left:0em;
 padding-left:0.5em;
 height: 1em;
-background-color:cyan;
+background-color:$secondary-color;
 opacity:0.75;
 z-index:10;
 border: 1px solid black;
@@ -53,7 +53,7 @@ nav a {
 	text-decoration: none;
 	color:black;
 }
-nav a:hover{background-color:darkgray;}
+nav a:hover{background-color:$secondary-color;}
 
 
 .menuButton {
@@ -86,11 +86,11 @@ right:0px;
 	line-height:150%;
 	font-size:large;
 	text-align:center;
-	background-color:lightcyan;
+	background-color:$main-color;
 	border:1px solid black;
 }
 
-.dropDown .currentPageLink {background-color:lightgray;}
+.dropDown .currentPageLink {background-color:$secondary-color;}
 
 .onBar {
 height:$header-height;
@@ -130,6 +130,6 @@ width:100%;
 left:0%;
 margin:0px;
 padding:0px;
-background-color:lightCyan;
+background-color:$main-color;
 height:$footer-height;
 }

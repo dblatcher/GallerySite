@@ -37,12 +37,12 @@ main {
 }
 
 .newsPost {
-  border-left: 5px solid black;
+  border-left: 5px solid cyan;
   padding-left: 0.75em;
 }
 
 .galleryPanel {
-  border: 2px solid black;
+  border: 2px solid cyan;
   padding: 2px;
   float: right;
   max-width: 25%;

@@ -1,12 +1,17 @@
+@import 'globals';
+
 .newsPost+.newsPost{
-border-top: 5px outset rgba(0, 80, 80, 1);
-padding-top: 1em;
+	border-top: 5px outset $secondary-color;
+	padding-top: 1em;
 }
 
+.newsPost>p{
+	text-align:justify;
+}
 
 .postBanner{
 	display:flex;
-	background-color: rgba(0, 80, 80, 0.2);
+	background-color: $secondary-color;
 	img {
 		max-height:3em;
 		flex-shrink:0;

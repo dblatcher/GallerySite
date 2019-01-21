@@ -1,23 +1,19 @@
 .galleryListItem {
- position:relative;
- border: 1px solid black;
- margin-bottom: 1em;
- min-height:6em;
- padding: 0.1em;
+  position: relative;
+  border: 2px solid darkcyan;
+  margin-bottom: 1em;
+  min-height: 6em;
+  padding: 0.1em;
 }
 
-
-.galleryListItem h2,p,a{
-	text-decoration: none;
-	color:black;
+.galleryListItem h2, p, a {
+  text-decoration: none;
+  color: black;
 }
 
-.galleryListItem img{
- float:right;
- max-height:4em;
- 
+.galleryListItem img {
+  float: right;
+  max-height: 4em;
 }
 
-.galleryListItem p{
-
-}
+/*# sourceMappingURL=style-galleries.css.map */
