@@ -37,8 +37,8 @@ function makePostControl(post, isNewPost) {
 	var inputs = control.getElementsByTagName('input');
 	inputs[0].value = post.title;
 	inputs[1].value = post.date;
+	inputs[2].value = post.author;
 	
-	//inputs[2].value = post.icon;
 	var iconImg = control.getElementsByTagName('img')[0];
 	if (post.icon){ iconImg.setAttribute('src', post.icon);}
 	
@@ -113,6 +113,7 @@ function getDataFromInput() {
 			icon:truncatePath(postControl.getElementsByClassName('iconPart')[0].src),
 			notForHomepage: postControl.classList.contains('notForHomePage'),
 			active: postControl.classList.contains('active'),
+			author: inputs[2].value,
 			body:[]
 		}
 		
@@ -131,11 +132,8 @@ function getDataFromInput() {
 	
 			switch (type) {
 			case "p": 
-				
 				subControls = bodyItem.getElementsByTagName('textarea');
 				content = subControls[0].value;
-				console.log(subControls)
-				console.log(subControls[0].value)
 				break;
 			case "img" :
 				subControls = bodyItem.getElementsByTagName('img');

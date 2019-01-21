@@ -66,6 +66,7 @@ var wrapper = function (sitePostData){
 				{key:'body',type:'object'},
 				{key:'active',type:'boolean'},
 				{key:'notForHomepage',type:'boolean'},
+				{key:'author',type:'string'},
 			];
 			var errorList = [];
 			
