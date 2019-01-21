@@ -1,0 +1,50 @@
+.newsPost + .newsPost {
+  border-top: 5px outset #005050;
+  padding-top: 1em;
+}
+
+.postBanner {
+  display: flex;
+  background-color: rgba(0, 80, 80, 0.2);
+}
+.postBanner img {
+  max-height: 3em;
+  flex-shrink: 0;
+  align-self: center;
+  box-sizing: border-box;
+  margin: 3px;
+}
+
+.bannerText {
+  flex-basis: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+}
+.bannerText p {
+  font-size: small;
+}
+.bannerText h2 {
+  font-size: medium;
+}
+.bannerText h2, .bannerText p {
+  place-self: center;
+  margin-top: 0px;
+  margin-Bottom: 0px;
+  font-weight: normal;
+}
+.bannerText > div {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+}
+
+.postImage {
+  max-height: 6em;
+  position: relative;
+  display: block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/*# sourceMappingURL=newspost.css.map */

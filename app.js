@@ -10,10 +10,10 @@ var siteSettings = {
 
 //set title to 'null' if the page should not appear in the navBar
 var pages = [
-	{path:'/', viewName:'standard',content:'home', title:'Home',styleSheets:["style-news.css","style-home.css"]},
+	{path:'/', viewName:'standard',content:'home', title:'Home',styleSheets:["newsPost.css","style-home.css"]},
 	{path:'/gallery', viewName:'standard', title:'Galleries',content:'galleriesList', styleSheets:["style-galleries.css"]},
 	{path:'/about', viewName:'standard', title:'About', content:'about',styleSheets:["backgroundImage.css"]},
-	{path:'/news', viewName:'standard', title:'News',content:'newsList', styleSheets:["style-news.css"]},
+	{path:'/news', viewName:'standard', title:'News',content:'newsList', styleSheets:["newsPost.css"]},
 	{path:'/login', viewName:'standard', content:'login', title:'log in'},
 	{path:'/admin', viewName:'standard', content:'admin',title:'admin', scripts:["adminScript.js"],styleSheets:["style-admin.css", "Modals.css"], requiresLogin:true},
 	{path:'/postAdmin', viewName:'standard', content:'postAdmin', title:'posts', scripts:["usePostControlTemplates.js","postAdmin.js"],styleSheets:["postAdmin.css","Modals.css"], requiresLogin:true},

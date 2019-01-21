@@ -35,6 +35,11 @@ main{
 	font-size:x-large;
 }
 
+.newsPost {
+	border-left: 5px solid black;
+	padding-left: 0.75em;
+}
+
 .galleryPanel {
 	border : 2px solid black;
 	padding: 2px;
@@ -43,17 +48,16 @@ main{
 	margin:0.5em;
 	position:relative;
 	
+	 p{
+		text-decoration: none;
+		color:black;
+
+	}
+	img {
+		max-height: 7em;
+		max-width: 100%;
+		margin-right:2px;
+		float:left;
+	}
 }
 
-.galleryPanel p{
-	text-decoration: none;
-	color:black;
-
-}
-
-.galleryPanel img {
-	max-height: 7em;
-	max-width: 100%;
-	margin-right:2px;
-	float:left;
-}
