@@ -38,7 +38,6 @@ flex-flow: column-reverse nowrap;
 
 	input, textArea {
 		border:none;
-		border-bottom:1px dotted black;
 		background-color:rgba(0, 0, 0, 0.15);
 	}
 }
@@ -106,9 +105,6 @@ align-items:center;
 }
 
 
-.datePart input{
-	border: none;
-}
 .activePart::after{content:"no";}
 .active .activePart::after {content:"yes";}
 .homepagePart::after{content:"yes";}
@@ -129,14 +125,22 @@ padding-left:1em;
 	justify-content: space-between;
 	align-items: flex-start;
 
-	margin-top:2px;
-	margin-bottom:2px;
+	margin-top:4px;
+	margin-bottom:4px;
+	padding-top:4px;
+	padding-bottom:4px;
 	position:relative;
-	border-top:1px solid black;
-	border-bottom:1px solid black;
+	border-top:2px solid black;
+	border-bottom:2px solid black;
 	
 	.bodyContent {
 	flex-basis:100%;
+	display:flex;
+	flex-flow:column;
+	
+	div{
+		display:flex;
+	}
 	} 
 	img {
 		max-height:5em;
@@ -145,10 +149,9 @@ padding-left:1em;
 		text-decoration:underline;
 	}
 	textArea {
-		box-sizing:border-box;
-		border:none;
+		margin-bottom:4px;
 		resize: vertical;
-		width:100%;
+		flex-basis:100%;
 	}
 
 }

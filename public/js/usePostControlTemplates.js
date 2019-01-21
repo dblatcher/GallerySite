@@ -60,21 +60,27 @@ function makeBodyItem(body) {
 	bodyItem.setAttribute('class','bodyItem');
 	bodyItem.type = body.type;
 	
-	var tagMap = {p:'textArea',img:'img', a:'textArea'};
+	var bodyContent = document.getElementsByClassName('templateBodyContent-'+body.type)[0].cloneNode(true);
+	bodyContent.setAttribute('class','bodyContent');
+	bodyItem.insertBefore(bodyContent,bodyItem.firstElementChild);
 	
-	var bodyContent = bodyItem.getElementsByClassName('bodyContent')[0];
-	bodyContent.appendChild(document.createElement(tagMap[body.type]));
+	var subControls;
 	
 	switch (body.type) {
 	case "p": 
-		bodyContent.firstElementChild.innerText = body.content || "type here";
+		subControls = bodyContent.getElementsByTagName('textarea');
+		subControls[0].innerText = body.content || "";
 		break;
 	case "img" :
-		if (body.content) {bodyContent.firstElementChild.setAttribute('src',body.content)};
+		subControls = bodyContent.getElementsByTagName('img');
+		if (body.content) {
+			subControls[0].setAttribute('src',body.content)
+		};
 		break;
 	case "a" :
-		bodyContent.firstElementChild.classList.add('urlInput');
-		bodyContent.firstElementChild.innerText = body.content || "copy link here";
+		subControls = bodyContent.getElementsByTagName('textarea');
+		subControls[0].innerText = body.content || "";
+		subControls[1].innerText = body.displayText || "";
 		break;
 	}
 	
@@ -86,3 +92,71 @@ function makeInsertPanel() {
 	insertPanel.setAttribute('class','insertPanel');
 	return insertPanel;
 }
+
+
+function getDataFromInput() {
+	var postControls = document.getElementsByClassName('postControl');
+	var data = [];
+	for (var i=0; i < postControls.length; i++) {
+		data.push(readPostControl(postControls[i],i));
+	};
+	
+	console.log(data);
+	return data;
+	
+	function readPostControl(postControl, index){
+		var inputs = postControl.getElementsByTagName('input');
+		var post = {
+			index:index,
+			title: inputs[0].value,
+			date: inputs[1].value,
+			icon:truncatePath(postControl.getElementsByClassName('iconPart')[0].src),
+			notForHomepage: postControl.classList.contains('notForHomePage'),
+			active: postControl.classList.contains('active'),
+			body:[]
+		}
+		
+		var bodyItems = postControl.getElementsByClassName('bodyItem');
+				for (var i=0; i < bodyItems.length; i++) {
+					post.body.push(readBodyItem(bodyItems[i]));
+				};
+		return post;
+		
+		function readBodyItem(bodyItem){
+
+			var type = bodyItem.type.toLowerCase();
+			
+			var content,displayText;	
+			var subControls;
+	
+			switch (type) {
+			case "p": 
+				
+				subControls = bodyItem.getElementsByTagName('textarea');
+				content = subControls[0].value;
+				console.log(subControls)
+				console.log(subControls[0].value)
+				break;
+			case "img" :
+				subControls = bodyItem.getElementsByTagName('img');
+				content = truncatePath(subControls[0].src);
+				break;
+			case "a" :
+				subControls = bodyItem.getElementsByTagName('textarea');
+				content = subControls[0].value;
+				displayText = subControls[1].value;
+				break;
+			}
+				
+			return {type:type,content:content,displayText:displayText};
+		}
+		function truncatePath(fullUrl){
+			if (!fullUrl){return "";}
+			if (fullUrl === window.location.href) {return "";}
+			var base = window.location.origin; 
+			return fullUrl.substring(base.length+1);
+		}
+		
+	}	
+}
+

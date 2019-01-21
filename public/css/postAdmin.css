@@ -34,7 +34,6 @@
 }
 .postControl input, .postControl textArea {
   border: none;
-  border-bottom: 1px dotted black;
   background-color: rgba(0, 0, 0, 0.15);
 }
 
@@ -100,10 +99,6 @@
   cursor: pointer;
 }
 
-.datePart input {
-  border: none;
-}
-
 .activePart::after {
   content: "no";
 }
@@ -136,14 +131,21 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   position: relative;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
 }
 .bodyItem .bodyContent {
   flex-basis: 100%;
+  display: flex;
+  flex-flow: column;
+}
+.bodyItem .bodyContent div {
+  display: flex;
 }
 .bodyItem img {
   max-height: 5em;
@@ -152,10 +154,9 @@
   text-decoration: underline;
 }
 .bodyItem textArea {
-  box-sizing: border-box;
-  border: none;
+  margin-bottom: 4px;
   resize: vertical;
-  width: 100%;
+  flex-basis: 100%;
 }
 
 .iconMenu {

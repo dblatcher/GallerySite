@@ -12,7 +12,7 @@
 			<img class = "postImage" src = "<%=post.body[i].content%>"></img>
 		<% } %>
 		<%if (post.body[i].type == "a") {%>
-			<a href = "<%=post.body[i].content%>" ><%=post.body[i].content%></a><br/>
+			<a href = "<%=post.body[i].content%>" ><%=(post.body[i].displayText || post.body[i].content)%></a><br/>
 		<% } %>
 	<% } %>
 </div>

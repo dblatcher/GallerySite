@@ -56,7 +56,7 @@
 			<button onclick="handleClassToggleClick(this,'collapsed')">&#8661 </button>
 			<button onclick="handleMoveControl(this,'up')">&#8593 </button>
 			<button onclick="handleMoveControl(this,'down')">&#8595 </button>
-			<button onclick="handleDeletePost(this,'collapsed')">DELETE POST</button>
+			<button onclick="handleDeletePost(this)">DELETE POST</button>
 			<div>
 				<span>Title:</span>
 				<input type="text"></input>
@@ -88,8 +88,33 @@
 	</div>
 
 	<div class = "templateBodyItem">
-		<div class="bodyContent"></div>
 		<button onclick="handleDeleteBodyClick(this)">X</button>
+	</div>
+	
+	<div class = "templateBodyContent-p">
+		<div>
+			<p>text:</p>
+			<textarea placeholder = "type paragraph here"></textArea>
+		</div>
+	</div>
+
+	<div class = "templateBodyContent-img">
+		<div>
+			<p>picture:</p>
+			<img src = ''></img>
+			<button>choose image</button>
+		</div>
+	</div>
+	
+	<div class = "templateBodyContent-a">
+		<div>
+			<p>URL:</p>
+			<textarea placeholder = "copy url here" class = 'urlInput'></textArea>
+		</div>
+		<div>
+			<p>text:</p>
+			<textarea placeholder = "write text to display here(full url will show if left blank)"></textarea>
+		</div>
 	</div>
 	
 </div>
