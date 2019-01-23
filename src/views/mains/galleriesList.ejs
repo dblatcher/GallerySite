@@ -1,13 +1,25 @@
 	<main>
-		<p>This page displays a list of all the available galleries.</p>
+	
+		<div class = "galleryList">
 		
 		<% for(var i=0; i<galleries.length;i++){%>
-			<a href = 'gallery/<%=galleries[i].title%>'>
-			<div class = 'galleryListItem'>
-					<img src = "<%=galleries[i].path%><%=galleries[i].picture[galleries[i].main] %>" ></img>
-					<h2><%=galleries[i].displayTitle%></h2>					
-					<p><%=galleries[i].description%></p>
-			</div>	
-			</a>
+		<a class = 'galleryListItem' href = 'gallery/<%=galleries[i].title%>'>
+		
+			<div class="imageBox"
+			style = "background-image:url( <%=galleries[i].path%><%=galleries[i].picture[galleries[i].main] %>);" >
+			</div>
+				
+			<div class="textFlex">
+				<h2><%=galleries[i].displayTitle%></h2>					
+				<%if(galleries[i].description) { %>
+				<p><%=galleries[i].description%></p>
+				<% } %>
+			</div>
+		
+		
+		</a>
 		<%}%>
+		
+		</div>
+		
 	</main>
