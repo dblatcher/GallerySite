@@ -29,7 +29,8 @@
   font-size: small;
 }
 .bannerText h2 {
-  font-size: medium;
+  font-size: x-large;
+  text-align: justify;
 }
 .bannerText h2, .bannerText p {
   place-self: center;

@@ -17,6 +17,7 @@
 	
 }
 
+
 .textFlex {
 	display:flex;
 	flex-flow:column nowrap;
@@ -27,11 +28,12 @@
 		font-weight:normal;
 		margin:0px;
 		text-align:center;
-		color:black;
+		color:$main-color;
+		text-shadow: 0.5px 0.5px black;
 	}
 	h2{
-		text-shadow: 1px 1px $main-color;
 		text-transform:capitalize;
+		text-shadow: 1px 1px black;
 	}
 }
 
@@ -65,8 +67,12 @@
 	background-repeat:no-repeat;
 	z-index:-1;
 	opacity:0.4;
+	transition:1s;
 }
 
 
-
+	.galleryListItem:hover .imageBox {
+		background-size: auto 150%;
+		opacity:0.6;
+	}	
 

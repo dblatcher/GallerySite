@@ -24,11 +24,12 @@
   font-weight: normal;
   margin: 0px;
   text-align: center;
-  color: black;
+  color: darkcyan;
+  text-shadow: 0.5px 0.5px black;
 }
 .textFlex h2 {
-  text-shadow: 1px 1px darkcyan;
   text-transform: capitalize;
+  text-shadow: 1px 1px black;
 }
 
 @media screen and (max-width: 519px) {
@@ -63,6 +64,12 @@
   background-repeat: no-repeat;
   z-index: -1;
   opacity: 0.4;
+  transition: 1s;
+}
+
+.galleryListItem:hover .imageBox {
+  background-size: auto 150%;
+  opacity: 0.6;
 }
 
 /*# sourceMappingURL=style-galleries.css.map */
