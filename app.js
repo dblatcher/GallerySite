@@ -1,28 +1,10 @@
-var siteSettings = {
-	siteName:"My Picture Site",
-	defaultGalleryBackgroundColor:"white",
-	defaultGalleryForegroundColor:"black",
-	imageFileTypes : ['jpg','tif','gif','png','bmp'],
-	avatarPicPath : 'images/postAvatars',
-	avatarPicMaxSize : 500000,
-	avatarPics:[]
-};
+var config = require('./siteConfig.js');
+const authenticationEnabled = config.authenticationEnabled;
+var siteSettings = config.siteSettings;
+var pages = config.pages;
+var errorPageViewName = config.errorPageViewName;
+var get404ErrorMessage = config.get404ErrorMessage;
 
-//set title to 'null' if the page should not appear in the navBar
-var pages = [
-	{path:'/', viewName:'standard',content:'home', title:'Home',styleSheets:["newsPost.css","style-home.css"]},
-	{path:'/gallery', viewName:'standard', title:'Galleries',content:'galleriesList', styleSheets:["style-galleries.css"]},
-	{path:'/about', viewName:'standard', title:'About', content:'about',styleSheets:["backgroundImage.css"]},
-	{path:'/news', viewName:'standard', title:'News',content:'newsList', styleSheets:["newsPost.css"]},
-	{path:'/login', viewName:'standard', content:'login', title:'log in'},
-	{path:'/admin', viewName:'standard', content:'admin',title:'admin', scripts:["adminScript.js"],styleSheets:["style-admin.css", "Modals.css"], requiresLogin:true},
-	{path:'/postAdmin', viewName:'standard', content:'postAdmin', title:'posts', scripts:["usePostControlTemplates.js","postAdmin.js"],styleSheets:["postAdmin.css","Modals.css"], requiresLogin:true},
-];
-
-var errorPageViewName = 'standard';
-var get404ErrorMessage = function(request) {
-	return "404. '" + request.path + "' not found!";
-}
 var getErrorPageData = function (errorMessage, request) {
 	return {
 		title: 'error',
@@ -40,9 +22,8 @@ var getErrorPageData = function (errorMessage, request) {
 	};
 }
 
-// THIS SHOULD ONLY BE SET TO FALSE FOR DEVELOPMENT
-// IT DISABLES THE AUTHENTICATION MIDDLEWARE
-const authenticationEnabled = false;
+
+
 
 var express = require('express');
 var app = express();
