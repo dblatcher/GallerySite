@@ -17,8 +17,8 @@ config.pages = [
 	{path:'/about', viewName:'standard', title:'About', content:'about',styleSheets:["backgroundImage.css"]},
 	{path:'/news', viewName:'standard', title:'News',content:'newsList', styleSheets:["newsPost.css"]},
 	{path:'/login', viewName:'standard', content:'login', title:'log in'},
-	{path:'/admin', viewName:'standard', content:'admin',title:'admin', scripts:["adminScript.js"],styleSheets:["style-admin.css", "Modals.css"], requiresLogin:true},
-	{path:'/postAdmin', viewName:'standard', content:'postAdmin', title:'posts', scripts:["usePostControlTemplates.js","postAdmin.js"],styleSheets:["postAdmin.css","Modals.css"], requiresLogin:true},
+	{path:'/admin', viewName:'adminZone', content:'admin',title:'admin', scripts:["adminScript.js"],styleSheets:["style-admin.css", "Modals.css"], requiresLogin:true},
+	{path:'/postAdmin', viewName:'adminZone', content:'postAdmin', title:'posts', scripts:["usePostControlTemplates.js","postAdmin.js"],styleSheets:["postAdmin.css","Modals.css"], requiresLogin:true},
 ];
 
 

@@ -1,0 +1,75 @@
+@media screen and (max-width: $width-for-dropdown - 1px) {
+	.onBar { display:none;}
+}
+@media screen and (min-width: $width-for-dropdown) {
+	.dropDown {display:none;}
+	.menuButton {display:none;}
+}
+
+nav ul {
+	list-style-type: none;
+}
+nav a {
+	text-decoration: none;
+	color:black;
+}
+nav a:hover{background-color:$secondary-color;}
+
+
+.menuButton {
+margin-right:0.5em;
+padding:4px;
+font-size:x-large;
+font-weight:bold;
+cursor:pointer;
+}
+
+.dropDown  {
+	position:fixed;
+	z-index:9;
+	right:0px;
+	width:10em;
+	transition: top 0.5s;
+	top:-100%;
+	transform : translateY($header-height);
+}
+
+.dropDown ul {
+display: flex;
+flex-flow: column nowrap;
+margin:0px;
+right:0px;
+}
+
+.dropDown a {
+	display:block;
+	line-height:150%;
+	font-size:large;
+	text-align:center;
+	background-color:$main-color;
+	border:1px solid black;
+}
+
+.dropDown .currentPageLink {background-color:$secondary-color;}
+
+.onBar {
+height:$header-height;
+align-self:flex-end;
+}
+
+.onBar ul {
+	margin:0px;
+	height:inherit;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+
+	
+.onBar a{
+	margin-right:0.75em;
+	line-height:150%;
+}
+.onBar .currentPageLink {font-weight:bold;}

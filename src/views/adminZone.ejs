@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en-UK">
+
+<head>
+	<title><%=siteSettings.siteName%>-ADMIN</title>
+	<% include parts/metatags %>
+	<link rel="stylesheet" href="/css/style-adminZone.css" />
+	<% if (styleSheets) {%>
+		<%for(var i = 0; i < styleSheets.length; i++ ){ %>
+	<link rel="stylesheet" href="/css/<%=styleSheets[i]%>" />
+		<%}%>
+	<% } %>
+	</head>
+
+<body>
+	<% include parts/header %>
+	<%- include("mains/"+content) %>
+
+	<script src="/js/mainScript.js"></script>
+	<% if (scripts) {%>
+		<%for(var i = 0; i < scripts.length; i++ ){ %>
+	<script src="/js/<%=scripts[i]%>"></script>
+		<%}%>
+	<% } %>
+	
+	
+</body>
+
+</html>
+	
