@@ -2,7 +2,7 @@ var wrapper = function (sitePostData){
 	var fs = require("fs");
 	const serverUrl = "./public/posts";
 	const clientPathUrl = "posts/";
-	const acceptableTypes = ['p','img','a'];
+	const acceptableTypes = ['p','img','a','img2'];
 	
 	var handler = function(request, response) {	
 		console.log('---incoming news update:');

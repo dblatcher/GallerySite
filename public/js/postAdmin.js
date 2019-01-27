@@ -174,3 +174,39 @@ function publishChangesToServer() {
 	
 }
 
+function showImageMenu(element) {
+	var bodyItem = goUpDomUntil('bodyItem',element);
+	var gallerySelector = bodyItem.getElementsByTagName('select')[0];
+	
+	bodyItem.classList.add('imageBeingChanged');
+	
+	
+	var imageChoices = document.getElementsByClassName('imageChoices');
+	for (var r=0; r<imageChoices.length; r++) {
+		imageChoices[r].classList.add('hidden');
+	};
+	imageChoices[gallerySelector.value].classList.remove('hidden');
+	document.getElementById('chooseImageForm').classList.add('modalShow');
+}
+
+function handleImageSelect(element) {
+	var imageBeingChanged = document.getElementsByClassName('imageBeingChanged')[0];
+	imageBeingChanged.getElementsByTagName('img')[0].src = element.src;
+	imageBeingChanged.classList.remove('imageBeingChanged');
+	document.getElementById('chooseImageForm').classList.remove('modalShow');
+}
+
+function showImageFromURL(element) {
+	var bodyItem = goUpDomUntil('bodyItem',element);
+	
+	bodyItem.getElementsByTagName('img')[0].src = bodyItem.getElementsByTagName('textarea')[0].value;
+};
+
+function goUpDomUntil(targetClass,startElement) {
+	var nextParent = startElement.parentElement;
+	while (nextParent.classList.contains(targetClass) == false){
+		nextParent = nextParent.parentElement;
+		if (!nextParent) {return false};
+	}
+	return nextParent;
+};

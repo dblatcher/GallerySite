@@ -159,13 +159,13 @@
   flex-basis: 100%;
 }
 
-.iconMenu {
+.iconMenu, .imageMenu {
   background-color: white;
   padding: 3px;
   margin-right: 10px;
   margin-left: 10px;
 }
-.iconMenu img {
+.iconMenu img, .imageMenu img {
   box-sizing: border-box;
   width: 5em;
   height: 5em;

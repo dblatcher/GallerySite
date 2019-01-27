@@ -17,7 +17,7 @@
 		<%if (post.body[i].type == "p") {%>
 			<p><%=post.body[i].content%></p>
 		<% } %>
-		<%if (post.body[i].type == "img") {%>
+		<%if (post.body[i].type == "img" || post.body[i].type == "img2" ) {%>
 			<img class = "postImage" src = "<%=post.body[i].content%>"></img>
 		<% } %>
 		<%if (post.body[i].type == "a") {%>

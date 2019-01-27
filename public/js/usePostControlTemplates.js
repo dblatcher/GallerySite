@@ -82,6 +82,13 @@ function makeBodyItem(body) {
 		subControls[0].innerText = body.content || "";
 		subControls[1].innerText = body.displayText || "";
 		break;
+	case "img2" :
+		subControls = bodyContent.getElementsByTagName('textarea');
+		if (body.content) {
+			subControls[0].innerText=body.content;
+			bodyContent.getElementsByTagName('img')[0].src =  body.content;
+		};
+		break;
 	}
 	
 	return bodyItem;
@@ -139,12 +146,18 @@ function getDataFromInput() {
 				subControls = bodyItem.getElementsByTagName('img');
 				content = truncatePath(subControls[0].src);
 				break;
+			case "img2" :
+				subControls = bodyItem.getElementsByTagName('textarea');
+				content = subControls[0].value;
+				break;
 			case "a" :
 				subControls = bodyItem.getElementsByTagName('textarea');
 				content = subControls[0].value;
 				displayText = subControls[1].value;
 				break;
 			}
+				
+			//if (type==='img2') {type='img'};
 				
 			return {type:type,content:content,displayText:displayText};
 		}

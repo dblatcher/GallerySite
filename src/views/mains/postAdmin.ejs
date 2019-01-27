@@ -41,6 +41,28 @@
 		<p id = "avatarUploadErrorMessage"> </p>
 	</div>
 </div>
+
+<div class = 'modal' id = 'chooseImageForm'>
+	<div class = imageMenu>
+		<p>choose image</p>
+		
+		<% for (var g=0; g<galleries.length; g++ ){ %>	
+		
+		<div class = 'imageChoices'>
+			<% for (var i=0; i<galleries[g].picture.length; i++ ){ %>	
+				<img 
+				src =  "<%=galleries[g].path%><%=galleries[g].picture[i] %>" 
+				onclick = "handleImageSelect(this)"
+				>
+				</img>
+				
+			<% } %>
+		</div>
+		<% } %>
+		
+		
+	</div>
+</div>
 	
 <div class = 'modal' id = 'waitMessage'>
 	<p>Saving to server...</p>
@@ -76,15 +98,14 @@
 		
 		<div class="subsection content collapsing">
 		</div>
-		
-
-		
+				
 	</section>
 
 	<div class = "templateInsertPanel">
 		<button onclick="handleNewBodyClick(this,'p')">add new paragraph</button>
 		<button onclick="handleNewBodyClick(this,'a')">add new link</button>
-		<button onclick="handleNewBodyClick(this,'img')">add new image</button>
+		<button onclick="handleNewBodyClick(this,'img')">add new image from gallery</button>
+		<button onclick="handleNewBodyClick(this,'img2')">add new image from url</button>
 	</div>
 
 	<div class = "templateBodyItem">
@@ -102,9 +123,32 @@
 		<div>
 			<p>picture:</p>
 			<img src = ''></img>
-			<button>choose image</button>
+			
+			<select name="gallery">
+			<% for (var g=0; g<galleries.length; g++ ){ %>	
+			<option value="<%=g%>"> <%=galleries[g].displayTitle%> </option>
+			<% } %>
+			</select>
+						
+			<button onclick="showImageMenu(this)">choose image</button>
+			
+			
 		</div>
 	</div>
+
+	<div class = "templateBodyContent-img2">
+		<div>
+			<p>picture:</p>
+			<img src = ''></img>
+			
+
+			<textArea placeholder = "paste URL"></textArea>
+			<button onclick="showImageFromURL(this)">load image</button>
+			
+			
+		</div>
+	</div>
+
 	
 	<div class = "templateBodyContent-a">
 		<div>
