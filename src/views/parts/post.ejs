@@ -1,27 +1,27 @@
 <div class = "newsPost">
 
 	<div class= "postBanner">		
-		<img class = "postIcon" src = "<%=post.icon%>"></img>
+		<img class = "postIcon" src = "<%if(typeof(route) !== "undefined") {%>../<%}%><%=post.icon%>"></img>
 		<div class = 'bannerText'>
 			<h2><%=post.title%></h2>
 			<div>
 				<p> by:<%=post.author%></p>
 				
 				<%
-				post.year = post.date.substring(0,4); 
-				post.month = Number(post.date.substring(5,7));
-				post.day = Number(post.date.substring(8));
+				var year = post.date.substring(0,4); 
+				var month = Number(post.date.substring(5,7));
+				var day = Number(post.date.substring(8));
 
-				if (post.day%10 === 1) {post.day += "st"}
-				if (post.day%10 === 2) {post.day += "nd"}
-				if (post.day%10 === 3) {post.day += "rd"}
-				if (post.day%10 > 4) {post.day += "th"}
+				if (day%10 === 1) {day += "st"}
+				if (day%10 === 2) {day += "nd"}
+				if (day%10 === 3) {day += "rd"}
+				if (day%10 > 4) {day += "th"}
 				
 				var months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
 				
 				%>
 				
-				<p><%=post.day%> <%=months[post.month]%> <%=post.year%></p>
+				<p><%=day%> <%=months[month]%> <%=year%></p>
 			</div>
 		</div>
 		
@@ -30,9 +30,15 @@
 	
 	<%for(var i = 0; i < post.body.length; i++) { %>
 		
-		<%if (post.body[i].type == "img" || post.body[i].type == "img2" ) {%>
+		<%if (post.body[i].type == "img" ) {%>
+			<img class = "postImage" src = "<%if(typeof(route) !== "undefined") {%>../<%}%><%=post.body[i].content%>"></img>
+		<% } %>
+		
+		
+		<%if (post.body[i].type == "img2" ) {%>
 			<img class = "postImage" src = "<%=post.body[i].content%>"></img>
 		<% } %>
+		
 		
 		<%if (post.body[i].type == "a") {%>
 			<a href = "<%=post.body[i].content%>" ><%=(post.body[i].displayText || post.body[i].content)%></a>

@@ -46,6 +46,7 @@ var galleryRouter = require('./src/routes/galleryRoutes')(pages,siteSettings,gal
 
 var posts = getPosts(siteSettings);
 siteSettings.avatarPics = getAvatarPics(siteSettings);
+var postRouter =  require('./src/routes/newsRoutes')(pages,siteSettings,posts);
 
 app.use(express.static('public'));
 app.use(formidableMiddleware());
@@ -84,6 +85,7 @@ pages.forEach (function (page) {
 });
 
 app.use('/gallery',galleryRouter);
+app.use('/news',postRouter);
 app.post('/login', myPassportModule.attemptLogIn);
 app.use('/logout',myPassportModule.logUserOut);
 

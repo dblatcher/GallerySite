@@ -30,6 +30,23 @@ var wrapper = function (sitePostData){
 		};
 		
 		// data is valid
+		
+		for (i=0; i< posts.length; i++) {
+			posts[i].titleURL = convertToKebabCase(posts[i].title);
+			
+		};
+		function convertToKebabCase(string) {
+			string = string.toLowerCase().trim();
+			string = string.replace(/\s+/g,"-");
+			var permittedCharacters="abcdefghijklmnopqrstuvwxyz0123456789-";
+			for (var p = 0; p< string.length; p++){
+				if (permittedCharacters.includes(string.charAt(p)) === false) {
+					string = string.slice(0,p) + string.slice(p+1,string.length);
+				}
+			}
+			return string;
+		};
+		
 		//save over posts.JSON, update sitePostData
 		
 		writeNewPostsFile(posts)

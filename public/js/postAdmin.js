@@ -118,7 +118,7 @@ function handleUploadAvatar () {
 			alert (parsedResponse.message ? JSON.parse(xhr.response).message : "Undefined Error")
 		} catch {
 			alert('non json response');
-			console.error(xhr.response);
+			console.log(xhr.response);
 		};
 		
 		if (xhr.status == 200) {
