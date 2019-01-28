@@ -1,0 +1,10 @@
+<%var activeGalleries = galleries.filter( function(item) {return !item.deactivated} )%>
+	<% if(activeGalleries.length>0) { %>
+		<%var p = Math.floor(Math.random() * activeGalleries.length) %>
+		<a href = 'gallery/<%=activeGalleries[p].title%>'>
+				<div class = 'galleryPanel'>
+						<img src = "<%=activeGalleries[p].path%><%=activeGalleries[p].picture[activeGalleries[p].main] %>" ></img>
+						<p>Check out the <%=activeGalleries[p].displayTitle%> gallery!</P>					
+				</div>	
+		</a>
+<% } %>
