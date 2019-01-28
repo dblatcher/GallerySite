@@ -12,19 +12,23 @@
 	<% if (posts.length > 0) {  %>
 		<% for(var j = posts.length-1; j > -1; j--) { %>
 			<% if (posts[j].active && !posts[j].notForHomepage) { %>
-				<%- include('../parts/post', {post: posts[j]}); %>
+				<%- include("../parts/post", {post: posts[j]}); %>
 				<% break; %>
 			<% } %>
 		<% } %>
 	<% } %>
 	
-	<%var p = Math.floor(Math.random() * galleries.length) %>
-	<a href = 'gallery/<%=galleries[p].title%>'>
-			<div class = 'galleryPanel'>
-					<img src = "<%=galleries[p].path%><%=galleries[p].picture[galleries[p].main] %>" ></img>
-					<p>Check out the <%=galleries[p].displayTitle%> gallery!</P>					
-			</div>	
-	</a>
+	<%var activeGalleries = galleries.filter( function(item) {return !item.deactivated} )%>
+	<% if(activeGalleries.length>0) { %>
+		<%var p = Math.floor(Math.random() * activeGalleries.length) %>
+		<a href = 'gallery/<%=activeGalleries[p].title%>'>
+				<div class = 'galleryPanel'>
+						<img src = "<%=activeGalleries[p].path%><%=activeGalleries[p].picture[activeGalleries[p].main] %>" ></img>
+						<p>Check out the <%=activeGalleries[p].displayTitle%> gallery!</P>					
+				</div>	
+		</a>
+	<% } %>
+	
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 </div>

@@ -3,6 +3,7 @@
 		<div class = "galleryList">
 		
 		<% for(var i=0; i<galleries.length;i++){%>
+		<% if (!galleries[i].deactivated) {%>
 		<a class = 'galleryListItem' href = 'gallery/<%=galleries[i].title%>'>
 		
 			<div class="imageBox"
@@ -18,6 +19,7 @@
 		
 		
 		</a>
+		<%}%>
 		<%}%>
 		
 		</div>

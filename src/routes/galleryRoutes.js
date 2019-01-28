@@ -26,7 +26,7 @@ var router = function(pages,siteSettings,galleries) {
 
 	function findGallery(id,galleriesArray) {
 		for (var loop=0; loop<galleriesArray.length; loop++){
-			if (id === galleriesArray[loop].title) {
+			if (id === galleriesArray[loop].title && !galleriesArray[loop].deactivated) {
 				return galleriesArray[loop];
 			}
 		}

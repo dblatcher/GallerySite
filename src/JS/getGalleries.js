@@ -25,13 +25,12 @@ function getGalleries(siteSettings) {
 			}
 		} 
 		
-		if (folderContents.filter(isImage).length > 0) {
-			galleries.push(new Gallery (
-				folders[i],
-				folderContents.filter(isImage),
-				galleryInfo 
-			));
-		}
+		galleries.push(new Gallery (
+			folders[i],
+			folderContents.filter(isImage),
+			galleryInfo 
+		));
+
 		
 	};
 
@@ -71,6 +70,8 @@ function getGalleries(siteSettings) {
 		this.foreground = info.foreground || siteSettings.defaultGalleryForegroundColor;
 		this.main = info.mainImage ? picture.indexOf(info.mainImage) : 0;
 		this.deactivated = info.deactivated || false;
+		if (picture.length === 0) {this.deactivated = true};
+		
 		if (this.main == -1 ) {this.main == 0;};
 	};
 
