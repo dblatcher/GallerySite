@@ -83,6 +83,9 @@ var wrapper = function (currentGalleryData){
 		
 		var displayTitle = request.fields.displayTitle ? request.fields.displayTitle : galleryTitle;
 		
+		var deactivated = request.fields.deactivated === "true" ? true : false;
+		if (picturesInOrder.length === 0) {deactivated = true};
+		
 		var updatedGallery = {
 			title: galleryTitle,
 			displayTitle : displayTitle,
@@ -91,7 +94,8 @@ var wrapper = function (currentGalleryData){
 			description : request.fields.description,
 			background : request.fields.background,
 			foreground : request.fields.foreground,
-			main : mainImageNumber
+			main : mainImageNumber,
+			deactivated:deactivated
 		};
 
 		var updatedInfoFileContents = {
@@ -100,7 +104,8 @@ var wrapper = function (currentGalleryData){
 			background : request.fields.background,
 			foreground : request.fields.foreground,
 			main:mainImageNumber,
-			orderList : picturesInOrder
+			orderList : picturesInOrder,
+			deactivated:deactivated
 		};
 		
 		createNewGalleryFolderIfNeeded(isNewGallery, galleryTitle)

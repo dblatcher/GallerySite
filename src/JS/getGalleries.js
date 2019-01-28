@@ -70,6 +70,7 @@ function getGalleries(siteSettings) {
 		this.background = info.background || siteSettings.defaultGalleryBackgroundColor;
 		this.foreground = info.foreground || siteSettings.defaultGalleryForegroundColor;
 		this.main = info.mainImage ? picture.indexOf(info.mainImage) : 0;
+		this.deactivated = info.deactivated || false;
 		if (this.main == -1 ) {this.main == 0;};
 	};
 

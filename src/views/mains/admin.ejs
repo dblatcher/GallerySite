@@ -19,6 +19,16 @@
 				<form id = 'propertyForm<%=i%>'>
 					
 					<div>
+						<span>Deactivated:</span>
+						<input class = 'deactivatedCheckbox' type = "checkbox" name="deactivated" 
+						<% if(galleries[i].deactivated) { %>
+						checked
+						<% } %>
+						>
+						(deactivated galleries will not be visible on the site)
+					</div>
+					
+					<div>
 						<span>Display title:</span>
 						<input type="text" name="displayTitle" value = "<%=galleries[i].displayTitle%>"></input>
 					</div>
@@ -70,6 +80,12 @@
 					<div>
 					<span>folder name:</span> 
 					<input type="text" name="title" value = ""></input>
+					</div>
+					
+					<div>
+						<span>Deactivated:</span>
+						<input type = "checkbox" name="deactivated">
+						(deactivated galleries will not be visible on the site)
 					</div>
 					
 					<div>

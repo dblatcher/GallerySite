@@ -176,7 +176,8 @@ function sendGalleryUpdateToServer(gallery,element) {
 			fd.append('title', document.getElementById('dataHolder').data[gallery].title);
 			fd.append('isNewGallery', 'false');
 		}
-		
+				
+		fd.append('deactivated', form.elements.deactivated.checked);
 		fd.append('displayTitle', form.elements.displayTitle.value);
 		fd.append('description', form.elements.description.value);
 		fd.append('foreground', form.elements.foreground.value);
@@ -237,6 +238,8 @@ function refreshSection (gallery, newData) {
 	section.getElementsByClassName('sectionHeading')[0].innerHTML = 'edit Gallery: ' + newData.title;
 	section.getElementsByClassName('updateButton')[0].innerHTML = 'Save changes to ' + newData.displayTitle;
 	
+	section.getElementsByClassName('deactivatedCheckbox')[0].checked = newData.deactivated || false;
+
 	var thumbNailArea = section.getElementsByClassName('thumbNailArea')[0];
 	while (thumbNailArea.children.length > 0 ) {
 		thumbNailArea.removeChild(thumbNailArea.firstElementChild);
