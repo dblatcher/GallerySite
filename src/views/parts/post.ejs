@@ -6,7 +6,22 @@
 			<h2><%=post.title%></h2>
 			<div>
 				<p> by:<%=post.author%></p>
-				<p> date:<%=post.date%> </p>
+				
+				<%
+				post.year = post.date.substring(0,4); 
+				post.month = Number(post.date.substring(5,7));
+				post.day = Number(post.date.substring(8));
+
+				if (post.day%10 === 1) {post.day += "st"}
+				if (post.day%10 === 2) {post.day += "nd"}
+				if (post.day%10 === 3) {post.day += "rd"}
+				if (post.day%10 > 4) {post.day += "th"}
+				
+				var months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+				
+				%>
+				
+				<p><%=post.day%> <%=months[post.month]%> <%=post.year%></p>
 			</div>
 		</div>
 		
@@ -14,14 +29,38 @@
 	</div>
 	
 	<%for(var i = 0; i < post.body.length; i++) { %>
-		<%if (post.body[i].type == "p") {%>
-			<p><%=post.body[i].content%></p>
-		<% } %>
+		
 		<%if (post.body[i].type == "img" || post.body[i].type == "img2" ) {%>
 			<img class = "postImage" src = "<%=post.body[i].content%>"></img>
 		<% } %>
+		
 		<%if (post.body[i].type == "a") {%>
-			<a href = "<%=post.body[i].content%>" ><%=(post.body[i].displayText || post.body[i].content)%></a><br/>
+			<a href = "<%=post.body[i].content%>" ><%=(post.body[i].displayText || post.body[i].content)%></a>
+		<% } %>
+		
+		<%if (post.body[i].type == "p") {%>
+			<p><%=post.body[i].content%>
+			
+			
+			<%if (i+1 < post.body.length) { %>
+			
+			<%if (post.body[i+1].type == "a" && post.body[i+1].inline) { %>
+		
+				<a href = "<%=post.body[i+1].content%>" ><%=(post.body[i+1].displayText || post.body[i+1].content)%></a>
+				
+				<%if (post.body[i+1].textAfterLink) { %>
+				<%=post.body[i+1].textAfterLink%>
+				<% } %>
+			
+				<%i++%>
+			
+			
+			<% } %>
+			<% } %>
+			
+			</p>
+			
+			
 		<% } %>
 	<% } %>
 </div>
