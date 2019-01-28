@@ -147,7 +147,11 @@
 .bodyItem .bodyContent div {
   display: flex;
 }
+.bodyItem .bodyContent .flexForImage {
+  justify-content: center;
+}
 .bodyItem img {
+  margin-top: 4px;
   max-height: 5em;
 }
 .bodyItem .urlInput {

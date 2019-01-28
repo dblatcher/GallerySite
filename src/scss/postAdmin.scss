@@ -141,8 +141,12 @@ padding-left:1em;
 	div{
 		display:flex;
 	}
+	.flexForImage {
+		justify-content:center;
+	}
 	} 
 	img {
+		margin-top:4px;
 		max-height:5em;
 	}
 	.urlInput{

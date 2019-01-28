@@ -122,7 +122,6 @@
 	<div class = "templateBodyContent-img">
 		<div>
 			<span>picture:</span>
-			<img src = ''></img>
 			<select name="gallery">
 				<% for (var g=0; g<galleries.length; g++ ){ %>	
 				<option value="<%=g%>"> <%=galleries[g].displayTitle%> </option>
@@ -130,15 +129,20 @@
 			</select>
 			<button onclick="showImageMenu(this)">choose image</button>		
 		</div>
+		
+		<div class = 'flexForImage'>
+			<img src = ''></img>
+		</div>
+		
 	</div>
 
 	<div class = "templateBodyContent-img2">
 		<div>
 			<span>picture:</span>
-			<img src = ''></img>
 			<textArea placeholder = "paste URL"></textArea>
 			<button onclick="showImageFromURL(this)">load image</button>
 		</div>
+		<img src = ''></img>
 	</div>
 
 	
