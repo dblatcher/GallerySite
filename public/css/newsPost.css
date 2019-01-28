@@ -3,7 +3,7 @@
   padding-top: 1em;
 }
 
-.newsPost > p {
+.newsPost > p, .newsPost > a {
   text-align: justify;
 }
 

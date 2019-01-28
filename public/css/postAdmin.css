@@ -158,6 +158,11 @@
   resize: vertical;
   flex-basis: 100%;
 }
+.bodyItem span {
+  font-size: small;
+  flex-basis: 3em;
+  flex-shrink: 0;
+}
 
 .iconMenu, .imageMenu {
   background-color: white;

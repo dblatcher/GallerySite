@@ -102,10 +102,10 @@
 	</section>
 
 	<div class = "templateInsertPanel">
-		<button onclick="handleNewBodyClick(this,'p')">add new paragraph</button>
-		<button onclick="handleNewBodyClick(this,'a')">add new link</button>
-		<button onclick="handleNewBodyClick(this,'img')">add new image from gallery</button>
-		<button onclick="handleNewBodyClick(this,'img2')">add new image from url</button>
+		<button onclick="handleNewBodyClick(this,'p')">add paragraph</button>
+		<button onclick="handleNewBodyClick(this,'a')">add link</button>
+		<button onclick="handleNewBodyClick(this,'img')">add image from gallery</button>
+		<button onclick="handleNewBodyClick(this,'img2')">add image from url</button>
 	</div>
 
 	<div class = "templateBodyItem">
@@ -114,50 +114,48 @@
 	
 	<div class = "templateBodyContent-p">
 		<div>
-			<p>text:</p>
+			<span>text:</span>
 			<textarea placeholder = "type paragraph here"></textArea>
 		</div>
 	</div>
 
 	<div class = "templateBodyContent-img">
 		<div>
-			<p>picture:</p>
+			<span>picture:</span>
 			<img src = ''></img>
-			
 			<select name="gallery">
-			<% for (var g=0; g<galleries.length; g++ ){ %>	
-			<option value="<%=g%>"> <%=galleries[g].displayTitle%> </option>
-			<% } %>
+				<% for (var g=0; g<galleries.length; g++ ){ %>	
+				<option value="<%=g%>"> <%=galleries[g].displayTitle%> </option>
+				<% } %>
 			</select>
-						
-			<button onclick="showImageMenu(this)">choose image</button>
-			
-			
+			<button onclick="showImageMenu(this)">choose image</button>		
 		</div>
 	</div>
 
 	<div class = "templateBodyContent-img2">
 		<div>
-			<p>picture:</p>
+			<span>picture:</span>
 			<img src = ''></img>
-			
-
 			<textArea placeholder = "paste URL"></textArea>
 			<button onclick="showImageFromURL(this)">load image</button>
-			
-			
 		</div>
 	</div>
 
 	
 	<div class = "templateBodyContent-a">
 		<div>
-			<p>URL:</p>
+			<span>URL:</span>
 			<textarea placeholder = "copy url here" class = 'urlInput'></textArea>
 		</div>
 		<div>
-			<p>text:</p>
-			<textarea placeholder = "write text to display here(full url will show if left blank)"></textarea>
+			<span>text:</span>
+			<textarea placeholder = "write text to display as link here(full url will show if left blank)"></textarea>
+		</div>
+		<div>
+			<span>after text:</span>
+			<textarea placeholder = "write text to show after link(inline links only)"></textarea>
+			<span>diplay inline</span>
+			<input type="checkbox">
 		</div>
 	</div>
 	

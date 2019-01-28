@@ -81,6 +81,8 @@ function makeBodyItem(body) {
 		subControls = bodyContent.getElementsByTagName('textarea');
 		subControls[0].innerText = body.content || "";
 		subControls[1].innerText = body.displayText || "";
+		subControls[2].innerText = body.textAfterLink || "";
+		bodyContent.getElementsByTagName('input')[0].checked = body.inline || false;
 		break;
 	case "img2" :
 		subControls = bodyContent.getElementsByTagName('textarea');
@@ -134,7 +136,7 @@ function getDataFromInput() {
 
 			var type = bodyItem.type.toLowerCase();
 			
-			var content,displayText;	
+			var content,displayText,textAfterLink,inline;	
 			var subControls;
 	
 			switch (type) {
@@ -154,12 +156,14 @@ function getDataFromInput() {
 				subControls = bodyItem.getElementsByTagName('textarea');
 				content = subControls[0].value;
 				displayText = subControls[1].value;
+				textAfterLink = subControls[2].value;
+				inline = bodyItem.getElementsByTagName('input')[0].checked;
 				break;
 			}
 				
 			//if (type==='img2') {type='img'};
 				
-			return {type:type,content:content,displayText:displayText};
+			return {type:type,content:content,displayText:displayText,textAfterLink:textAfterLink, inline:inline};
 		}
 		function truncatePath(fullUrl){
 			if (!fullUrl){return "";}

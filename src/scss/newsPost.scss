@@ -5,8 +5,12 @@
 	padding-top: 1em;
 }
 
-.newsPost>p{
-	text-align:justify;
+.newsPost{
+	>p,>a{
+		text-align:justify;
+
+	}
+
 }
 
 .postBanner{
