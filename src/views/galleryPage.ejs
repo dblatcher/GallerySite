@@ -10,19 +10,15 @@
 </head>
 
 <body style='background-color:<%=gallery.background%>'>
-	<% include parts/header %>
+	<%- include("parts/header.ejs",{headerText:siteSettings.siteName}) %>
 
-		
 	<main>	
 
 		<% for(var i=0; i<gallery.picture.length;i++){%>
 			<img class = "mainImage hidden" src = "../<%=gallery.path%><%=gallery.picture[i] %>"> </img>
 		<%}%>
 
-		<h2 
-		class = "willFade" 
-		style='color:<%=gallery.foreground%>'
-		>
+		<h2 class = "willFade" style='color:<%=gallery.foreground%>'	>
 			<%=gallery.displayTitle%>
 		</h2>
 		

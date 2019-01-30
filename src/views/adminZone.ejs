@@ -2,7 +2,7 @@
 <html lang="en-UK">
 
 <head>
-	<title><%=siteSettings.siteName%>-ADMIN</title>
+	<title><%=siteSettings.siteName%>-admin</title>
 	<% include parts/metatags %>
 	<link rel="stylesheet" href="/css/style-adminZone.css" />
 	<% if (styleSheets) {%>
@@ -13,7 +13,7 @@
 	</head>
 
 <body>
-	<% include parts/header %>
+	<%- include("parts/header.ejs",{headerText:"Admin:"+siteSettings.siteName}) %>
 	<%- include("mains/"+content) %>
 
 	<script src="/js/mainScript.js"></script>

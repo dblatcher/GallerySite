@@ -13,7 +13,7 @@
 	</head>
 
 <body>
-	<% include parts/header %>
+	<%- include("parts/header.ejs",{headerText:siteSettings.siteName}) %>
 	<%- include("mains/"+content) %>
 	<% include parts/footer %>
 
