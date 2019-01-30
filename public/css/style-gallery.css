@@ -1,70 +1,72 @@
-
-
 .mainImage {
-display:none;
-box-sizing:border-box;
-position:absolute;
-top:50%;
-left:50%;
-transform: translateY(-50%) translateX(-50%);
+  display: none;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
 }
 
 .widerThanScreen {
-max-width:100%;
-padding-left:1em;
-padding-right:1em;
+  max-width: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .tallerThanScreen {
-max-height:100%;
-padding-top:4em;
-padding-bottom:2.5em;
+  max-height: 100%;
+  padding-top: 4em;
+  padding-bottom: 2.5em;
 }
 
-.showing{
-display:block;
+.showing {
+  display: block;
 }
-
 
 .willFade {
--webkit-transition: opacity 1s; /* Safari */
-transition: opacity 1s;
--webkit-transition-timing-function: linear;
-transition-timing-function: linear;
+  -webkit-transition: opacity 1s;
+  /* Safari */
+  transition: opacity 1s;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
 }
+
 .faded {
-opacity:0;
+  opacity: 0;
 }
 
 .button {
-box-sizing:border-box;
-position:absolute;
-top:50%;
-transform: translate y(-50%);
-border:1px solid;
-border-radius:100%;
-width: 3em;
-height: 3em;
-cursor:pointer;
-}
-#forwardButton{
-right: 3em;
-}
-#backButton{
-left: 3em;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  transform: translate y(-50%);
+  border: 1px solid;
+  border-radius: 100%;
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
 }
 
-.button p{
-box-sizing:border-box;
-margin:0px;
-padding:0px;
-position:absolute;
-height:0px;
-line-height:0px;
-width:100%;
-top:50%;
-vertical-align:middle;
-text-align:center;
-font-size:2em;
+#forwardButton {
+  right: 3em;
 }
 
+#backButton {
+  left: 3em;
+}
+
+.button p {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  height: 0px;
+  line-height: 0px;
+  width: 100%;
+  top: 50%;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 2em;
+}
+
+/*# sourceMappingURL=style-gallery.css.map */

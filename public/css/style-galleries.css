@@ -7,7 +7,7 @@
 .galleryListItem {
   text-decoration: none;
   position: relative;
-  border: 2px solid darkcyan;
+  border: 2px solid #9C6902;
   margin: 3px;
   box-sizing: border-box;
   padding: 6px;
@@ -20,16 +20,15 @@
   align-items: center;
 }
 .textFlex h2, .textFlex p {
-  color: black;
   font-weight: normal;
   margin: 0px;
   text-align: center;
-  color: darkcyan;
-  text-shadow: 0.5px 0.5px black;
+  color: #9C6902;
+  text-shadow: 0.5px 0.5px #352609;
 }
 .textFlex h2 {
   text-transform: capitalize;
-  text-shadow: 1px 1px black;
+  text-shadow: 1px 1px #352609;
 }
 
 @media screen and (max-width: 519px) {

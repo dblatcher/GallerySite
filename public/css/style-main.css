@@ -18,11 +18,6 @@ nav ul {
 
 nav a {
   text-decoration: none;
-  color: black;
-}
-
-nav a:hover {
-  background-color: cyan;
 }
 
 .menuButton {
@@ -55,12 +50,6 @@ nav a:hover {
   line-height: 150%;
   font-size: large;
   text-align: center;
-  background-color: darkcyan;
-  border: 1px solid black;
-}
-
-.dropDown .currentPageLink {
-  background-color: cyan;
 }
 
 .onBar {
@@ -81,6 +70,7 @@ nav a:hover {
 .onBar a {
   margin-right: 0.75em;
   line-height: 150%;
+  border-radius: 2px;
 }
 
 .onBar .currentPageLink {
@@ -100,8 +90,9 @@ header {
   z-index: 10;
   box-sizing: border-box;
   height: 3em;
-  background-color: darkcyan;
-  border-bottom: 1px solid black;
+}
+header a {
+  text-decoration: none;
 }
 
 .loggedInMessage {
@@ -114,8 +105,6 @@ header {
   height: 1em;
   z-index: 10;
   opacity: 0.75;
-  background-color: cyan;
-  border: 1px solid black;
 }
 
 footer {
@@ -127,34 +116,58 @@ footer {
   left: 0%;
   margin: 0px;
   padding: 0px;
-  border-top: 1px solid black;
-  background-color: darkcyan;
-  height: 1.5em;
+  height: 1.6em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
 }
 
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+  background-color: #FFFFFF;
+  color: #352609;
+  text-align: justify;
+}
+
 header {
-  background-color: darkcyan;
-  border-bottom: 1px solid black;
+  background-color: #FDCD6D;
 }
 
 header h1 {
-  color: black;
+  color: #9C6902;
+  text-shadow: #352609 1px 1px;
   margin-left: 0.25em;
+}
+
+.dropDown a, .loggedInMessage {
+  background-color: #FDCD6D;
+  border: 1px solid #352609;
+}
+
+.dropDown .currentPageLink {
+  background-color: #9C6902;
+}
+
+nav a:hover {
+  background-color: #9C6902;
+}
+
+nav a {
+  color: #352609;
 }
 
 main {
   padding-top: 3em;
-  padding-bottom: 2em;
+  padding-bottom: 2.1em;
 }
 
 footer {
-  border-top: 1px solid black;
-  background-color: darkcyan;
-  height: 1.5em;
+  background-color: #352609;
+  color: #FDCD6D;
+  height: 1.6em;
 }
 
 /*# sourceMappingURL=style-main.css.map */

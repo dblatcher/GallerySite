@@ -1,5 +1,5 @@
 .newsPost + .newsPost {
-  border-top: 5px outset cyan;
+  border-top: 5px outset #9C6902;
   padding-top: 1em;
 }
 
@@ -9,7 +9,7 @@
 
 .postBanner {
   display: flex;
-  background-color: cyan;
+  background-color: #9C6902;
 }
 .postBanner img {
   max-height: 3em;
@@ -31,12 +31,14 @@
 .bannerText h2 {
   font-size: x-large;
   text-align: justify;
+  text-shadow: 1px 1px #352609;
 }
 .bannerText h2, .bannerText p {
   place-self: center;
   margin-top: 0px;
   margin-Bottom: 0px;
   font-weight: normal;
+  color: #FFFFFF;
 }
 .bannerText > div {
   display: flex;

@@ -1,10 +1,13 @@
-	<main>
-		<p>This page displays all news.</p>
-		
-		<% for(var j = posts.length-1; j > -1; j--) { %>
-			<% if (posts[j].active) { %>
-				<%- include('../parts/post', {post: posts[j]}); %>
-			<% } %>
-		<% } %>
-		
-	</main>
+<%var activePosts = posts.filter( function(item) {return item.active} )%>
+
+<main>
+	
+	<%if(activePosts.length === 0) { %>
+		<p>We have no news on display right now.</p>
+	<%}%>
+	
+	<% for(var j = activePosts.length-1; j > -1; j--) { %>
+		<%- include('../parts/post', {post: activePosts[j]}); %>
+	<% } %>
+	
+</main>

@@ -1,7 +1,7 @@
 @import 'globals';
 
 .newsPost+.newsPost{
-	border-top: 5px outset $secondary-color;
+	border-top: 5px outset $theme-dark-shade;
 	padding-top: 1em;
 }
 
@@ -15,7 +15,7 @@
 
 .postBanner{
 	display:flex;
-	background-color: $secondary-color;
+	background-color: $theme-dark-shade;
 	img {
 		max-height:3em;
 		flex-shrink:0;
@@ -32,13 +32,18 @@
 	justify-content:space-evenly;
 	
 	p{ font-size:small;}
-	h2{ font-size:x-large;text-align:justify}	
+	h2{ 
+	font-size:x-large;
+	text-align:justify;
+	text-shadow: 1px 1px $theme-ink;
+	}	
 		
 	h2,p {
 		place-self: center;
 		margin-top:0px;
 		margin-Bottom:0px;
 		font-weight:normal;
+		color:$theme-page;
 	}
 	
 	>div{

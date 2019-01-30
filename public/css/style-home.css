@@ -3,8 +3,8 @@ body {
 }
 
 .after-banner {
-  margin-left: 0.75em;
-  margin-right: 0.75em;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 main {
@@ -37,17 +37,17 @@ main {
 }
 
 .newsPost {
-  border-left: 5px solid cyan;
-  padding-left: 0.75em;
+  border-left: 4px solid #9C6902;
+  padding-left: 8px;
 }
 
 .galleryPanel {
-  border: 2px solid cyan;
-  padding: 2px;
+  background-color: #FDCD6D;
+  padding: 3px;
   float: right;
   max-width: 25%;
-  margin: 0.5em;
   position: relative;
+  margin-left: 8px;
 }
 .galleryPanel p {
   text-decoration: none;

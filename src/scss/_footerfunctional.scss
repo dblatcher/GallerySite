@@ -7,7 +7,10 @@ width:100%;
 left:0%;
 margin:0px;
 padding:0px;
-border-top: 1px solid black;
-background-color:$main-color;
+
 height:$footer-height;
+
+display:flex;
+flex-flow:row nowrap;
+justify-content:flex-end;
 }

@@ -4,18 +4,32 @@
 @import 'footerfunctional';
 
 * {
-font-family: $fonts-main;
+	font-family: $fonts-main;
+}
+
+body{
+	background-color: $theme-page;
+	color:$theme-ink;
+	text-align:justify;
 }
 
 header{
-background-color:$main-color;
-border-bottom: 1px solid black;
+	background-color:$theme-light-shade;
 }
 
 header h1 {
-color:black;
-margin-left:0.25em;
+	color:$theme-dark-shade;
+	text-shadow: $theme-ink 1px 1px;
+	margin-left:0.25em;
 }
+
+.dropDown a,.loggedInMessage {
+	background-color:$theme-light-shade;
+	border:1px solid $theme-ink;
+}
+.dropDown .currentPageLink {background-color:$theme-dark-shade;}
+nav a:hover{background-color:$theme-dark-shade;}
+nav a { color:$theme-ink; }
 
 
 main {
@@ -24,7 +38,7 @@ padding-bottom:$footer-height + 0.5em;
 }
 
 footer {
-border-top: 1px solid black;
-background-color:$main-color;
+background-color:$theme-ink;
+color:$theme-light-shade;
 height:$footer-height;
 }

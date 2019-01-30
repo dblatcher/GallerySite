@@ -10,7 +10,7 @@
 .galleryListItem {
 	text-decoration:none;
 	position:relative;
-	border: 2px solid $main-color;
+	border: 2px solid $theme-dark-shade;
 	margin: 3px;
 	box-sizing:border-box;
 	padding:6px;
@@ -24,16 +24,15 @@
 	min-height:8em;
 	align-items: center;
 	h2,p{
-		color: black;
 		font-weight:normal;
 		margin:0px;
 		text-align:center;
-		color:$main-color;
-		text-shadow: 0.5px 0.5px black;
+		color:$theme-dark-shade;
+		text-shadow: 0.5px 0.5px $theme-ink;
 	}
 	h2{
 		text-transform:capitalize;
-		text-shadow: 1px 1px black;
+		text-shadow: 1px 1px $theme-ink;
 	}
 }
 

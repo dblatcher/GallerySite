@@ -1,12 +1,14 @@
 @import 'globals';
 
+$margin-home: 8px;
+
 body {
 	margin:0px;
 }
 
 .after-banner {
-	margin-left:0.75em;
-	margin-right:0.75em;
+	margin-left:$margin-home;
+	margin-right:$margin-home;
 }
 
 main{
@@ -38,21 +40,21 @@ main{
 }
 
 .newsPost {
-	border-left: 5px solid $secondary-color;
-	padding-left: 0.75em;
+	border-left: $margin-home/2 solid $theme-dark-shade;
+	padding-left: $margin-home;
 }
 
 .galleryPanel {
-	border : 2px solid $secondary-color;
-	padding: 2px;
+	background-color:$theme-light-shade;
+	padding: 3px;
 	float : right;
 	max-width:25%;
-	margin:0.5em;
 	position:relative;
+	margin-left: $margin-home;
 	
 	p {
 		text-decoration: none;
-		color:black;
+		color:$main-ink;
 	}
 	img {
 		max-height: 7em;

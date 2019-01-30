@@ -11,9 +11,8 @@ nav ul {
 }
 nav a {
 	text-decoration: none;
-	color:black;
 }
-nav a:hover{background-color:$secondary-color;}
+
 
 
 .menuButton {
@@ -46,11 +45,8 @@ right:0px;
 	line-height:150%;
 	font-size:large;
 	text-align:center;
-	background-color:$main-color;
-	border:1px solid black;
 }
 
-.dropDown .currentPageLink {background-color:$secondary-color;}
 
 .onBar {
 height:$header-height;
@@ -71,5 +67,6 @@ align-self:flex-end;
 .onBar a{
 	margin-right:0.75em;
 	line-height:150%;
+	border-radius:2px;
 }
 .onBar .currentPageLink {font-weight:bold;}

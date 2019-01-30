@@ -1,25 +1,25 @@
+<%var activeGalleries = galleries.filter( function(item) {return !item.deactivated} )%>
+
 	<main>
-	
+		
+		<%if(activeGalleries.length === 0) { %>
+			<p>We have no galleries on display right now.</p>
+		<%}%>
+		
 		<div class = "galleryList">
 		
-		<% for(var i=0; i<galleries.length;i++){%>
-		<% if (!galleries[i].deactivated) {%>
-		<a class = 'galleryListItem' href = 'gallery/<%=galleries[i].title%>'>
-		
+		<% for(var i=0; i<activeGalleries.length;i++){%>
+		<a class = 'galleryListItem' href = 'gallery/<%=activeGalleries[i].title%>'>
 			<div class="imageBox"
-			style = "background-image:url( <%=galleries[i].path%><%=galleries[i].picture[galleries[i].main] %>);" >
+			style = "background-image:url( <%=galleries[i].path%><%=activeGalleries[i].picture[activeGalleries[i].main] %>);" >
 			</div>
-				
 			<div class="textFlex">
-				<h2><%=galleries[i].displayTitle%></h2>					
-				<%if(galleries[i].description) { %>
-				<p><%=galleries[i].description%></p>
+				<h2><%=activeGalleries[i].displayTitle%></h2>					
+				<%if(activeGalleries[i].description) { %>
+				<p><%=activeGalleries[i].description%></p>
 				<% } %>
 			</div>
-		
-		
 		</a>
-		<%}%>
 		<%}%>
 		
 		</div>

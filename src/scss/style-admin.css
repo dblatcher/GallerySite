@@ -1,0 +1,113 @@
+
+.thumbNailHolder{
+position:relative;
+float:left;
+width:4em;
+margin:0.25em;
+margin-bottom:1.5em;
+box-sizing:border-box;
+display:flex;
+flex-flow:column nowrap;
+font-size:large;
+}
+
+.mainImageToggle,.moveControl,.thumbNail,.moveButton {
+text-align:center;
+cursor:pointer;
+box-sizing:border-box;
+}
+
+.thumbNail {
+background-color:white;
+text-align:right;
+height:4em;
+position:relative;
+}
+
+.thumbNail img{
+position: absolute;
+top: 0px;
+left: 0px;
+width:100%;
+max-height:100%;
+}
+
+.moveControl {
+display:flex;
+flex-flow:row nowrap;
+justify-content: space-between;
+margin-top:0.2em;
+margin-bottom:0.2em;
+}
+
+.moveButton {
+border-radius: 50%;
+color:white;
+background-color: grey;
+width:1.25em;
+}
+.moveButton:hover {background-color: black}
+
+
+.thumbNailHolder:last-of-type .mainImageToggle{display:none;}
+.thumbNailHolder:last-of-type .moveControl{display:none;}
+
+.thumbNailHolder:first-of-type .moveButtonBack {opacity:0;cursor:default;}
+.thumbNailHolder:nth-last-of-type(2) .moveButtonForward {opacity:0;cursor:default;}
+
+.notMainPic .mainImageToggle, .swapButton{color:grey;}
+.mainPic .mainImageToggle, .swapping .swapButton {color:black; font-weight:bold;}
+
+
+
+.uploadControl .thumbNail, .added  .thumbNail{
+border: 2px dashed palegreen;
+}
+
+.current .thumbNail{
+border:2px solid black;
+}
+
+.deleted  .thumbNail{
+border:2px dashed red;
+opacity:0.5;
+}
+
+.hiddenFileInput {
+display:none;
+}
+
+
+
+
+.disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+
+section form  div{
+display:flex;
+}
+
+form [type=text], form textarea{
+flex-basis:100%;
+flex-shrink:1;
+}
+
+form [type=color]{
+flex-basis:4em;
+flex-shrink:0;
+}
+
+form span{
+font-size:small;
+flex-basis:6em;
+flex-shrink:0;
+}
+
+
+section>div {
+clear:both;
+margin-bottom:14px;
+}
