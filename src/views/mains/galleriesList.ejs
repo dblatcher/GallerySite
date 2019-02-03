@@ -11,7 +11,7 @@
 		<% for(var i=0; i<activeGalleries.length;i++){%>
 		<a class = 'galleryListItem' href = 'gallery/<%=activeGalleries[i].title%>'>
 			<div class="imageBox"
-			style = "background-image:url( <%=galleries[i].path%><%=activeGalleries[i].picture[activeGalleries[i].main] %>);" >
+			style = "background-image:url( <%=activeGalleries[i].path%><%=activeGalleries[i].picture[activeGalleries[i].main] %>);" >
 			</div>
 			<div class="textFlex">
 				<h2><%=activeGalleries[i].displayTitle%></h2>					
