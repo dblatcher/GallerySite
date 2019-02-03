@@ -3,8 +3,13 @@
 	<%var p = Math.floor(Math.random() * activeGalleries.length) %>
 	<a href = 'gallery/<%=activeGalleries[p].title%>'>
 			<div class = 'galleryPanel'>
-					<img src = "<%=activeGalleries[p].path%><%=activeGalleries[p].picture[activeGalleries[p].main] %>" ></img>
-					<p>Check out the <%=activeGalleries[p].displayTitle%> gallery!</P>					
+				<div style ="
+				background-image:url('/<%=activeGalleries[p].path%><%=activeGalleries[p].picture[activeGalleries[p].main] %>');
+				">
+					
+				</div>
+				
+				<span>Check out the <%=activeGalleries[p].displayTitle%> gallery!</span>					
 			</div>	
 	</a>
 <% } %>

@@ -1,21 +1,21 @@
 @import 'globals';
 
+%card-look{
+	box-shadow: $shadow-size $shadow-size $shadow-color;
+	border-radius:$shadow-size;
+}
+
 .newsPost+.newsPost{
-	border-top: 5px outset $theme-dark-shade;
-	padding-top: 1em;
+	margin-top:1em;
 }
 
 .newsPost{
-	>p,>a{
-		text-align:justify;
-
-	}
-
+	@extend %card-look;
+	background-color: $theme-light-shade;
 }
 
 .postBanner{
 	display:flex;
-	background-color: $theme-dark-shade;
 	img {
 		max-height:3em;
 		flex-shrink:0;
@@ -32,10 +32,9 @@
 	justify-content:space-evenly;
 	
 	p{ font-size:small;}
-	h2{ 
-	font-size:x-large;
-	text-align:justify;
-	text-shadow: 1px 1px $theme-ink;
+	h2{
+		font-size:xx-large;
+		font-variant:small-caps;
 	}	
 		
 	h2,p {
@@ -43,7 +42,6 @@
 		margin-top:0px;
 		margin-Bottom:0px;
 		font-weight:normal;
-		color:$theme-page;
 	}
 	
 	>div{
@@ -54,6 +52,9 @@
 	
 }
 
+.postBody {
+	margin: 0px $margin-main $margin-main;
+}
 
 .postImage {
 	max-height:6em;

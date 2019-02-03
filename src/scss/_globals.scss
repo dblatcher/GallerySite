@@ -2,12 +2,11 @@ $header-height: 3em;
 $footer-height: 1.6em;
 $width-for-dropdown: 520px;
 
-$main-color:darkcyan;
-$secondary-color:cyan;
-$main-ink:black;
-$emphasis-ink:darkcyan;
+$margin-main: 10px;
 
-$theme-page-backup:#FFF5E1;
+$shadow-size:3px;
+$shadow-color:#02020270;
+
 $theme-page:#FFFFFF;
 $theme-light-shade:#FDCD6D;
 $theme-dark-shade:#9C6902;
@@ -18,5 +17,5 @@ $admin-light-shade:#BDCFFE;
 $admin-dark-shade:#0143F9;
 $admin-ink:#060F28;
 
+$fonts-main : Arial, sans-serif;
 
-$fonts-main : Arial, Helvetica, sans-serif;

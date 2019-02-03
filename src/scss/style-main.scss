@@ -14,31 +14,40 @@ body{
 }
 
 header{
-	background-color:$theme-light-shade;
-}
-
-header h1 {
-	color:$theme-dark-shade;
-	text-shadow: $theme-ink 1px 1px;
-	margin-left:0.25em;
+	color: $theme-page;
+	background-color:$theme-dark-shade;
+	box-shadow:$shadow-size $shadow-size $shadow-color;
+	h1 {
+		color: $theme-page;
+		font-variant:small-caps;
+		margin-left: $margin-main;
+	}
+	a {
+		color: $theme-page;
+	}
 }
 
 .dropDown a,.loggedInMessage {
-	background-color:$theme-light-shade;
-	border:1px solid $theme-ink;
+	color:$theme-page;
+	background-color:$theme-dark-shade;
+	border-bottom:2px solid $theme-ink;
+	border-right:2px solid $theme-ink;
+	border-left:2px solid $theme-ink;
 }
-.dropDown .currentPageLink {background-color:$theme-dark-shade;}
-nav a:hover{background-color:$theme-dark-shade;}
-nav a { color:$theme-ink; }
+
+.dropDown .currentPageLink,nav a:hover {
+	color:$theme-page;
+	background-color:$theme-ink;
+}
 
 
 main {
-padding-top: $header-height;
-padding-bottom:$footer-height + 0.5em;
+	padding-top: $header-height;
+	padding-bottom:$footer-height + 0.5em;
 }
 
 footer {
-background-color:$theme-ink;
-color:$theme-light-shade;
-height:$footer-height;
+	background-color:$theme-ink;
+	color:$theme-light-shade;
+	height:$footer-height;
 }

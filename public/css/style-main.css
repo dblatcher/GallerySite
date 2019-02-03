@@ -123,7 +123,7 @@ footer {
 }
 
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
@@ -133,30 +133,30 @@ body {
 }
 
 header {
-  background-color: #FDCD6D;
+  color: #FFFFFF;
+  background-color: #9C6902;
+  box-shadow: 3px 3px #02020270;
 }
-
 header h1 {
-  color: #9C6902;
-  text-shadow: #352609 1px 1px;
-  margin-left: 0.25em;
+  color: #FFFFFF;
+  font-variant: small-caps;
+  margin-left: 10px;
+}
+header a {
+  color: #FFFFFF;
 }
 
 .dropDown a, .loggedInMessage {
-  background-color: #FDCD6D;
-  border: 1px solid #352609;
-}
-
-.dropDown .currentPageLink {
+  color: #FFFFFF;
   background-color: #9C6902;
+  border-bottom: 2px solid #352609;
+  border-right: 2px solid #352609;
+  border-left: 2px solid #352609;
 }
 
-nav a:hover {
-  background-color: #9C6902;
-}
-
-nav a {
-  color: #352609;
+.dropDown .currentPageLink, nav a:hover {
+  color: #FFFFFF;
+  background-color: #352609;
 }
 
 main {

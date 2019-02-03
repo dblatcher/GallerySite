@@ -7,10 +7,11 @@
 .galleryListItem {
   text-decoration: none;
   position: relative;
-  border: 2px solid #9C6902;
-  margin: 3px;
+  margin: 10px;
   box-sizing: border-box;
-  padding: 6px;
+  padding: 5px;
+  box-shadow: 3px 3px #02020270;
+  border-radius: 3px;
 }
 
 .textFlex {
@@ -23,12 +24,10 @@
   font-weight: normal;
   margin: 0px;
   text-align: center;
-  color: #9C6902;
-  text-shadow: 0.5px 0.5px #352609;
+  color: #352609;
 }
 .textFlex h2 {
-  text-transform: capitalize;
-  text-shadow: 1px 1px #352609;
+  font-variant: small-caps;
 }
 
 @media screen and (max-width: 519px) {
@@ -38,17 +37,17 @@
 }
 @media screen and (min-width: 520px) {
   .galleryListItem {
-    flex-basis: 48%;
+    flex-basis: 44%;
   }
 }
 @media screen and (min-width: 780px) {
   .galleryListItem {
-    flex-basis: 32%;
+    flex-basis: 30%;
   }
 }
 @media screen and (min-width: 1040px) {
   .galleryListItem {
-    flex-basis: 24%;
+    flex-basis: 21%;
   }
 }
 .imageBox {
@@ -58,6 +57,7 @@
   box-sizing: border-box;
   height: 100%;
   width: 100%;
+  background-color: #FDCD6D;
   background-size: auto 95%;
   background-position: center;
   background-repeat: no-repeat;

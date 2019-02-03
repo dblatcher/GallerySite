@@ -1,15 +1,18 @@
-.newsPost + .newsPost {
-  border-top: 5px outset #9C6902;
-  padding-top: 1em;
+.newsPost {
+  box-shadow: 3px 3px #02020270;
+  border-radius: 3px;
 }
 
-.newsPost > p, .newsPost > a {
-  text-align: justify;
+.newsPost + .newsPost {
+  margin-top: 1em;
+}
+
+.newsPost {
+  background-color: #FDCD6D;
 }
 
 .postBanner {
   display: flex;
-  background-color: #9C6902;
 }
 .postBanner img {
   max-height: 3em;
@@ -29,21 +32,23 @@
   font-size: small;
 }
 .bannerText h2 {
-  font-size: x-large;
-  text-align: justify;
-  text-shadow: 1px 1px #352609;
+  font-size: xx-large;
+  font-variant: small-caps;
 }
 .bannerText h2, .bannerText p {
   place-self: center;
   margin-top: 0px;
   margin-Bottom: 0px;
   font-weight: normal;
-  color: #FFFFFF;
 }
 .bannerText > div {
   display: flex;
   flex-flow: row;
   justify-content: space-evenly;
+}
+
+.postBody {
+  margin: 0px 10px 10px;
 }
 
 .postImage {
