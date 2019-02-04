@@ -1,5 +1,5 @@
 var config = require('./siteConfig.js');
-const authenticationEnabled = config.authenticationEnabled;
+var authenticationEnabled = config.authenticationEnabled;
 var siteSettings = config.siteSettings;
 var pages = config.pages;
 var errorPageViewName = config.errorPageViewName;
@@ -31,7 +31,7 @@ var server = require('http').Server(app);
 var path = require ('path');
 var port = process.env.PORT || 8080;
 
-const formidableMiddleware = require('express-formidable');
+var formidableMiddleware = require('express-formidable');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var session = require("express-session");
