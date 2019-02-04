@@ -1,10 +1,17 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+fs = require("fs");
 
-var users = [
-{username:'bob', password:'joke',id:0},
-{username:'sally', password:'0123',id:1},
-];
+var users; 
+try {
+	users = JSON.parse(fs.readFileSync('./users.json', 'utf8'))
+	console.log('imported user list, ' + users.length + ' user accounts.');
+} catch(err) {
+	console.log(err);
+	users = [];
+	console.log('failed to import user list')
+}
+
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
