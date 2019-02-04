@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "init-preprocess": "sass src/scss:public/css",
     "sass": "sass --watch src/scss:public/css",
-    "start": "npm run init-preprocess && node app"
+    "start": "npm run init-preprocess && node app",
+		"build": "npm run init-preprocess && node app"
   },
   "repository": {
     "type": "git",
