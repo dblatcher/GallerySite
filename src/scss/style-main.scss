@@ -27,7 +27,7 @@ header{
 	}
 }
 
-.dropDown a,.loggedInMessage {
+.dropDown a {
 	color:$theme-page;
 	background-color:$theme-dark-shade;
 	border-bottom:2px solid $theme-ink;
@@ -50,4 +50,7 @@ footer {
 	background-color:$theme-ink;
 	color:$theme-light-shade;
 	height:$footer-height;
+	a {
+		color:$theme-page;
+	}
 }

@@ -95,18 +95,6 @@ header a {
   text-decoration: none;
 }
 
-.loggedInMessage {
-  white-space: nowrap;
-  overflow: hidden;
-  position: fixed;
-  top: 3em;
-  left: 0em;
-  padding-left: 0.5em;
-  height: 1em;
-  z-index: 10;
-  opacity: 0.75;
-}
-
 footer {
   position: fixed;
   text-align: center;
@@ -120,6 +108,9 @@ footer {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
+}
+footer span {
+  margin-left: 5px;
 }
 
 * {
@@ -146,7 +137,7 @@ header a {
   color: #FFFFFF;
 }
 
-.dropDown a, .loggedInMessage {
+.dropDown a {
   color: #FFFFFF;
   background-color: #9C6902;
   border-bottom: 2px solid #352609;
@@ -168,6 +159,9 @@ footer {
   background-color: #352609;
   color: #FDCD6D;
   height: 1.6em;
+}
+footer a {
+  color: #FFFFFF;
 }
 
 /*# sourceMappingURL=style-main.css.map */

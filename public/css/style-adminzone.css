@@ -95,18 +95,6 @@ header a {
   text-decoration: none;
 }
 
-.loggedInMessage {
-  white-space: nowrap;
-  overflow: hidden;
-  position: fixed;
-  top: 3em;
-  left: 0em;
-  padding-left: 0.5em;
-  height: 1em;
-  z-index: 10;
-  opacity: 0.75;
-}
-
 footer {
   position: fixed;
   text-align: center;
@@ -120,6 +108,9 @@ footer {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
+}
+footer span {
+  margin-left: 5px;
 }
 
 * {
