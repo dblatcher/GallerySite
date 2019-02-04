@@ -4,7 +4,7 @@
 @import 'footerfunctional';
 
 * {
-font-family: $fonts-main;
+	font-family: $fonts-main;
 }
 
 body{
@@ -23,7 +23,7 @@ header h1 {
 	margin-left:0.25em;
 }
 
-.dropDown a,.loggedInMessage {
+.dropDown a {
 	background-color:$admin-light-shade;
 	border:1px solid $admin-ink;
 }
@@ -31,14 +31,17 @@ header h1 {
 nav a:hover{background-color:$admin-dark-shade;}
 nav a { color:$admin-ink; }
 
-.loggedInMessage{
-	background-color:$admin-light-shade;
-	border: 1px solid $admin-ink;
-}
-
 
 main {
 padding-top: $header-height;
 padding-bottom:$footer-height + 0.5em;
 }
 
+footer {
+	background-color:$admin-ink;
+	color:$admin-light-shade;
+	height:$footer-height;
+	a {
+		color:$admin-page;
+	}
+}

@@ -2,6 +2,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 fs = require("fs");
 
+var adminPath = '/admin'; 
+
 var users; 
 try {
 	users = JSON.parse(fs.readFileSync('./users.json', 'utf8'))
@@ -44,10 +46,9 @@ passport.use(new LocalStrategy(function(username, password, done) {
 function checkIfUserLoggedIn(req, res, next) {
 	if (req.user) { next();	}
 	else {
-		//throw new Error("You need to Log in before seeing that page!");	
 		req.session.message = "You need to Log in before seeing that page!";
 		console.log(req.get('referer'))
-		res.redirect('/login');
+		res.redirect(adminPath);
 	}
 }
 
@@ -71,12 +72,12 @@ function attemptLogIn(req, res, next) {
  		
     if (err) { return next(err); }
 		if (!user) { 
-			return res.redirect('/login'); 
+			return res.redirect(adminPath); 
 		}
 		
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      return res.redirect('/');
+      return res.redirect(adminPath);
     });
 		
   })(req, res, next);

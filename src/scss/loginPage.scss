@@ -1,0 +1,19 @@
+@import 'globals';
+
+form {
+	border: 2px solid $admin-ink;
+	background-color: $admin-light-shade;
+	padding:$margin-main;
+	display:flex;
+	flex-flow:column nowrap;
+	
+	
+	div{
+		display:flex;
+		flex-basis:2em;
+		align-items:center;
+		label{
+			flex-basis:7em;
+		}
+	}
+}

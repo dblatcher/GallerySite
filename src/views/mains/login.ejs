@@ -1,5 +1,8 @@
 	<main>
 		
+	<%if(!username) {%>
+		
+		<form action="/login" method="post">
 		<% if (sessionMessage) {%>
 			<p style="color:red;"><%=sessionMessage%></p>
 		<%} else {%>
@@ -7,7 +10,6 @@
 		<%}%>
 		
 		
-		<form action="/login" method="post">
 				<div>
 						<label>Username:</label>
 						<input type="text" name="username"/>
@@ -17,8 +19,17 @@
 						<input type="password" name="password"/>
 				</div>
 				<div>
+						<label></label>
 						<input type="submit" value="Log In"/>
 				</div>
 		</form>
+	
+	<%}%>
+	
+	<%if(username) {%>
+	<h2>Welcome, <%=username%></h2>
+	<p><a href = '/gallery_control'>Edit Galleries</a></p>
+	<p><a href = '/news_control'>Manage news posts</a></p>
+	<%}%>
 	
 	</main>

@@ -10,15 +10,16 @@ config.siteSettings = {
 	avatarPics:[]
 };
 
+
 //set title to 'null' if the page should not appear in the navBar
 config.pages = [
 	{path:'/', viewName:'standard',content:'home', title:'Home',styleSheets:["newsPost.css","style-home.css"]},
 	{path:'/gallery', viewName:'standard', title:'Galleries',content:'galleriesList', styleSheets:["style-galleries.css"]},
 	{path:'/about', viewName:'standard', title:'About', content:'about',styleSheets:["backgroundImage.css"]},
 	{path:'/news', viewName:'standard', title:'News',content:'newsList', styleSheets:["newsPost.css"]},
-	{path:'/login', viewName:'standard', content:'login', title:'log in'},
-	{path:'/admin', viewName:'adminZone', content:'admin',title:'admin', scripts:["adminScript.js"],styleSheets:["style-admin.css", "Modals.css"], requiresLogin:true},
-	{path:'/postAdmin', viewName:'adminZone', content:'postAdmin', title:'posts', scripts:["usePostControlTemplates.js","postAdmin.js"],styleSheets:["postAdmin.css","Modals.css"], requiresLogin:true},
+	{path:'/admin', viewName:'adminZone', content:'login', title:'admin', styleSheets:["loginPage.css"]},
+	{path:'/gallery_control', viewName:'adminZone', content:'galleryAdmin',title:null, scripts:["adminScript.js"],styleSheets:["style-admin.css", "Modals.css"], requiresLogin:true},
+	{path:'/news_control', viewName:'adminZone', content:'postAdmin', title:null, scripts:["usePostControlTemplates.js","postAdmin.js"],styleSheets:["postAdmin.css","Modals.css"], requiresLogin:true},
 ];
 
 
@@ -28,9 +29,11 @@ config.get404ErrorMessage = function(request) {
 }
 
 
+
+
 // THIS SHOULD ONLY BE SET TO FALSE FOR DEVELOPMENT
 // IT DISABLES THE AUTHENTICATION MIDDLEWARE
-config.authenticationEnabled = false;
+config.authenticationEnabled = true;
 
 
 
