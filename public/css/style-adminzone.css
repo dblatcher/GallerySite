@@ -95,6 +95,10 @@ header a {
   text-decoration: none;
 }
 
+.headerSpacer {
+  height: 3em;
+}
+
 footer {
   position: fixed;
   text-align: center;
@@ -111,6 +115,11 @@ footer {
 }
 footer span {
   margin-left: 5px;
+}
+
+.footerSpacer {
+  clear: both;
+  height: 2.1em;
 }
 
 * {

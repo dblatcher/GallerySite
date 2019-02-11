@@ -116,7 +116,7 @@ function handleUploadAvatar () {
 		try {
 			parsedResponse = JSON.parse(xhr.response);
 			alert (parsedResponse.message ? JSON.parse(xhr.response).message : "Undefined Error")
-		} catch {
+		} catch(err) {
 			alert('non json response');
 			console.log(xhr.response);
 		};
@@ -159,7 +159,7 @@ function publishChangesToServer() {
 		try {
 			var parsedData = JSON.parse(xhr.response);
 			alert (parsedData.message ? JSON.parse(xhr.response).message : "Undefined Error")
-		} catch {
+		} catch(err) {
 			alert('non json response');
 		};
 		
