@@ -184,9 +184,7 @@ var wrapper = function (currentGalleryData){
 					var archiveIsAlreadyThere = function(){
 					for (var f = 0; f < files.length; f++) {
 						
-						console.log  (files[f]);
-						
-						if (files[f].name === "archive"  && files[f].isDirectory()) {
+						if ( files[f] === "archive" || (files[f].name === "archive"  && files[f].isDirectory() ) ) {
 							return true;
 						}
 					};
