@@ -16,7 +16,7 @@ body{
 header{
 	color: $theme-page;
 	background-color:$theme-dark-shade;
-	box-shadow:$shadow-size $shadow-size $shadow-color;
+	box-shadow:0px $shadow-size $shadow-color;
 	h1 {
 		color: $theme-page;
 		font-variant:small-caps;

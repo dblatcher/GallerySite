@@ -13,10 +13,15 @@ header{
 
 	a {
 		text-decoration:none;
+		overflow:hidden;
 	}
-	
+	h1 {
+		font-size:large;
+	}	
+		
 	height: $header-height;
 }
+
 
 .headerSpacer {
 	height:$header-height;

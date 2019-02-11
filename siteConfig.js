@@ -1,7 +1,7 @@
 var config = {};
 
 config.siteSettings = {
-	siteName:"My Picture Site",
+	siteName:"My Picture Gallery Site",
 	defaultGalleryBackgroundColor:"white",
 	defaultGalleryForegroundColor:"black",
 	imageFileTypes : ['jpg','tif','gif','png','bmp'],

@@ -21,6 +21,7 @@ padding:4px;
 font-size:x-large;
 font-weight:bold;
 cursor:pointer;
+flex-shrink:0;
 }
 
 .dropDown  {
@@ -47,10 +48,15 @@ right:0px;
 	text-align:center;
 }
 
-
 .onBar {
-height:$header-height;
-align-self:flex-end;
+	height:$header-height;
+	align-self:flex-end;
+	flex-shrink:0.1;
+	flex-basis:10em;
+	ul{
+		padding:0px;
+		font-size:small;
+	}
 }
 
 .onBar ul {
