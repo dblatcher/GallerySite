@@ -9,9 +9,15 @@ try {
 	users = JSON.parse(fs.readFileSync('./users.json', 'utf8'))
 	console.log('imported user list, ' + users.length + ' user accounts.');
 } catch(err) {
-	console.log(err);
+	
+	console.log('failed to import user list - it will not be possible to log-on to the admin areas of the site.')
+	if (err.code == "ENOENT") {
+		console.log('The file "users.json" is missing from root. See "template for users_json.txt" for instructions.')
+	} else {
+		console.log('Error in "users.json" :  ' + err.message);
+	}
+	
 	users = [];
-	console.log('failed to import user list')
 }
 
 

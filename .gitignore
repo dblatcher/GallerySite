@@ -63,3 +63,6 @@ typings/
 # sample content files
 public/galleries
 public/posts
+
+# passwordfile
+users.json
